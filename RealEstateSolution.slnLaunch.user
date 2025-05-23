@@ -1,0 +1,89 @@
+[
+  {
+    "Name": "Wpf启动配置",
+    "Projects": [
+      {
+        "Path": "RealEstateSolution.WpfClient\\RealEstateSolution.WpfClient.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.PropertyService\\RealEstateSolution.PropertyService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ClientService\\RealEstateSolution.ClientService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ContractService\\RealEstateSolution.ContractService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.AuthService\\RealEstateSolution.AuthService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.MatchingService\\RealEstateSolution.MatchingService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.RecycleService\\RealEstateSolution.RecycleService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ApiGateway\\RealEstateSolution.ApiGateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "全服务启动配置",
+    "Projects": [
+      {
+        "Path": "RealEstateSolution.PropertyService\\RealEstateSolution.PropertyService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ClientService\\RealEstateSolution.ClientService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ContractService\\RealEstateSolution.ContractService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.AuthService\\RealEstateSolution.AuthService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.MatchingService\\RealEstateSolution.MatchingService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.RecycleService\\RealEstateSolution.RecycleService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ApiGateway\\RealEstateSolution.ApiGateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "新建配置文件",
+    "Projects": [
+      {
+        "Path": "RealEstateSolution.AuthService\\RealEstateSolution.AuthService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ApiGateway\\RealEstateSolution.ApiGateway.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.PropertyService\\RealEstateSolution.PropertyService.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

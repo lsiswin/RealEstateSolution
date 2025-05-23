@@ -1,0 +1,6 @@
+@RealEstateSolution.RecycleService_HostAddress = http://localhost:5220
+
+GET {{RealEstateSolution.RecycleService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

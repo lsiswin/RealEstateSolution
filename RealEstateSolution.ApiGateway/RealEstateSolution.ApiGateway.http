@@ -1,0 +1,5 @@
+@RealEstateSolution.ApiGateway_HostAddress = http://localhost:5098
+
+Post {{RealEstateSolution.ApiGateway_HostAddress}}/api/auth/login
+Accept: application/json
+###
