@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RealEstateSolution.Common.Models;
 using RealEstateSolution.Database.Models;
 using RealEstateSolution.PropertyService.Services;
 using RealEstateSolution.PropertyService.Dtos;
+using RealEstateSolution.Common.Utils;
 
 namespace RealEstateSolution.PropertyService.Controllers;
 

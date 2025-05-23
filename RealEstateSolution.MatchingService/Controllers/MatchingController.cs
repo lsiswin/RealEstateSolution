@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RealEstateSolution.Common.Models;
+using RealEstateSolution.Common.Utils;
 using RealEstateSolution.Database.Models;
 using RealEstateSolution.MatchingService.Services;
 

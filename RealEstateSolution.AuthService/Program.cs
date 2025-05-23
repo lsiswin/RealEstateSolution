@@ -8,9 +8,9 @@ using System.Text;
 using RealEstateSolution.AuthService.Models.IdentityModels;
 using RealEstateSolution.AuthService.Services;
 using StackExchange.Redis;
-using RealEstateSolution.Common.Models;
 using RealEstateSolution.AuthService.Extension;
 using RealEstateSolution.Common.Redis;
+using RealEstateSolution.Common.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IAuthService, AuthService>();

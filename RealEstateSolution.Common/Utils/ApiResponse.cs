@@ -1,4 +1,4 @@
-namespace RealEstateSolution.Common.Models;
+namespace RealEstateSolution.Common.Utils;
 
 /// <summary>
 /// API统一返回类型
@@ -98,4 +98,4 @@ public class ApiResponse<T>
             Success = false
         };
     }
-} 
+}

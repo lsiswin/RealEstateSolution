@@ -1,4 +1,4 @@
-namespace RealEstateSolution.Common.Models
+namespace RealEstateSolution.Common.Utils
 {
     /// <summary>
     /// JWT配置设置

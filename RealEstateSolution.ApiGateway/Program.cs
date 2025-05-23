@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using RealEstateSolution.Common.Models;
 using RealEstateSolution.Common.Redis;
+using RealEstateSolution.Common.Utils;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);

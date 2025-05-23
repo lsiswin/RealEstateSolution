@@ -7,7 +7,7 @@ using System.Text.Json.Serialization.Metadata;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using RealEstateSolution.Common.Models;
+using RealEstateSolution.Common.Utils;
 
 namespace RealEstateSolution.AuthService.Extension
 {
