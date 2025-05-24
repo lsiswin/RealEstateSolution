@@ -3,7 +3,7 @@ using RealEstateSolution.Common.Repository;
 using RealEstateSolution.Database.Models;
 using RealEstateSolution.PropertyService.Data;
 
-namespace RealEstateSolution.PropertyService.Repository;
+namespace RealEstateSolution.PropertyService.Extension.Repository;
 
 /// <summary>
 /// 房源仓储实现类
@@ -26,8 +26,8 @@ public class PropertyRepository : GenericRepository<Property>, IPropertyReposito
 
         if (!string.IsNullOrWhiteSpace(keyword))
         {
-            query = query.Where(p => p.Title.Contains(keyword) || 
-                                   p.Description.Contains(keyword) || 
+            query = query.Where(p => p.Title.Contains(keyword) ||
+                                   p.Description.Contains(keyword) ||
                                    p.Address.Contains(keyword));
         }
 
@@ -114,4 +114,4 @@ public class PropertyRepository : GenericRepository<Property>, IPropertyReposito
             }
         }
     }
-} 
+}

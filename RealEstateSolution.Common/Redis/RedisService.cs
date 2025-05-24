@@ -23,6 +23,31 @@ namespace RealEstateSolution.Common.Redis
         }
 
         /// <summary>
+        /// 设置缓存
+        /// </summary>
+        public async Task<bool> SetAsync(string key, string value, TimeSpan expiration)
+        {
+            return await _db.StringSetAsync(key, value, expiration);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        public async Task<string?> GetAsync(string key)
+        {
+            var value = await _db.StringGetAsync(key);
+            return value.HasValue ? value.ToString() : null;
+        }
+
+        /// <summary>
+        /// 删除缓存
+        /// </summary>
+        public async Task<bool> DeleteAsync(string key)
+        {
+            return await _db.KeyDeleteAsync(key);
+        }
+
+        /// <summary>
         /// 将令牌添加到黑名单
         /// </summary>
         public async Task<bool> AddToBlacklistAsync(string token, TimeSpan expiration)

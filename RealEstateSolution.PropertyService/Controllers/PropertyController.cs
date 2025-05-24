@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateSolution.Database.Models;
 using RealEstateSolution.PropertyService.Services;
-using RealEstateSolution.PropertyService.Dtos;
 using RealEstateSolution.Common.Utils;
+using System.Security.Claims;
 
 namespace RealEstateSolution.PropertyService.Controllers;
 
 /// <summary>
-/// 房源服务控制器
+/// 房源管理控制器
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PropertyController : ControllerBase
 {
     private readonly IPropertyService _propertyService;
@@ -22,63 +23,85 @@ public class PropertyController : ControllerBase
     }
 
     /// <summary>
-    /// 创建房源
+    /// 获取当前用户ID
     /// </summary>
-    [HttpPost]
-    public async Task<ApiResponse<PropertyDto>> CreateProperty([FromBody] PropertyDto propertyDto)
+    private int GetCurrentUserId()
     {
-        var result = await _propertyService.CreatePropertyAsync(propertyDto);
-        return new ApiResponse<PropertyDto> { Data = result };
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+        {
+            throw new UnauthorizedAccessException("无效的用户身份");
+        }
+        return userId;
     }
 
     /// <summary>
-    /// 更新房源
+    /// 判断当前用户是否为经纪人
+    /// </summary>
+    private bool IsAgent()
+    {
+        return User.IsInRole("Agent");
+    }
+
+    /// <summary>
+    /// 登记新房源
+    /// </summary>
+    [HttpPost]
+    public async Task<ApiResponse<Property>> RegisterProperty([FromBody] Property property)
+    {
+        var userId = GetCurrentUserId();
+        return await _propertyService.RegisterPropertyAsync(property, userId);
+    }
+
+    /// <summary>
+    /// 修改房源信息
     /// </summary>
     [HttpPut("{id}")]
-    public async Task<ApiResponse> UpdateProperty(int id, [FromBody] PropertyDto propertyDto)
+    public async Task<ApiResponse<Property>> UpdateProperty(int id, [FromBody] Property property)
     {
-        if (id != propertyDto.Id)
-        {
-            return new ApiResponse { Message = "ID不匹配" };
-        }
-        await _propertyService.UpdatePropertyAsync(propertyDto);
-        return new ApiResponse { Message = "房源已更新" };
+        var userId = GetCurrentUserId();
+        return await _propertyService.UpdatePropertyAsync(id, property, userId);
+    }
+
+    /// <summary>
+    /// 变更房源状态
+    /// </summary>
+    [HttpPatch("{id}/status")]
+    public async Task<ApiResponse<Property>> ChangePropertyStatus(int id, [FromBody] PropertyStatus status)
+    {
+        var userId = GetCurrentUserId();
+        return await _propertyService.ChangePropertyStatusAsync(id, status, userId);
     }
 
     /// <summary>
     /// 获取房源详情
     /// </summary>
     [HttpGet("{id}")]
-    public async Task<ApiResponse<PropertyDto>> GetProperty(int id)
+    public async Task<ApiResponse<Property>> GetProperty(int id)
     {
-        var property = await _propertyService.GetPropertyByIdAsync(id);
-        if (property == null)
-        {
-            return new ApiResponse<PropertyDto> { Message = "未找到房源" };
-        }
-        return new ApiResponse<PropertyDto> { Data = property };
+        var userId = GetCurrentUserId();
+        return await _propertyService.GetPropertyByIdAsync(id, userId);
     }
 
     /// <summary>
-    /// 搜索房源
+    /// 查询房源列表
     /// </summary>
-    [HttpGet("search")]
-    public async Task<ApiResponse<IEnumerable<PropertyDto>>> SearchProperties(
-        [FromQuery] string? keyword,
+    [HttpGet]
+    public async Task<ApiResponse<PagedList<Property>>> QueryProperties(
         [FromQuery] PropertyType? type,
-        [FromQuery] PropertyStatus? status,
         [FromQuery] decimal? minPrice,
         [FromQuery] decimal? maxPrice,
-        [FromQuery] string? location)
+        [FromQuery] decimal? minArea,
+        [FromQuery] decimal? maxArea,
+        [FromQuery] PropertyStatus? status,
+        [FromQuery] string? keyword,
+        [FromQuery] int pageIndex = 1,
+        [FromQuery] int pageSize = 10)
     {
-        var properties = await _propertyService.SearchPropertiesAsync(
-            keyword,
-            type,
-            status,
-            minPrice,
-            maxPrice,
-            location);
-        return new ApiResponse<IEnumerable<PropertyDto>> { Data = properties };
+        var userId = GetCurrentUserId();
+        var isAgent = IsAgent();
+        return await _propertyService.QueryPropertiesAsync(
+            userId, isAgent, type, minPrice, maxPrice, minArea, maxArea, status, keyword, pageIndex, pageSize);
     }
 
     /// <summary>
@@ -87,27 +110,7 @@ public class PropertyController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ApiResponse> DeleteProperty(int id)
     {
-        await _propertyService.DeletePropertyAsync(id);
-        return new ApiResponse { Message = "房源已删除" };
-    }
-
-    /// <summary>
-    /// 更新房源状态
-    /// </summary>
-    [HttpPut("{id}/status")]
-    public async Task<ApiResponse> UpdatePropertyStatus(int id, [FromQuery] PropertyStatus status)
-    {
-        await _propertyService.UpdatePropertyStatusAsync(id, status);
-        return new ApiResponse { Message = "房源状态已更新" };
-    }
-
-    /// <summary>
-    /// 获取房主的所有房源
-    /// </summary>
-    [HttpGet("owner/{ownerId}")]
-    public async Task<ApiResponse<IEnumerable<PropertyDto>>> GetOwnerProperties(int ownerId)
-    {
-        var properties = await _propertyService.GetOwnerPropertiesAsync(ownerId);
-        return new ApiResponse<IEnumerable<PropertyDto>> { Data = properties };
+        var userId = GetCurrentUserId();
+        return await _propertyService.DeletePropertyAsync(id, userId);
     }
 } 

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstateSolution.Database.Models;
-
 namespace RealEstateSolution.PropertyService.Data;
 
 /// <summary>
@@ -12,7 +11,7 @@ public class PropertyDbContext : DbContext
     {
     }
 
-    public DbSet<Property> Properties { get; set; }
+    public DbSet<Property> Properties { get; set; } = null!;
     public DbSet<PropertyImage> PropertyImages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,16 +21,18 @@ public class PropertyDbContext : DbContext
         modelBuilder.Entity<Property>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.Title).HasMaxLength(100).IsRequired();
-            entity.Property(e => e.Description).HasMaxLength(2000);
-            entity.Property(e => e.Address).HasMaxLength(200).IsRequired();
-            entity.Property(e => e.Area).IsRequired();
-            entity.Property(e => e.Price).IsRequired();
-            entity.Property(e => e.Type).IsRequired();
-            entity.Property(e => e.Status).IsRequired();
-            entity.Property(e => e.OwnerId).IsRequired();
-            entity.Property(e => e.CreateTime).IsRequired();
-            entity.Property(e => e.UpdateTime).IsRequired();
+            entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Description).HasMaxLength(1000);
+            entity.Property(e => e.Address).IsRequired().HasMaxLength(200);
+            entity.Property(e => e.Price).HasPrecision(18, 2);
+            entity.Property(e => e.Area).HasPrecision(10, 2);
+            
+            // 将Images列表转换为JSON存储
+            entity.Property(e => e.Images)
+                .HasConversion(
+                    v => System.Text.Json.JsonSerializer.Serialize(v, new System.Text.Json.JsonSerializerOptions()),
+                    v => System.Text.Json.JsonSerializer.Deserialize<List<PropertyImage>>(v, new System.Text.Json.JsonSerializerOptions())
+                );
         });
 
         modelBuilder.Entity<PropertyImage>(entity =>

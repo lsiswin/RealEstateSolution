@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace RealEstateSolution.PropertyService.Middleware;
+namespace RealEstateSolution.PropertyService.Extension.Middleware;
 
 /// <summary>
 /// 请求日志中间件
@@ -37,4 +37,4 @@ public class RequestLoggingMiddleware
                 method, path, query, statusCode, elapsed);
         }
     }
-} 
+}

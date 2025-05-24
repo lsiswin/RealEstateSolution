@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using RealEstateSolution.PropertyService.Data;
 
-namespace RealEstateSolution.PropertyService.HealthChecks;
+namespace RealEstateSolution.PropertyService.Extension.HealthChecks;
 
 /// <summary>
 /// 数据库健康检查
@@ -32,4 +32,4 @@ public class DatabaseHealthCheck : IHealthCheck
             return HealthCheckResult.Unhealthy("数据库连接异常", ex);
         }
     }
-} 
+}

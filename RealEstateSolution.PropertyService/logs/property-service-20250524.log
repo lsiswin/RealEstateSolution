@@ -1,0 +1,87 @@
+2025-05-24 13:28:54.459 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-24 13:28:55.164 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-24 13:28:55.188 +08:00 [INF] Hosting environment: Development
+2025-05-24 13:28:55.194 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-24 13:28:55.775 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-24 13:28:55.825 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 64.9708ms
+2025-05-24 13:28:56.123 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-24 13:28:56.603 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 481.5833ms
+2025-05-24 13:28:56.774 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-24 13:28:56.870 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 96.338ms
+2025-05-24 13:29:19.997 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/Property/1 - null null
+2025-05-24 13:29:20.084 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-24 13:29:20.182 +08:00 [INF] 请求 GET /api/Property/1 完成，状态码: 200，耗时: 113ms
+2025-05-24 13:29:20.194 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No authenticationScheme was specified, and there was no DefaultChallengeScheme found. The default schemes can be set using either AddAuthentication(string defaultScheme) or AddAuthentication(Action<AuthenticationOptions> configureOptions).
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at RealEstateSolution.PropertyService.Extension.Middleware.RequestLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Extension\Middleware\RequestLoggingMiddleware.cs:line 24
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-05-24 13:29:20.234 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/Property/1 - 500 null text/plain; charset=utf-8 238.6208ms
+2025-05-24 13:30:11.044 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-24 13:30:11.211 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-24 13:30:11.215 +08:00 [INF] Hosting environment: Development
+2025-05-24 13:30:11.221 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-24 13:30:12.080 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-24 13:30:12.127 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 65.8522ms
+2025-05-24 13:30:12.318 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-24 13:30:12.478 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 160.1646ms
+2025-05-24 13:30:12.607 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-24 13:30:12.695 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 88.8616ms
+2025-05-24 13:34:57.090 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-24 13:34:57.191 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-24 13:34:57.306 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 130ms
+2025-05-24 13:34:57.327 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No authenticationScheme was specified, and there was no DefaultChallengeScheme found. The default schemes can be set using either AddAuthentication(string defaultScheme) or AddAuthentication(Action<AuthenticationOptions> configureOptions).
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at RealEstateSolution.PropertyService.Extension.Middleware.RequestLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Extension\Middleware\RequestLoggingMiddleware.cs:line 24
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-05-24 13:34:57.436 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 500 null text/plain; charset=utf-8 352.1635ms
+2025-05-24 13:49:46.565 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-24 13:49:46.897 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-24 13:49:46.986 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-24 13:49:46.988 +08:00 [INF] Hosting environment: Development
+2025-05-24 13:49:46.990 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-24 13:49:48.309 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-24 13:49:48.357 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 61.0898ms
+2025-05-24 13:49:48.479 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-24 13:49:48.666 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 187.8669ms
+2025-05-24 13:49:48.958 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-24 13:49:49.287 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 328.7182ms
+2025-05-24 13:50:17.275 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-24 13:50:17.370 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-24 13:50:17.439 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-24 13:50:17.452 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-24 13:50:17.460 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-24 13:50:17.464 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 16ms
+2025-05-24 13:50:17.487 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 212.7683ms
+2025-05-24 13:50:25.230 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-24 13:50:25.246 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-24 13:50:25.260 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-24 13:50:25.266 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-24 13:50:25.270 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-24 13:50:25.275 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 12ms
+2025-05-24 13:50:25.281 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 51.111ms

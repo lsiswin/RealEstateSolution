@@ -1,7 +1,4 @@
-using System.Threading.Tasks;
 using RealEstateSolution.AuthService.Models;
-using RealEstateSolution.AuthService.Models.IdentityModels;
-using RealEstateSolution.Common.Models;
 
 namespace RealEstateSolution.AuthService.Services
 {

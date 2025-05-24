@@ -99,6 +99,11 @@ namespace RealEstateSolution.AuthService.Models
         /// 密码
         /// </summary>
         public string Password { get; set; } = string.Empty;
+        /// <summary>
+        /// 手机号
+        /// </summary>
+        public string PhoneNumber { get; set; } = string.Empty;
+        
     }
 
     /// <summary>

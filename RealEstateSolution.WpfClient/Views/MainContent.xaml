@@ -1,0 +1,132 @@
+<UserControl x:Class="RealEstateSolution.WpfClient.Views.MainContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <ScrollViewer Margin="16">
+        <StackPanel>
+            <!-- 数据统计卡片 -->
+            <ItemsControl ItemsSource="{Binding Statistics}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card Margin="8" Padding="16">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Label}"
+                                         Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                         Opacity="0.6"/>
+                                <TextBlock Text="{Binding Value}"
+                                         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                         Margin="0,8"/>
+                                <TextBlock>
+                                    <Run Text="较上月"/>
+                                    <Run Text="{Binding Trend, StringFormat={}{0:+#;-#;0}%}"
+                                         Foreground="{Binding Trend, Converter={StaticResource TrendToColorConverter}}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- 快捷功能区 -->
+            <ItemsControl ItemsSource="{Binding QuickActions}" Margin="0,24">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card Margin="8" Padding="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="{Binding IconKind}"
+                                                       Width="24" Height="24"
+                                                       VerticalAlignment="Center"
+                                                       Margin="0,0,16,0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="{Binding Title}"
+                                             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"/>
+                                    <TextBlock Text="{Binding Description}"
+                                             Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                             Opacity="0.6"/>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- 房源列表 -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="最新房源"
+                         Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+                <Button Grid.Column="1"
+                        Command="{Binding AddHouseCommand}"
+                        Style="{StaticResource MaterialDesignPrimaryButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Plus" Margin="0,0,8,0"/>
+                        <TextBlock Text="发布房源"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <ItemsControl ItemsSource="{Binding Houses}" Margin="0,16">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card Margin="8">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding ImageUrl}"
+                                     Stretch="UniformToFill"/>
+                                <materialDesign:Chip Content="急售"
+                                                   Background="Red"
+                                                   Margin="8"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Top"
+                                                   Visibility="{Binding IsUrgent, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                <StackPanel Grid.Row="1" Margin="16">
+                                    <TextBlock Text="{Binding Title}"
+                                             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"/>
+                                    <StackPanel Orientation="Horizontal" 
+                                              Margin="0,8"
+                                              Opacity="0.6">
+                                        <TextBlock Text="{Binding Area, StringFormat={}{0}m²}"/>
+                                        <TextBlock Text="{Binding Rooms}" Margin="16,0,0,0"/>
+                                    </StackPanel>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Price, StringFormat={}{0}万}"
+                                                 Foreground="Red"
+                                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"/>
+                                        <Button Content="查看详情"
+                                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                                HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl> 

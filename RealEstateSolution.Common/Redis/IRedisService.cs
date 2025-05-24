@@ -8,6 +8,21 @@ namespace RealEstateSolution.Common.Redis
     public interface IRedisService
     {
         /// <summary>
+        /// 设置缓存
+        /// </summary>
+        Task<bool> SetAsync(string key, string value, TimeSpan expiration);
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        Task<string?> GetAsync(string key);
+
+        /// <summary>
+        /// 删除缓存
+        /// </summary>
+        Task<bool> DeleteAsync(string key);
+
+        /// <summary>
         /// 将令牌添加到黑名单
         /// </summary>
         /// <param name="token">要加入黑名单的令牌</param>

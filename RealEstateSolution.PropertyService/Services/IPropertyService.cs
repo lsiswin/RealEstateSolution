@@ -1,5 +1,5 @@
+using RealEstateSolution.Common.Utils;
 using RealEstateSolution.Database.Models;
-using RealEstateSolution.PropertyService.Dtos;
 
 namespace RealEstateSolution.PropertyService.Services;
 
@@ -9,44 +9,43 @@ namespace RealEstateSolution.PropertyService.Services;
 public interface IPropertyService
 {
     /// <summary>
-    /// 创建房源
+    /// 登记新房源
     /// </summary>
-    Task<PropertyDto> CreatePropertyAsync(PropertyDto propertyDto);
+    Task<ApiResponse<Property>> RegisterPropertyAsync(Property property, int userId);
 
     /// <summary>
-    /// 更新房源
+    /// 修改房源信息
     /// </summary>
-    Task UpdatePropertyAsync(PropertyDto propertyDto);
+    Task<ApiResponse<Property>> UpdatePropertyAsync(int id, Property property, int userId);
+
+    /// <summary>
+    /// 变更房源状态
+    /// </summary>
+    Task<ApiResponse<Property>> ChangePropertyStatusAsync(int id, PropertyStatus status, int userId);
 
     /// <summary>
     /// 获取房源详情
     /// </summary>
-    Task<PropertyDto?> GetPropertyByIdAsync(int id);
+    Task<ApiResponse<Property>> GetPropertyByIdAsync(int id, int userId);
 
     /// <summary>
-    /// 搜索房源
+    /// 查询房源列表
     /// </summary>
-    Task<IEnumerable<PropertyDto>> SearchPropertiesAsync(
-        string? keyword,
-        PropertyType? type,
-        PropertyStatus? status,
-        decimal? minPrice,
-        decimal? maxPrice,
-        string? location);
+    Task<ApiResponse<PagedList<Property>>> QueryPropertiesAsync(
+        int userId,
+        bool isAgent,
+        PropertyType? type = null,
+        decimal? minPrice = null,
+        decimal? maxPrice = null,
+        decimal? minArea = null,
+        decimal? maxArea = null,
+        PropertyStatus? status = null,
+        string? keyword = null,
+        int pageIndex = 1,
+        int pageSize = 10);
 
     /// <summary>
     /// 删除房源
     /// </summary>
-    Task DeletePropertyAsync(int id);
-
-    /// <summary>
-    /// 更新房源状态
-    /// </summary>
-    Task UpdatePropertyStatusAsync(int id, PropertyStatus status);
-
-    /// <summary>
-    /// 获取房主的所有房源
-    /// </summary>
-    Task<IEnumerable<PropertyDto>> GetOwnerPropertiesAsync(int ownerId);
-
+    Task<ApiResponse> DeletePropertyAsync(int id, int userId);
 } 

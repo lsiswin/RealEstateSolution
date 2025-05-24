@@ -1,7 +1,7 @@
 using RealEstateSolution.Common.Repository;
 using RealEstateSolution.Database.Models;
 
-namespace RealEstateSolution.PropertyService.Repository;
+namespace RealEstateSolution.PropertyService.Extension.Repository;
 
 /// <summary>
 /// 房源仓储接口
@@ -38,4 +38,4 @@ public interface IPropertyRepository : IGenericRepository<Property>
     /// 删除房源图片
     /// </summary>
     Task DeletePropertyImageAsync(int propertyId, string imageUrl);
-} 
+}

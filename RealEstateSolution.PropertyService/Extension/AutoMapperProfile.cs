@@ -1,6 +1,6 @@
 using AutoMapper;
-using RealEstateSolution.PropertyService.Dtos;
 using RealEstateSolution.Database.Models;
+using RealEstateSolution.PropertyService.Data.Dtos;
 
 namespace RealEstateSolution.PropertyService.Extension
 {

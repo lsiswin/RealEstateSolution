@@ -40,39 +40,34 @@
 - **前端**：
   
   - **WPF客户端**：用于房地产经纪人日常操作（房源登记、客户管理、合同生成）。
-    
+  
   - **Blazor后台管理系统**：用于管理员配置权限、查看系统日志、数据分析。
-    
+
 - **后端**：
   
   - **微服务框架**：`.NET Core 6+`，每个服务独立运行。
-    
+  
   - **API网关**：`Ocelot`（路由、认证聚合）。
-    
+  
   - **数据库**：`Entity Framework Core (Code First)` + `SQL Server`。
-    
+  
   - **通信**：服务间使用`HTTP/REST`，异步任务使用`RabbitMQ`。
-    
+  
   - **安全**：`JWT`认证、`AES`加密敏感字段、`Role-Based Access Control (RBAC)`。
-    
+
 - **基础设施**：
   
   - **容器化**：`Docker` + `Kubernetes`（部署微服务）。
-    
+  
   - **监控**：`Prometheus` + `Grafana`（性能监控）。
-    
+  
   - **日志**：`Serilog` + `ELK Stack`（集中日志管理）。
-    
+
 #### **3. 微服务划分与职责**
 
 | 服务名称                | 职责                         |
 | ------------------- | -------------------------- |
 | **PropertyService** | 房源管理（登记、修改、状态变更、图片上传）、房源查询 |
-| **ClientService** | 客户管理（需求登记、查询）、客户与房源匹配请求 |
-| **ContractService** | 合同模板管理、合同生成、电子签名集成 |
-| **AuthService** | 用户认证（JWT）、角色权限管理、操作审计 |
-| **MatchingService** | 自动匹配算法（根据客户需求匹配房源）、匹配结果推送 |
-| **RecycleService** | 软删除数据管理（回收站）、数据恢复与彻底删除 |
 | **ClientService**   | 客户管理（需求登记、查询）、客户与房源匹配请求    |
 | **ContractService** | 合同模板管理、合同生成、电子签名集成         |
 | **AuthService**     | 用户认证（JWT）、角色权限管理、操作审计      |

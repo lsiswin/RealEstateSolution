@@ -1,10 +1,10 @@
-using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using RealEstateSolution.Common.Models;
 using RealEstateSolution.Common.Repository;
+using RealEstateSolution.Common.Redis;
+using RealEstateSolution.Common.Utils;
 using RealEstateSolution.Database.Models;
 using RealEstateSolution.PropertyService.Data;
-using RealEstateSolution.PropertyService.Dtos;
 
 namespace RealEstateSolution.PropertyService.Services;
 
@@ -14,236 +14,280 @@ namespace RealEstateSolution.PropertyService.Services;
 public class PropertyService : IPropertyService
 {
     private readonly IUnitOfWork<PropertyDbContext> _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly ICacheService _cacheService;
+    private readonly IGenericRepository<Property> _propertyRepository;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IRedisService _redisService;
+    private const string PropertyCacheKeyPrefix = "property:";
+    private const int CacheExpirationMinutes = 30;
 
     public PropertyService(
         IUnitOfWork<PropertyDbContext> unitOfWork,
-        IMapper mapper,
-        ICacheService cacheService)
+        IHttpContextAccessor httpContextAccessor,
+        IRedisService redisService)
     {
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
-        _cacheService = cacheService;
+        _propertyRepository = unitOfWork.Repository<Property>();
+        _httpContextAccessor = httpContextAccessor;
+        _redisService = redisService;
     }
 
     /// <summary>
-    /// 创建房源
+    /// 验证用户是否有权限操作房源
     /// </summary>
-    /// <param name="propertyDto">房源信息</param>
-    /// <returns>创建后的房源信息</returns>
-    public async Task<PropertyDto> CreatePropertyAsync(PropertyDto propertyDto)
+    private async Task<bool> ValidatePropertyAccess(int propertyId, int userId, bool isGet = false)
     {
-        var property = _mapper.Map<Property>(propertyDto);
-        property.CreateTime = DateTime.Now;
-        property.UpdateTime = DateTime.Now;
-
-        // 添加房源图片
-        if (propertyDto.ImageUrls != null && propertyDto.ImageUrls.Any())
-        {
-            property.Images = propertyDto.ImageUrls.Select(url => new PropertyImage
-            {
-                ImageUrl = url,
-                CreateTime = DateTime.Now
-            }).ToList();
-        }
-
-        await _unitOfWork.Repository<Property>().AddAsync(property);
-        await _unitOfWork.SaveChangesAsync();
-
-        // 清除相关缓存
-        _cacheService.Remove($"property_{property.Id}");
-        _cacheService.Remove($"owner_properties_{property.OwnerId}");
-
-        return _mapper.Map<PropertyDto>(property);
-    }
-
-    /// <summary>
-    /// 更新房源信息
-    /// </summary>
-    /// <param name="propertyDto">房源信息</param>
-    public async Task UpdatePropertyAsync(PropertyDto propertyDto)
-    {
-        var property = await _unitOfWork.Repository<Property>()
-            .Query()
-            .Include(p => p.Images)
-            .FirstOrDefaultAsync(p => p.Id == propertyDto.Id);
-
+        var property = await _propertyRepository.GetByIdAsync(propertyId);
         if (property == null)
         {
-            throw new Exception("房源不存在");
+            throw new KeyNotFoundException($"未找到ID为{propertyId}的房源");
         }
 
-        _mapper.Map(propertyDto, property);
-        property.UpdateTime = DateTime.Now;
-
-        // 更新房源图片
-        if (propertyDto.ImageUrls != null)
+        // 如果是获取操作，且用户是经纪人，则允许访问
+        if (isGet && _httpContextAccessor.HttpContext?.User.IsInRole("Agent") == true)
         {
-            // 删除旧图片
-            if (property.Images != null)
-            {
-                _unitOfWork.Repository<PropertyImage>().DeleteRange(property.Images);
-            }
-
-            // 添加新图片
-            property.Images = propertyDto.ImageUrls.Select(url => new PropertyImage
-            {
-                ImageUrl = url,
-                CreateTime = DateTime.Now
-            }).ToList();
+            return true;
         }
 
-        await _unitOfWork.SaveChangesAsync();
+        // 验证房源是否属于当前用户
+        if (property.OwnerId != userId)
+        {
+            throw new UnauthorizedAccessException("您没有权限操作此房源");
+        }
 
-        // 清除相关缓存
-        _cacheService.Remove($"property_{property.Id}");
-        _cacheService.Remove($"owner_properties_{property.OwnerId}");
+        return true;
+    }
+
+    /// <summary>
+    /// 登记新房源
+    /// </summary>
+    public async Task<ApiResponse<Property>> RegisterPropertyAsync(Property property, int userId)
+    {
+        try
+        {
+            property.OwnerId = userId;
+            property.CreateTime = DateTime.Now;
+            property.UpdateTime = DateTime.Now;
+            
+            await _propertyRepository.AddAsync(property);
+            await _unitOfWork.SaveChangesAsync();
+
+            // 缓存新房源
+            await _redisService.SetAsync(
+                $"{PropertyCacheKeyPrefix}{property.Id}",
+                System.Text.Json.JsonSerializer.Serialize(property),
+                TimeSpan.FromMinutes(CacheExpirationMinutes));
+            
+            return ApiResponse<Property>.Ok(property, "房源登记成功");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<Property>.Error(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// 修改房源信息
+    /// </summary>
+    public async Task<ApiResponse<Property>> UpdatePropertyAsync(int id, Property property, int userId)
+    {
+        try
+        {
+            await ValidatePropertyAccess(id, userId);
+
+            var existingProperty = await _propertyRepository.GetByIdAsync(id);
+            
+            // 更新属性
+            existingProperty.Title = property.Title;
+            existingProperty.Description = property.Description;
+            existingProperty.Price = property.Price;
+            existingProperty.Area = property.Area;
+            existingProperty.Address = property.Address;
+            existingProperty.Type = property.Type;
+            existingProperty.Decoration = property.Decoration;
+            existingProperty.Orientation = property.Orientation;
+            existingProperty.Floor = property.Floor;
+            existingProperty.TotalFloors = property.TotalFloors;
+            existingProperty.Rooms = property.Rooms;
+            existingProperty.Bathrooms = property.Bathrooms;
+            existingProperty.Images = property.Images;
+            existingProperty.UpdateTime = DateTime.Now;
+
+            _propertyRepository.Update(existingProperty);
+            await _unitOfWork.SaveChangesAsync();
+
+            // 更新缓存
+            await _redisService.SetAsync(
+                $"{PropertyCacheKeyPrefix}{id}",
+                System.Text.Json.JsonSerializer.Serialize(existingProperty),
+                TimeSpan.FromMinutes(CacheExpirationMinutes));
+
+            return ApiResponse<Property>.Ok(existingProperty, "房源信息更新成功");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<Property>.Error(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// 变更房源状态
+    /// </summary>
+    public async Task<ApiResponse<Property>> ChangePropertyStatusAsync(int id, PropertyStatus status, int userId)
+    {
+        try
+        {
+            await ValidatePropertyAccess(id, userId);
+
+            var property = await _propertyRepository.GetByIdAsync(id);
+            property.Status = status;
+            property.UpdateTime = DateTime.Now;
+
+            _propertyRepository.Update(property);
+            await _unitOfWork.SaveChangesAsync();
+
+            // 更新缓存
+            await _redisService.SetAsync(
+                $"{PropertyCacheKeyPrefix}{id}",
+                System.Text.Json.JsonSerializer.Serialize(property),
+                TimeSpan.FromMinutes(CacheExpirationMinutes));
+
+            return ApiResponse<Property>.Ok(property, "房源状态更新成功");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<Property>.Error(ex.Message);
+        }
     }
 
     /// <summary>
     /// 获取房源详情
     /// </summary>
-    /// <param name="id">房源ID</param>
-    /// <returns>房源信息</returns>
-    public async Task<PropertyDto> GetPropertyByIdAsync(int id)
+    public async Task<ApiResponse<Property>> GetPropertyByIdAsync(int id, int userId)
     {
-        return await _cacheService.GetOrAdd($"property_{id}", async () =>
+        try
         {
-            var property = await _unitOfWork.Repository<Property>()
-                .Query()
-                .Include(p => p.Images)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            await ValidatePropertyAccess(id, userId, true);
 
-            return property == null ? null : _mapper.Map<PropertyDto>(property);
-        }, TimeSpan.FromMinutes(30));
+            // 尝试从缓存获取
+            var cacheKey = $"{PropertyCacheKeyPrefix}{id}";
+            var cachedProperty = await _redisService.GetAsync(cacheKey);
+            
+            Property? property;
+            if (!string.IsNullOrEmpty(cachedProperty))
+            {
+                property = System.Text.Json.JsonSerializer.Deserialize<Property>(cachedProperty);
+            }
+            else
+            {
+                property = await _propertyRepository.GetByIdAsync(id);
+                if (property != null)
+                {
+                    // 设置缓存
+                    await _redisService.SetAsync(
+                        cacheKey,
+                        System.Text.Json.JsonSerializer.Serialize(property),
+                        TimeSpan.FromMinutes(CacheExpirationMinutes));
+                }
+            }
+
+            return property == null 
+                ? ApiResponse<Property>.Error($"未找到ID为{id}的房源") 
+                : ApiResponse<Property>.Ok(property);
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<Property>.Error(ex.Message);
+        }
     }
 
     /// <summary>
-    /// 搜索房源
+    /// 查询房源列表
     /// </summary>
-    /// <param name="keyword">关键词</param>
-    /// <param name="type">房源类型</param>
-    /// <param name="status">房源状态</param>
-    /// <param name="minPrice">最低价格</param>
-    /// <param name="maxPrice">最高价格</param>
-    /// <param name="location">位置</param>
-    /// <returns>房源列表</returns>
-    public async Task<IEnumerable<PropertyDto>> SearchPropertiesAsync(
-        string? keyword,
-        PropertyType? type,
-        PropertyStatus? status,
-        decimal? minPrice,
-        decimal? maxPrice,
-        string? location)
+    public async Task<ApiResponse<PagedList<Property>>> QueryPropertiesAsync(
+        int userId,
+        bool isAgent,
+        PropertyType? type = null,
+        decimal? minPrice = null,
+        decimal? maxPrice = null,
+        decimal? minArea = null,
+        decimal? maxArea = null,
+        PropertyStatus? status = null,
+        string? keyword = null,
+        int pageIndex = 1,
+        int pageSize = 10)
     {
-        var query = _unitOfWork.Repository<Property>()
-            .Query();
-
-        if (!string.IsNullOrWhiteSpace(keyword))
+        try
         {
-            query = query.Where(p => p.Title.Contains(keyword) || p.Description.Contains(keyword));
-        }
+            var query = _propertyRepository.Query();
 
-        if (type.HasValue)
+            // 如果不是经纪人，只能查看自己的房源
+            if (!isAgent)
+            {
+                query = query.Where(p => p.OwnerId == userId);
+            }
+
+            // 应用筛选条件
+            if (type.HasValue)
+                query = query.Where(p => p.Type == type.Value);
+                
+            if (minPrice.HasValue)
+                query = query.Where(p => p.Price >= minPrice.Value);
+                
+            if (maxPrice.HasValue)
+                query = query.Where(p => p.Price <= maxPrice.Value);
+                
+            if (minArea.HasValue)
+                query = query.Where(p => p.Area >= minArea.Value);
+                
+            if (maxArea.HasValue)
+                query = query.Where(p => p.Area <= maxArea.Value);
+                
+            if (status.HasValue)
+                query = query.Where(p => p.Status == status.Value);
+                
+            if (!string.IsNullOrWhiteSpace(keyword))
+                query = query.Where(p => p.Title.Contains(keyword) || p.Description!.Contains(keyword) || p.Address.Contains(keyword));
+
+            // 获取总数
+            var total = await query.CountAsync();
+
+            // 分页
+            var properties = await query
+                .OrderByDescending(p => p.UpdateTime)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var pagedList = new PagedList<Property>(properties, total, pageIndex, pageSize);
+            return ApiResponse<PagedList<Property>>.Ok(pagedList);
+        }
+        catch (Exception ex)
         {
-            query = query.Where(p => p.Type == type.Value);
+            return ApiResponse<PagedList<Property>>.Error(ex.Message);
         }
-
-        if (status.HasValue)
-        {
-            query = query.Where(p => p.Status == status.Value);
-        }
-
-        if (minPrice.HasValue)
-        {
-            query = query.Where(p => p.Price >= minPrice.Value);
-        }
-
-        if (maxPrice.HasValue)
-        {
-            query = query.Where(p => p.Price <= maxPrice.Value);
-        }
-
-        if (!string.IsNullOrWhiteSpace(location))
-        {
-            query = query.Where(p => p.Address.Contains(location));
-        }
-
-        var properties = await query
-            .Include(p => p.Images)
-            .ToListAsync();
-        return _mapper.Map<IEnumerable<PropertyDto>>(properties);
     }
 
     /// <summary>
     /// 删除房源
     /// </summary>
-    /// <param name="id">房源ID</param>
-    public async Task DeletePropertyAsync(int id)
+    public async Task<ApiResponse> DeletePropertyAsync(int id, int userId)
     {
-        var property = await _unitOfWork.Repository<Property>()
-            .Query()
-            .Include(p => p.Images)
-            .FirstOrDefaultAsync(p => p.Id == id);
-
-        if (property == null)
+        try
         {
-            throw new Exception("房源不存在");
+            await ValidatePropertyAccess(id, userId);
+
+            var property = await _propertyRepository.GetByIdAsync(id);
+            _propertyRepository.Delete(property);
+            await _unitOfWork.SaveChangesAsync();
+
+            // 删除缓存
+            await _redisService.DeleteAsync($"{PropertyCacheKeyPrefix}{id}");
+
+            return ApiResponse.Ok("房源删除成功");
         }
-
-        // 删除房源图片
-        if (property.Images != null)
+        catch (Exception ex)
         {
-            _unitOfWork.Repository<PropertyImage>().DeleteRange(property.Images);
+            return ApiResponse.Error(ex.Message);
         }
-
-        _unitOfWork.Repository<Property>().Delete(property);
-        await _unitOfWork.SaveChangesAsync();
-
-        // 清除相关缓存
-        _cacheService.Remove($"property_{id}");
-        _cacheService.Remove($"owner_properties_{property.OwnerId}");
-    }
-
-    /// <summary>
-    /// 更新房源状态
-    /// </summary>
-    /// <param name="id">房源ID</param>
-    /// <param name="status">新状态</param>
-    public async Task UpdatePropertyStatusAsync(int id, PropertyStatus status)
-    {
-        var property = await _unitOfWork.Repository<Property>().GetByIdAsync(id);
-        if (property == null)
-        {
-            throw new Exception("房源不存在");
-        }
-
-        property.Status = status;
-        property.UpdateTime = DateTime.Now;
-        await _unitOfWork.SaveChangesAsync();
-
-        // 清除相关缓存
-        _cacheService.Remove($"property_{id}");
-        _cacheService.Remove($"owner_properties_{property.OwnerId}");
-    }
-
-    /// <summary>
-    /// 获取房主的所有房源
-    /// </summary>
-    /// <param name="ownerId">房主ID</param>
-    /// <returns>房源列表</returns>
-    public async Task<IEnumerable<PropertyDto>> GetOwnerPropertiesAsync(int ownerId)
-    {
-        return await _cacheService.GetOrAdd($"owner_properties_{ownerId}", async () =>
-        {
-            var properties = await _unitOfWork.Repository<Property>()
-                .Query()
-                .Include(p => p.Images)
-                .Where(p => p.OwnerId == ownerId)
-                .ToListAsync();
-
-            return _mapper.Map<IEnumerable<PropertyDto>>(properties);
-        }, TimeSpan.FromMinutes(30));
     }
 }

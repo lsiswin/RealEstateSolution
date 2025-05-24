@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using RealEstateSolution.Database.Models;
 
-namespace RealEstateSolution.PropertyService.Dtos
+namespace RealEstateSolution.PropertyService.Data.Dtos
 {
     public class PropertyDto
     {
@@ -25,4 +25,4 @@ namespace RealEstateSolution.PropertyService.Dtos
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }
-} 
+}
