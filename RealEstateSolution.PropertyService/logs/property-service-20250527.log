@@ -1547,3 +1547,23 @@ DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
 2025-05-27 15:37:25.237 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService)'
 2025-05-27 15:37:25.240 +08:00 [INF] 请求 GET /api/property/user-info 完成，状态码: 200，耗时: 474ms
 2025-05-27 15:37:25.244 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/user-info - 200 null application/json; charset=utf-8 491.9475ms
+2025-05-27 16:22:59.521 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 16:23:00.706 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 16:23:01.394 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 16:23:01.405 +08:00 [INF] Hosting environment: Development
+2025-05-27 16:23:01.439 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 16:23:08.253 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 16:23:08.255 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 16:23:08.377 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 145.139ms
+2025-05-27 16:23:08.731 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 502.1083ms
+2025-05-27 16:23:08.962 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 16:23:09.109 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 146.8399ms
+2025-05-27 16:26:00.560 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 16:26:02.657 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 16:26:03.311 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 16:26:03.325 +08:00 [INF] Hosting environment: Development
+2025-05-27 16:26:03.350 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 16:26:10.507 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 16:26:10.508 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 16:26:10.720 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 244.8483ms
+2025-05-27 16:26:11.070 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 599.3701ms

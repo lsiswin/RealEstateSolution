@@ -109,6 +109,7 @@
 import { ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import * as echarts from 'echarts'
+import {Document, Money, OfficeBuilding, User} from "@element-plus/icons-vue";
 
 const router = useRouter()
 

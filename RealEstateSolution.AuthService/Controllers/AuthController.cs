@@ -10,7 +10,7 @@ namespace RealEstateSolution.AuthService.Controllers
     /// 认证控制器
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;

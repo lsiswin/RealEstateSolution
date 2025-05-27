@@ -8,6 +8,7 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 import App from './App.vue'
 import router from './router'
+import { useUserStore } from './stores/user'
 
 import './assets/main.css'
 
@@ -18,10 +19,38 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
-app.use(createPinia())
+const pinia = createPinia()
+app.use(pinia)
 app.use(router)
 app.use(ElementPlus, {
   locale: zhCn,
+})
+
+// 初始化用户状态
+const userStore = useUserStore()
+userStore.initUserInfo()
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+  
+  // 如果是登录或注册页面，直接放行
+  if (to.path === '/login' || to.path === '/register') {
+    // 如果已经登录，重定向到首页
+    if (userStore.isLoggedIn) {
+      next('/')
+    } else {
+      next()
+    }
+    return
+  }
+  
+  // 其他页面需要登录
+  if (!userStore.isLoggedIn) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 app.mount('#app') 

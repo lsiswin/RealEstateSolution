@@ -1,4 +1,15 @@
 {
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5098",
+        "Cors": {
+            "AllowOrigins": [ "http://localhost:3001"],
+            "AllowMethods": [ "GET", "POST", "PUT", "DELETE" ],
+            "AllowHeaders": [ "Authorization", "Content-Type" ],
+            "ExposeHeaders": [ "Custom-Header" ],
+            "AllowCredentials": true
+        }
+    },
+    "DangerousAcceptAnyServerCertificateValidator": true,
     "Routes": [
         {
             "DownstreamPathTemplate": "/api/property/{everything}",
@@ -10,7 +21,7 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/property/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
@@ -27,17 +38,12 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/client/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
             },
-            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
-            "AddHeadersToRequest": {
-                "X-User-Id": "Claims[sub]",
-                "X-User-Name": "Claims[name]",
-                "X-User-Roles": "Claims[role]"
-            }
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ]
         },
         {
             "DownstreamPathTemplate": "/api/contract/{everything}",
@@ -49,17 +55,12 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/Contract/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
             },
-            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
-            "AddHeadersToRequest": {
-                "X-User-Id": "Claims[sub]",
-                "X-User-Name": "Claims[name]",
-                "X-User-Roles": "Claims[role]"
-            }
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ]
         },
         {
             "DownstreamPathTemplate": "/api/auth/{everything}",
@@ -71,7 +72,7 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/auth/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
         },
         {
             "DownstreamPathTemplate": "/api/matching/{everything}",
@@ -83,17 +84,12 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/matching/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
             },
-            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
-            "AddHeadersToRequest": {
-                "X-User-Id": "Claims[sub]",
-                "X-User-Name": "Claims[name]",
-                "X-User-Roles": "Claims[role]"
-            }
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ]
         },
         {
             "DownstreamPathTemplate": "/api/recycle/{everything}",
@@ -105,20 +101,13 @@
                 }
             ],
             "UpstreamPathTemplate": "/api/recycle/{everything}",
-            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
             },
-            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
-            "AddHeadersToRequest": {
-                "X-User-Id": "Claims[sub]",
-                "X-User-Name": "Claims[name]",
-                "X-User-Roles": "Claims[role]"
-            }
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ]
+           
         }
-    ],
-    "GlobalConfiguration": {
-        "BaseUrl": "http://localhost:5000"
-    }
+    ]
 } 

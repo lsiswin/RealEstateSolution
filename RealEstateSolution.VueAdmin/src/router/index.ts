@@ -4,6 +4,20 @@ import Layout from '@/views/Layout.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // 登录注册路由
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/views/Auth/Login.vue'),
+      meta: { title: '登录' }
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('@/views/Auth/Register.vue'),
+      meta: { title: '注册' }
+    },
+    // 主应用路由
     {
       path: '/',
       component: Layout,
@@ -19,6 +33,7 @@ const router = createRouter({
           path: 'property',
           name: 'Property',
           component: () => import('@/views/Property/index.vue'),
+          redirect: '/property/list',
           meta: { title: '房源管理', icon: 'OfficeBuilding' },
           children: [
             {
@@ -39,6 +54,7 @@ const router = createRouter({
           path: 'client',
           name: 'Client',
           component: () => import('@/views/Client/index.vue'),
+          redirect: '/client/list',
           meta: { title: '客户管理', icon: 'User' },
           children: [
             {
@@ -59,6 +75,7 @@ const router = createRouter({
           path: 'contract',
           name: 'Contract',
           component: () => import('@/views/Contract/index.vue'),
+          redirect: '/contract/list',
           meta: { title: '合同管理', icon: 'Document' },
           children: [
             {
@@ -79,6 +96,7 @@ const router = createRouter({
           path: 'matching',
           name: 'Matching',
           component: () => import('@/views/Matching/index.vue'),
+          redirect: '/matching/results',
           meta: { title: '智能匹配', icon: 'Connection' },
           children: [
             {
@@ -99,6 +117,7 @@ const router = createRouter({
           path: 'recycle',
           name: 'Recycle',
           component: () => import('@/views/Recycle/index.vue'),
+          redirect: '/recycle/list',
           meta: { title: '回收站', icon: 'Delete' },
           children: [
             {
@@ -113,6 +132,7 @@ const router = createRouter({
           path: 'system',
           name: 'System',
           component: () => import('@/views/System/index.vue'),
+          redirect: '/system/users',
           meta: { title: '系统管理', icon: 'Setting' },
           children: [
             {

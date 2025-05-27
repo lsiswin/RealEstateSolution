@@ -14,6 +14,7 @@ using RealEstateSolution.Common.Utils;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<JwtTokenHelper>();
 // 添加Redis服务
@@ -110,7 +111,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

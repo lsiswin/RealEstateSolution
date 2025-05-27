@@ -8,17 +8,17 @@
           <span class="system-title">房产中介管理系统</span>
         </div>
         <div class="header-right">
-          <el-dropdown>
+          <el-dropdown @command="handleCommand">
             <span class="user-info">
               <el-icon><User /></el-icon>
-              <span>管理员</span>
+              <span>{{ userStore.userInfo?.realName || userStore.userInfo?.userName || '用户' }}</span>
               <el-icon class="el-icon--right"><arrow-down /></el-icon>
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item>个人中心</el-dropdown-item>
-                <el-dropdown-item>修改密码</el-dropdown-item>
-                <el-dropdown-item divided>退出登录</el-dropdown-item>
+                <el-dropdown-item command="profile">个人中心</el-dropdown-item>
+                <el-dropdown-item command="changePassword">修改密码</el-dropdown-item>
+                <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -73,10 +73,15 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router'
+import { useUserStore } from '@/stores/user'
+import { logout } from '@/api/auth'
+import {ArrowDown, OfficeBuilding, User} from "@element-plus/icons-vue";
 
-const route = useRoute()
+const routerInstance = useRouter()
+const userStore = useUserStore()
 
 // 获取菜单路由
 const menuRoutes = computed(() => {
@@ -84,6 +89,51 @@ const menuRoutes = computed(() => {
   const mainRoute = routes.find(r => r.path === '/')
   return mainRoute?.children?.filter(child => child.meta?.title) || []
 })
+
+// 处理下拉菜单命令
+const handleCommand = async (command: string) => {
+  switch (command) {
+    case 'profile':
+      ElMessage.info('个人中心功能开发中...')
+      break
+    case 'changePassword':
+      ElMessage.info('修改密码功能开发中...')
+      break
+    case 'logout':
+      await handleLogout()
+      break
+  }
+}
+
+// 处理登出
+const handleLogout = async () => {
+  try {
+    await ElMessageBox.confirm('确定要退出登录吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+    
+    // 调用登出API
+    if (userStore.refreshToken) {
+      try {
+        await logout(userStore.refreshToken)
+      } catch (error) {
+        console.error('登出API调用失败:', error)
+      }
+    }
+    
+    // 清除用户信息
+    userStore.clearUserInfo()
+    
+    // 跳转到登录页
+    routerInstance.push('/login')
+    
+    ElMessage.success('已退出登录')
+  } catch (error) {
+    // 用户取消登出
+  }
+}
 </script>
 
 <style scoped>
