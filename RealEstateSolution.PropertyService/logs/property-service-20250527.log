@@ -996,3 +996,554 @@ WHERE [Id] = @p16;
 2025-05-27 13:13:16.819 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.ChangePropertyStatus (RealEstateSolution.PropertyService)'
 2025-05-27 13:13:16.820 +08:00 [INF] 请求 POST /api/property/ChangePropertyStatus/5/status 完成，状态码: 200，耗时: 22250ms
 2025-05-27 13:13:16.821 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/ChangePropertyStatus/5/status - 200 null application/json; charset=utf-8 22254.7712ms
+2025-05-27 14:49:43.990 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 14:49:44.292 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 14:49:44.855 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 14:49:44.857 +08:00 [INF] Hosting environment: Development
+2025-05-27 14:49:44.858 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 14:49:46.580 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 14:49:46.613 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 47.0671ms
+2025-05-27 14:49:47.168 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 14:49:47.290 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 124.2392ms
+2025-05-27 14:49:48.496 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 14:49:48.533 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 37.0076ms
+2025-05-27 14:51:09.408 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 14:51:09.416 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 14:51:09.421 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJmMDdkYjdiZS02NGNhLTRkM2MtYmNhOS1jMGY2OTliZjdjZDEiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjkyMjUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.otiADL6doSMIKn1GLP-jDE-S64LUZaRc-kR1Dr2nVmI]","[traceparent, 00-4316d3996e0d7842793e35aaad8c8d87-a6b0516a0417ee80-00]","[Content-Length, 0]"]
+2025-05-27 14:51:09.522 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 14:51:09.539 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 14:51:09.543 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 14:51:09.573 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 14:51:09.577 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 14:51:09.579 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 163ms
+2025-05-27 14:51:09.591 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 183.2996ms
+2025-05-27 14:51:40.592 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 14:51:40.613 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 14:51:40.617 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJmMDdkYjdiZS02NGNhLTRkM2MtYmNhOS1jMGY2OTliZjdjZDEiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjkyMjUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.otiADL6doSMIKn1GLP-jDE-S64LUZaRc-kR1Dr2nVmI]","[traceparent, 00-08b4d8e3b63a81d04d420550360ea3b6-495d48605e7feb1e-00]","[Content-Length, 0]"]
+2025-05-27 14:51:40.638 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 14:51:40.645 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 14:51:40.646 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 14:51:40.648 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 14:51:40.649 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 14:51:40.654 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 40ms
+2025-05-27 14:51:40.657 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 64.7875ms
+2025-05-27 14:52:04.275 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 14:52:04.289 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 14:52:04.291 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4OGFkMWU2Yy0xN2UwLTQ2YzctOGFlNS0zZWMyZTFhZDQ3NjYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjkzMDUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.-4kWzhGRL_19Qf-EMB1hMgRAvcc2MgdMlgbAcMxo1zU]","[traceparent, 00-d7486884c922e5826ef4181eb6401308-1b3bfab7171bbe9a-00]","[Content-Length, 0]"]
+2025-05-27 14:52:04.301 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 14:52:04.308 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 14:52:04.315 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 14:52:04.323 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 14:52:04.325 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 14:52:04.330 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 41ms
+2025-05-27 14:52:04.334 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 59.2211ms
+2025-05-27 15:00:35.273 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 15:00:35.275 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 15:00:35.276 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4OGFkMWU2Yy0xN2UwLTQ2YzctOGFlNS0zZWMyZTFhZDQ3NjYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjkzMDUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.-4kWzhGRL_19Qf-EMB1hMgRAvcc2MgdMlgbAcMxo1zU]","[traceparent, 00-8ebceee4f9ed428cac928808b24be3e7-eaca1e43dd96a2e3-00]","[Content-Length, 0]"]
+2025-05-27 15:00:35.279 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:00:35.280 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:00:35.281 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:00:35.282 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:00:35.282 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:00:35.283 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 7ms
+2025-05-27 15:00:35.284 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 12.8221ms
+2025-05-27 15:01:40.550 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 15:01:40.552 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 15:01:40.552 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4ZTZiYTZmNy0wMmY3LTQxOGQtYmU2NS0zNDMwOTIyYmUyNGYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjk4ODIsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ejhm3BgOmwe7Xtp8wGlKdlW9CmbGwnVcd3-0CUCLKD4]","[traceparent, 00-1ddea6d83a86a79a9851309402e7afb1-1e0d91c554f2e34d-00]","[Content-Length, 0]"]
+2025-05-27 15:01:40.555 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:01:40.556 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:01:40.557 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:01:40.557 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:01:40.558 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:01:40.559 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 7ms
+2025-05-27 15:01:40.561 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 38.4239ms
+2025-05-27 15:02:40.249 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 15:02:40.253 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 15:02:40.253 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4ZTZiYTZmNy0wMmY3LTQxOGQtYmU2NS0zNDMwOTIyYmUyNGYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjk4ODIsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ejhm3BgOmwe7Xtp8wGlKdlW9CmbGwnVcd3-0CUCLKD4]","[traceparent, 00-2313e5dfda743ee03f650e18fe73aba9-4687a386b87c7c68-00]","[Content-Length, 0]"]
+2025-05-27 15:02:40.256 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:02:40.258 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:02:40.258 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:02:40.260 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:02:40.261 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:02:40.261 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 8ms
+2025-05-27 15:02:40.263 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 13.5289ms
+2025-05-27 15:04:02.380 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 15:04:48.163 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 15:04:48.170 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4ZTZiYTZmNy0wMmY3LTQxOGQtYmU2NS0zNDMwOTIyYmUyNGYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjk4ODIsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ejhm3BgOmwe7Xtp8wGlKdlW9CmbGwnVcd3-0CUCLKD4]","[traceparent, 00-d17178cf483d4f76a1542f95a8754130-bc1742d91168ee18-00]","[Content-Length, 0]"]
+2025-05-27 15:04:48.173 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:04:48.174 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:04:48.175 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:04:48.176 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:04:48.176 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:04:48.177 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 45793ms
+2025-05-27 15:04:48.178 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 45797.9321ms
+2025-05-27 15:06:44.751 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 15:06:53.956 +08:00 [INF] 未从ApiGateway接收到用户信息，将依赖JWT认证
+2025-05-27 15:07:05.913 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4ZTZiYTZmNy0wMmY3LTQxOGQtYmU2NS0zNDMwOTIyYmUyNGYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjk4ODIsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ejhm3BgOmwe7Xtp8wGlKdlW9CmbGwnVcd3-0CUCLKD4]","[traceparent, 00-6c9c24d8c37bc60037ae1d658d09110d-c46dcca869ead27f-00]","[Content-Length, 0]"]
+2025-05-27 15:07:07.231 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:07:39.708 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:07:41.394 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:07:41.401 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:07:41.403 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:07:48.250 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 62044ms
+2025-05-27 15:07:48.961 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 64210.0735ms
+2025-05-27 15:15:51.519 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:16:44.559 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:16:45.208 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 15:16:45.538 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 15:16:45.545 +08:00 [INF] Hosting environment: Development
+2025-05-27 15:16:45.551 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 15:19:47.713 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:19:48.555 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 15:19:49.364 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 15:19:49.396 +08:00 [INF] Hosting environment: Development
+2025-05-27 15:19:49.410 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 15:19:50.527 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 15:19:50.622 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 123.8755ms
+2025-05-27 15:19:50.889 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 15:19:51.282 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 394.2312ms
+2025-05-27 15:19:51.674 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 15:19:51.890 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 216.4846ms
+2025-05-27 15:20:29.376 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 15:20:29.410 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:20:29.412 +08:00 [INF] 请求路径: /api/property/GetProperty/1
+2025-05-27 15:20:29.413 +08:00 [INF] 请求方法: GET
+2025-05-27 15:20:29.414 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:20:29.416 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:20:29.417 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:20:29.418 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:20:29.419 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:20:29.420 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s
+2025-05-27 15:20:29.421 +08:00 [INF] 请求头: traceparent = 00-5093832cd58c0c78a9a5e37471667bb0-9d4fce542b583c66-00
+2025-05-27 15:20:29.421 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:20:35.083 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:20:38.783 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:20:40.939 +08:00 [INF] JWT令牌解析成功，Claims数量: 11
+2025-05-27 15:20:42.579 +08:00 [INF] JWT Claim: sub = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:20:43.687 +08:00 [INF] JWT Claim: name = admin
+2025-05-27 15:20:45.119 +08:00 [INF] JWT Claim: email = lsisloser@gmail.com
+2025-05-27 15:20:45.121 +08:00 [INF] JWT Claim: jti = 8a4c0aa4-5212-47a3-9478-75104de13c4d
+2025-05-27 15:20:45.122 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:20:45.123 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:20:45.125 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:20:45.126 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:20:45.127 +08:00 [INF] JWT Claim: exp = 1748331013
+2025-05-27 15:20:45.128 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:20:45.129 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:20:45.130 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:20:45.134 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s]","[traceparent, 00-5093832cd58c0c78a9a5e37471667bb0-9d4fce542b583c66-00]","[Content-Length, 0]"]
+2025-05-27 15:20:45.169 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:20:45.183 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:20:45.186 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:20:45.214 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:20:45.218 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:20:45.219 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 401，耗时: 15836ms
+2025-05-27 15:20:45.227 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 401 0 null 15852.0397ms
+2025-05-27 15:23:18.754 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:23:19.742 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 15:23:20.878 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 15:23:20.881 +08:00 [INF] Hosting environment: Development
+2025-05-27 15:23:20.883 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 15:23:21.709 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 15:23:21.731 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 15:23:21.803 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 109.4277ms
+2025-05-27 15:23:21.901 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 172.0937ms
+2025-05-27 15:23:22.273 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 15:23:22.401 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 128.1277ms
+2025-05-27 15:23:39.772 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/Test/public - null null
+2025-05-27 15:23:39.822 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:23:39.824 +08:00 [INF] 请求路径: /api/Test/public
+2025-05-27 15:23:39.826 +08:00 [INF] 请求方法: GET
+2025-05-27 15:23:39.828 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:23:39.830 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:23:39.831 +08:00 [INF] 请求头: User-Agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0
+2025-05-27 15:23:39.832 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br, zstd
+2025-05-27 15:23:39.833 +08:00 [INF] 请求头: Accept-Language = zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2025-05-27 15:23:39.834 +08:00 [INF] 请求头: Referer = https://localhost:5001/swagger/index.html
+2025-05-27 15:23:39.836 +08:00 [INF] 请求头: sec-ch-ua-platform = "Windows"
+2025-05-27 15:23:39.838 +08:00 [INF] 请求头: sec-ch-ua = "Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"
+2025-05-27 15:23:39.839 +08:00 [INF] 请求头: sec-ch-ua-mobile = ?0
+2025-05-27 15:23:39.840 +08:00 [INF] 请求头: sec-fetch-site = same-origin
+2025-05-27 15:23:39.841 +08:00 [INF] 请求头: sec-fetch-mode = cors
+2025-05-27 15:23:39.842 +08:00 [INF] 请求头: sec-fetch-dest = empty
+2025-05-27 15:23:39.844 +08:00 [INF] 请求头: priority = u=1, i
+2025-05-27 15:23:39.846 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:23:39.846 +08:00 [INF] 未检测到Authorization头部
+2025-05-27 15:23:39.847 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:23:39.851 +08:00 [INF] 接收请求头：["[Accept, */*]","[Host, localhost:5001]","[User-Agent, Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0]","[Accept-Encoding, gzip, deflate, br, zstd]","[Accept-Language, zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6]","[Referer, https://localhost:5001/swagger/index.html]","[sec-ch-ua-platform, \"Windows\"]","[sec-ch-ua, \"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"]","[sec-ch-ua-mobile, ?0]","[sec-fetch-site, same-origin]","[sec-fetch-mode, cors]","[sec-fetch-dest, empty]","[priority, u=1, i]"]
+2025-05-27 15:23:39.932 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetPublicInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:23:39.960 +08:00 [INF] Route matched with {action = "GetPublicInfo", controller = "Test"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetPublicInfo() on controller RealEstateSolution.PropertyService.Controllers.TestController (RealEstateSolution.PropertyService).
+2025-05-27 15:23:39.966 +08:00 [INF] === 测试公开接口 ===
+2025-05-27 15:23:39.977 +08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-27 15:23:40.003 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.TestController.GetPublicInfo (RealEstateSolution.PropertyService) in 36.3875ms
+2025-05-27 15:23:40.005 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetPublicInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:23:40.007 +08:00 [INF] 请求 GET /api/Test/public 完成，状态码: 200，耗时: 227ms
+2025-05-27 15:23:40.010 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/Test/public - 200 null application/json; charset=utf-8 239.1418ms
+2025-05-27 15:23:44.802 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/Test/user-info - null null
+2025-05-27 15:23:44.805 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:23:44.806 +08:00 [INF] 请求路径: /api/Test/user-info
+2025-05-27 15:23:44.806 +08:00 [INF] 请求方法: GET
+2025-05-27 15:23:44.807 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:23:44.808 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:23:44.809 +08:00 [INF] 请求头: User-Agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0
+2025-05-27 15:23:44.809 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br, zstd
+2025-05-27 15:23:44.811 +08:00 [INF] 请求头: Accept-Language = zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+2025-05-27 15:23:44.812 +08:00 [INF] 请求头: Referer = https://localhost:5001/swagger/index.html
+2025-05-27 15:23:44.813 +08:00 [INF] 请求头: sec-ch-ua-platform = "Windows"
+2025-05-27 15:23:44.813 +08:00 [INF] 请求头: sec-ch-ua = "Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"
+2025-05-27 15:23:44.814 +08:00 [INF] 请求头: sec-ch-ua-mobile = ?0
+2025-05-27 15:23:44.815 +08:00 [INF] 请求头: sec-fetch-site = same-origin
+2025-05-27 15:23:44.815 +08:00 [INF] 请求头: sec-fetch-mode = cors
+2025-05-27 15:23:44.816 +08:00 [INF] 请求头: sec-fetch-dest = empty
+2025-05-27 15:23:44.817 +08:00 [INF] 请求头: priority = u=1, i
+2025-05-27 15:23:44.817 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:23:44.818 +08:00 [INF] 未检测到Authorization头部
+2025-05-27 15:23:44.819 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:23:44.820 +08:00 [INF] 接收请求头：["[Accept, */*]","[Host, localhost:5001]","[User-Agent, Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0]","[Accept-Encoding, gzip, deflate, br, zstd]","[Accept-Language, zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6]","[Referer, https://localhost:5001/swagger/index.html]","[sec-ch-ua-platform, \"Windows\"]","[sec-ch-ua, \"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"]","[sec-ch-ua-mobile, ?0]","[sec-fetch-site, same-origin]","[sec-fetch-mode, cors]","[sec-fetch-dest, empty]","[priority, u=1, i]"]
+2025-05-27 15:23:44.843 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:23:44.851 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:23:44.854 +08:00 [INF] 请求 GET /api/Test/user-info 完成，状态码: 401，耗时: 48ms
+2025-05-27 15:23:44.855 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/Test/user-info - 401 0 null 53.9499ms
+2025-05-27 15:24:40.755 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/Test/public - null 0
+2025-05-27 15:24:40.759 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:24:40.761 +08:00 [INF] 请求路径: /api/property/Test/public
+2025-05-27 15:24:40.762 +08:00 [INF] 请求方法: GET
+2025-05-27 15:24:40.764 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:24:40.765 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:24:40.766 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:24:40.767 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:24:40.769 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:24:40.770 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s
+2025-05-27 15:24:40.771 +08:00 [INF] 请求头: traceparent = 00-3534ca4a0bc80d9f27db481d636dedc2-2944358633303c2a-00
+2025-05-27 15:24:40.772 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:24:40.773 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:24:40.774 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:24:40.799 +08:00 [INF] JWT令牌解析成功，Claims数量: 11
+2025-05-27 15:24:40.800 +08:00 [INF] JWT Claim: sub = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:24:40.802 +08:00 [INF] JWT Claim: name = admin
+2025-05-27 15:24:40.804 +08:00 [INF] JWT Claim: email = lsisloser@gmail.com
+2025-05-27 15:24:40.805 +08:00 [INF] JWT Claim: jti = 8a4c0aa4-5212-47a3-9478-75104de13c4d
+2025-05-27 15:24:40.806 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:24:40.807 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:24:40.809 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:24:40.810 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:24:40.812 +08:00 [INF] JWT Claim: exp = 1748331013
+2025-05-27 15:24:40.813 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:24:40.814 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:24:40.815 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:24:40.816 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s]","[traceparent, 00-3534ca4a0bc80d9f27db481d636dedc2-2944358633303c2a-00]","[Content-Length, 0]"]
+2025-05-27 15:24:40.833 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:24:40.850 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:24:40.853 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:24:40.856 +08:00 [INF] 请求 GET /api/property/Test/public 完成，状态码: 404，耗时: 96ms
+2025-05-27 15:24:40.873 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/Test/public - 404 0 null 119.6086ms
+2025-05-27 15:24:40.881 +08:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5001/api/property/Test/public, Response status code: 404
+2025-05-27 15:24:57.340 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:24:57.849 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 15:24:58.072 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 15:24:58.078 +08:00 [INF] Hosting environment: Development
+2025-05-27 15:24:58.095 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 15:24:59.906 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 15:25:00.026 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 134.0337ms
+2025-05-27 15:25:00.252 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 15:25:00.543 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 291.4156ms
+2025-05-27 15:25:01.236 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 15:25:01.355 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 120.9599ms
+2025-05-27 15:26:24.511 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/public - null 0
+2025-05-27 15:26:24.543 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:26:24.545 +08:00 [INF] 请求路径: /api/property/public
+2025-05-27 15:26:24.547 +08:00 [INF] 请求方法: GET
+2025-05-27 15:26:24.548 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:26:24.548 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:26:24.549 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:26:24.550 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:26:24.551 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:26:24.551 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s
+2025-05-27 15:26:24.552 +08:00 [INF] 请求头: traceparent = 00-1e6a27d47acebce2f188365d31441ea4-a1df8dc7430432b6-00
+2025-05-27 15:26:24.553 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:26:24.554 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:26:24.555 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:26:24.584 +08:00 [INF] JWT令牌解析成功，Claims数量: 11
+2025-05-27 15:26:24.585 +08:00 [INF] JWT Claim: sub = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:26:24.586 +08:00 [INF] JWT Claim: name = admin
+2025-05-27 15:26:24.586 +08:00 [INF] JWT Claim: email = lsisloser@gmail.com
+2025-05-27 15:26:24.588 +08:00 [INF] JWT Claim: jti = 8a4c0aa4-5212-47a3-9478-75104de13c4d
+2025-05-27 15:26:24.589 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:26:24.589 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:26:24.590 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:26:24.591 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:26:24.591 +08:00 [INF] JWT Claim: exp = 1748331013
+2025-05-27 15:26:24.592 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:26:24.593 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:26:24.594 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:26:24.597 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s]","[traceparent, 00-1e6a27d47acebce2f188365d31441ea4-a1df8dc7430432b6-00]","[Content-Length, 0]"]
+2025-05-27 15:26:24.635 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:26:24.649 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:26:24.652 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:26:24.672 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetPublicInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:26:24.691 +08:00 [INF] Route matched with {action = "GetPublicInfo", controller = "Test"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetPublicInfo() on controller RealEstateSolution.PropertyService.Controllers.TestController (RealEstateSolution.PropertyService).
+2025-05-27 15:26:24.696 +08:00 [INF] === 测试公开接口 ===
+2025-05-27 15:26:24.700 +08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-27 15:26:24.720 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.TestController.GetPublicInfo (RealEstateSolution.PropertyService) in 24.7375ms
+2025-05-27 15:26:24.721 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetPublicInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:26:24.722 +08:00 [INF] 请求 GET /api/property/public 完成，状态码: 200，耗时: 205ms
+2025-05-27 15:26:24.724 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/public - 200 null application/json; charset=utf-8 213.5179ms
+2025-05-27 15:26:36.851 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/user-info - null 0
+2025-05-27 15:26:36.858 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:26:36.860 +08:00 [INF] 请求路径: /api/property/user-info
+2025-05-27 15:26:36.862 +08:00 [INF] 请求方法: GET
+2025-05-27 15:26:36.864 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:26:36.867 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:26:36.869 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:26:36.872 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:26:36.875 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:26:36.877 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s
+2025-05-27 15:26:36.880 +08:00 [INF] 请求头: traceparent = 00-578ad47f8c8e9d2a82ac44873c263f29-88f241153faa68a8-00
+2025-05-27 15:26:36.882 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:26:36.885 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:26:36.887 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:26:36.889 +08:00 [INF] JWT令牌解析成功，Claims数量: 11
+2025-05-27 15:26:36.891 +08:00 [INF] JWT Claim: sub = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:26:36.893 +08:00 [INF] JWT Claim: name = admin
+2025-05-27 15:26:36.896 +08:00 [INF] JWT Claim: email = lsisloser@gmail.com
+2025-05-27 15:26:36.898 +08:00 [INF] JWT Claim: jti = 8a4c0aa4-5212-47a3-9478-75104de13c4d
+2025-05-27 15:26:36.901 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:26:36.903 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:26:36.907 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:26:36.909 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:26:36.911 +08:00 [INF] JWT Claim: exp = 1748331013
+2025-05-27 15:26:36.914 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:26:36.917 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:26:36.919 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:26:36.921 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4YTRjMGFhNC01MjEyLTQ3YTMtOTQ3OC03NTEwNGRlMTNjNGQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzEwMTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Rvx40ZUFEk2VIFH6aGtHdCXRsz4ESVDqlSHyaNT0i6s]","[traceparent, 00-578ad47f8c8e9d2a82ac44873c263f29-88f241153faa68a8-00]","[Content-Length, 0]"]
+2025-05-27 15:26:36.945 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:26:36.955 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:26:36.957 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:26:36.975 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:26:36.997 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:26:37.002 +08:00 [INF] 请求 GET /api/property/user-info 完成，状态码: 401，耗时: 144ms
+2025-05-27 15:26:37.013 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/user-info - 401 0 null 162.2744ms
+2025-05-27 15:27:08.821 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/user-info - null 0
+2025-05-27 15:27:08.824 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:27:08.825 +08:00 [INF] 请求路径: /api/property/user-info
+2025-05-27 15:27:08.825 +08:00 [INF] 请求方法: GET
+2025-05-27 15:27:08.826 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:27:08.827 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:27:08.828 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:27:08.829 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:27:08.830 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:27:08.831 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwOGI5ZTQ3NS0xOWU2LTQxZDktOWE4Ni02YjBkN2UzM2EyYTEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzE0MDUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9._JZ6UCkXG0Vpy_AksA6k16I4dwtIpXV79DWsXrPj_bQ
+2025-05-27 15:27:08.832 +08:00 [INF] 请求头: traceparent = 00-e48a08226ca07744bc976ae9ec4ff5ea-5e7b7798fd72a67b-00
+2025-05-27 15:27:08.833 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:27:08.833 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:27:08.834 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:27:08.835 +08:00 [INF] JWT令牌解析成功，Claims数量: 11
+2025-05-27 15:27:08.835 +08:00 [INF] JWT Claim: sub = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:27:08.837 +08:00 [INF] JWT Claim: name = admin
+2025-05-27 15:27:08.838 +08:00 [INF] JWT Claim: email = lsisloser@gmail.com
+2025-05-27 15:27:08.838 +08:00 [INF] JWT Claim: jti = 08b9e475-19e6-41d9-9a86-6b0d7e33a2a1
+2025-05-27 15:27:08.839 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:27:08.840 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:27:08.841 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:27:08.842 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:27:08.843 +08:00 [INF] JWT Claim: exp = 1748331405
+2025-05-27 15:27:08.843 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:27:08.845 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:27:08.846 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:27:08.847 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwOGI5ZTQ3NS0xOWU2LTQxZDktOWE4Ni02YjBkN2UzM2EyYTEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzE0MDUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9._JZ6UCkXG0Vpy_AksA6k16I4dwtIpXV79DWsXrPj_bQ]","[traceparent, 00-e48a08226ca07744bc976ae9ec4ff5ea-5e7b7798fd72a67b-00]","[Content-Length, 0]"]
+2025-05-27 15:27:08.851 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 15:27:08.852 +08:00 [WRN] JWT认证失败: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:27:08.853 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 15:27:08.855 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 15:27:08.862 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 15:27:08.863 +08:00 [INF] 请求 GET /api/property/user-info 完成，状态码: 401，耗时: 39ms
+2025-05-27 15:27:08.865 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/user-info - 401 0 null 68.1014ms
+2025-05-27 15:33:00.314 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:33:00.722 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 15:33:01.275 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 15:33:01.278 +08:00 [INF] Hosting environment: Development
+2025-05-27 15:33:01.281 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 15:33:02.165 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 15:33:02.233 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 82.1985ms
+2025-05-27 15:33:02.653 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 15:33:03.289 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 636.3936ms
+2025-05-27 15:33:03.367 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 15:33:03.464 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 97.0193ms
+2025-05-27 15:33:57.291 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/user-info - null 0
+2025-05-27 15:33:57.319 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:33:57.322 +08:00 [INF] 请求路径: /api/property/user-info
+2025-05-27 15:33:57.322 +08:00 [INF] 请求方法: GET
+2025-05-27 15:33:57.324 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:33:57.324 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:33:57.325 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:33:57.326 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:33:57.327 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:33:57.328 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI5ZjQ0YmU1Zi04Y2RjLTQwYTMtYWQ3Zi1kMDY4YjRmMmM4MzgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzE4MjAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ng0s2p2UZjru-zfmo_fySDrwrWNcsPCUrrjHpaIAHUs
+2025-05-27 15:33:57.329 +08:00 [INF] 请求头: traceparent = 00-1d0918620f879f3be0e21574cee1210f-54748defc6f408d3-00
+2025-05-27 15:33:57.330 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:33:57.330 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:33:57.331 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:33:57.361 +08:00 [INF] JWT令牌解析成功，Claims数量: 11
+2025-05-27 15:33:57.363 +08:00 [INF] JWT Claim: sub = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:33:57.364 +08:00 [INF] JWT Claim: name = admin
+2025-05-27 15:33:57.365 +08:00 [INF] JWT Claim: email = lsisloser@gmail.com
+2025-05-27 15:33:57.366 +08:00 [INF] JWT Claim: jti = 9f44be5f-8cdc-40a3-ad7f-d068b4f2c838
+2025-05-27 15:33:57.367 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:33:57.367 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:33:57.368 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:33:57.369 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:33:57.370 +08:00 [INF] JWT Claim: exp = 1748331820
+2025-05-27 15:33:57.371 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:33:57.372 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:33:57.372 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:33:57.375 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI5ZjQ0YmU1Zi04Y2RjLTQwYTMtYWQ3Zi1kMDY4YjRmMmM4MzgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzE4MjAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ng0s2p2UZjru-zfmo_fySDrwrWNcsPCUrrjHpaIAHUs]","[traceparent, 00-1d0918620f879f3be0e21574cee1210f-54748defc6f408d3-00]","[Content-Length, 0]"]
+2025-05-27 15:33:57.427 +08:00 [INF] 用户身份验证成功: fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:33:57.448 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:33:57.460 +08:00 [INF] Route matched with {action = "GetUserInfo", controller = "Test"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserInfo() on controller RealEstateSolution.PropertyService.Controllers.TestController (RealEstateSolution.PropertyService).
+2025-05-27 15:33:57.464 +08:00 [INF] === 测试用户信息获取 ===
+2025-05-27 15:33:57.465 +08:00 [INF] 用户ID: fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:33:57.466 +08:00 [INF] 用户名: admin
+2025-05-27 15:33:57.466 +08:00 [INF] 角色: 
+2025-05-27 15:33:57.467 +08:00 [INF] 是否认证: true
+2025-05-27 15:33:57.468 +08:00 [INF] 认证类型: AuthenticationTypes.Federation
+2025-05-27 15:33:57.468 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:33:57.469 +08:00 [INF] 用户Claim: name = admin
+2025-05-27 15:33:57.470 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:33:57.471 +08:00 [INF] 用户Claim: jti = 9f44be5f-8cdc-40a3-ad7f-d068b4f2c838
+2025-05-27 15:33:57.472 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:33:57.473 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:33:57.474 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:33:57.475 +08:00 [INF] 用户Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:33:57.475 +08:00 [INF] 用户Claim: exp = 1748331820
+2025-05-27 15:33:57.476 +08:00 [INF] 用户Claim: iss = ls
+2025-05-27 15:33:57.477 +08:00 [INF] 用户Claim: aud = cold
+2025-05-27 15:33:57.478 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:33:57.479 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:33:57.480 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:33:57.481 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:33:57.481 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:33:57.482 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZDM1YmQ1MC0wNzU0LTQ1N2MtODJiZC04NTNlYjhlODIyNDUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI5ZjQ0YmU1Zi04Y2RjLTQwYTMtYWQ3Zi1kMDY4YjRmMmM4MzgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzE4MjAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.Ng0s2p2UZjru-zfmo_fySDrwrWNcsPCUrrjHpaIAHUs
+2025-05-27 15:33:57.483 +08:00 [INF] 请求头: traceparent = 00-1d0918620f879f3be0e21574cee1210f-54748defc6f408d3-00
+2025-05-27 15:33:57.484 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:33:57.491 +08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`7[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], RealEstateSolution.PropertyService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-27 15:33:57.510 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService) in 46.2716ms
+2025-05-27 15:33:57.512 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:33:57.513 +08:00 [INF] 请求 GET /api/property/user-info 完成，状态码: 200，耗时: 216ms
+2025-05-27 15:33:57.515 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/user-info - 200 null application/json; charset=utf-8 224.4777ms
+2025-05-27 15:36:16.238 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 15:36:16.878 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 15:36:17.062 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 15:36:17.067 +08:00 [INF] Hosting environment: Development
+2025-05-27 15:36:17.070 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 15:36:18.783 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 15:36:18.812 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 15:36:18.813 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 42.6875ms
+2025-05-27 15:36:18.943 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 131.8961ms
+2025-05-27 15:36:19.529 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 15:36:19.569 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 39.9303ms
+2025-05-27 15:37:24.754 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/user-info - null 0
+2025-05-27 15:37:24.807 +08:00 [INF] === UserContextMiddleware 开始处理请求 ===
+2025-05-27 15:37:24.810 +08:00 [INF] 请求路径: /api/property/user-info
+2025-05-27 15:37:24.813 +08:00 [INF] 请求方法: GET
+2025-05-27 15:37:24.816 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:37:24.818 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:37:24.820 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:37:24.822 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:37:24.823 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:37:24.825 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJlY2RhYWE5OC02ZTQxLTQ4NTYtOTViNS1hYjk0NDVhMjk2NzYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzIwMjgsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.zJwkSbgwkJfAgtIy8WPpx1rsr-nrUcZ2b570J8fti28
+2025-05-27 15:37:24.827 +08:00 [INF] 请求头: traceparent = 00-b036797acb715b19634fee255e35bb6b-aa0fb5b27b0f3cd0-00
+2025-05-27 15:37:24.829 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:37:24.830 +08:00 [INF] 未从ApiGateway接收到X-User-Id头部
+2025-05-27 15:37:24.832 +08:00 [INF] 检测到Authorization头部，将依赖JWT认证
+2025-05-27 15:37:24.883 +08:00 [INF] JWT令牌解析成功，Claims数量: 8
+2025-05-27 15:37:24.886 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:37:24.889 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:37:24.891 +08:00 [INF] JWT Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:37:24.893 +08:00 [INF] JWT Claim: jti = ecdaaa98-6e41-4856-95b5-ab9445a29676
+2025-05-27 15:37:24.896 +08:00 [INF] JWT Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:37:24.898 +08:00 [INF] JWT Claim: exp = 1748332028
+2025-05-27 15:37:24.900 +08:00 [INF] JWT Claim: iss = ls
+2025-05-27 15:37:24.904 +08:00 [INF] JWT Claim: aud = cold
+2025-05-27 15:37:24.907 +08:00 [INF] === UserContextMiddleware 处理完成 ===
+2025-05-27 15:37:24.914 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJlY2RhYWE5OC02ZTQxLTQ4NTYtOTViNS1hYjk0NDVhMjk2NzYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzIwMjgsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.zJwkSbgwkJfAgtIy8WPpx1rsr-nrUcZ2b570J8fti28]","[traceparent, 00-b036797acb715b19634fee255e35bb6b-aa0fb5b27b0f3cd0-00]","[Content-Length, 0]"]
+2025-05-27 15:37:25.046 +08:00 [INF] 用户身份验证成功: fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:37:25.091 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:37:25.120 +08:00 [INF] Route matched with {action = "GetUserInfo", controller = "Test"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetUserInfo() on controller RealEstateSolution.PropertyService.Controllers.TestController (RealEstateSolution.PropertyService).
+2025-05-27 15:37:25.127 +08:00 [INF] === 测试用户信息获取 ===
+2025-05-27 15:37:25.130 +08:00 [INF] 用户ID: fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:37:25.132 +08:00 [INF] 用户名: admin
+2025-05-27 15:37:25.134 +08:00 [INF] 角色: 
+2025-05-27 15:37:25.136 +08:00 [INF] 是否认证: true
+2025-05-27 15:37:25.138 +08:00 [INF] 认证类型: AuthenticationTypes.Federation
+2025-05-27 15:37:25.140 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = fd35bd50-0754-457c-82bd-853eb8e82245
+2025-05-27 15:37:25.142 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = admin
+2025-05-27 15:37:25.145 +08:00 [INF] 用户Claim: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = lsisloser@gmail.com
+2025-05-27 15:37:25.147 +08:00 [INF] 用户Claim: jti = ecdaaa98-6e41-4856-95b5-ab9445a29676
+2025-05-27 15:37:25.150 +08:00 [INF] 用户Claim: SecurityStamp = 6QAXIV7WFMPIFKKEFGWTMED3HC7543EH
+2025-05-27 15:37:25.152 +08:00 [INF] 用户Claim: exp = 1748332028
+2025-05-27 15:37:25.154 +08:00 [INF] 用户Claim: iss = ls
+2025-05-27 15:37:25.157 +08:00 [INF] 用户Claim: aud = cold
+2025-05-27 15:37:25.159 +08:00 [INF] 请求头: Accept = */*
+2025-05-27 15:37:25.162 +08:00 [INF] 请求头: Connection = keep-alive
+2025-05-27 15:37:25.164 +08:00 [INF] 请求头: Host = localhost:5001
+2025-05-27 15:37:25.166 +08:00 [INF] 请求头: User-Agent = Apifox/1.0.0 (https://apifox.com)
+2025-05-27 15:37:25.169 +08:00 [INF] 请求头: Accept-Encoding = gzip, deflate, br
+2025-05-27 15:37:25.172 +08:00 [INF] 请求头: Authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJlY2RhYWE5OC02ZTQxLTQ4NTYtOTViNS1hYjk0NDVhMjk2NzYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMzIwMjgsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.zJwkSbgwkJfAgtIy8WPpx1rsr-nrUcZ2b570J8fti28
+2025-05-27 15:37:25.174 +08:00 [INF] 请求头: traceparent = 00-b036797acb715b19634fee255e35bb6b-aa0fb5b27b0f3cd0-00
+2025-05-27 15:37:25.176 +08:00 [INF] 请求头: Content-Length = 0
+2025-05-27 15:37:25.191 +08:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`7[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], RealEstateSolution.PropertyService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-27 15:37:25.235 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService) in 106.7684ms
+2025-05-27 15:37:25.237 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.TestController.GetUserInfo (RealEstateSolution.PropertyService)'
+2025-05-27 15:37:25.240 +08:00 [INF] 请求 GET /api/property/user-info 完成，状态码: 200，耗时: 474ms
+2025-05-27 15:37:25.244 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/user-info - 200 null application/json; charset=utf-8 491.9475ms

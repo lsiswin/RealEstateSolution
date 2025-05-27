@@ -34,14 +34,33 @@ namespace RealEstateSolution.AuthService.Extension
         /// <returns>访问令牌</returns>
         public string GenerateAccessToken(IdentityUser user)
         {
+            return GenerateAccessToken(user, new List<string>());
+        }
+
+        /// <summary>
+        /// 生成访问令牌（包含角色信息）
+        /// </summary>
+        /// <param name="user">用户信息</param>
+        /// <param name="roles">用户角色</param>
+        /// <returns>访问令牌</returns>
+        public string GenerateAccessToken(IdentityUser user, IList<string> roles)
+        {
             var claims = new List<Claim>
             {
+                
+                // 同时保留传统Claims以保持兼容性
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
                 new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // 生成唯一jti
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // 生成唯一jti                
                 new Claim("SecurityStamp", user.SecurityStamp ?? string.Empty)
             };
+
+            // 添加角色信息
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role)); // 传统角色声明
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

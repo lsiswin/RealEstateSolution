@@ -52,7 +52,10 @@ namespace RealEstateSolution.AuthService.Services
                 return new AuthResponse { Success = false, Message = "密码错误" };
             }
 
-            var accessToken = _jwtTokenHelper.GenerateAccessToken(user);
+            // 获取用户角色
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var accessToken = _jwtTokenHelper.GenerateAccessToken(user, roles);
             var refreshToken = _jwtTokenHelper.GenerateRefreshToken();
             var accessTokenExpiration = _jwtTokenHelper.GetAccessTokenExpiration();
             var refreshTokenExpiration = _jwtTokenHelper.GetRefreshTokenExpiration();
@@ -96,7 +99,10 @@ namespace RealEstateSolution.AuthService.Services
                 };
             }
 
-            var accessToken = _jwtTokenHelper.GenerateAccessToken(user);
+            // 获取用户角色（新注册用户可能没有角色）
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var accessToken = _jwtTokenHelper.GenerateAccessToken(user, roles);
             var refreshToken = _jwtTokenHelper.GenerateRefreshToken();
             var accessTokenExpiration = _jwtTokenHelper.GetAccessTokenExpiration();
             var refreshTokenExpiration = _jwtTokenHelper.GetRefreshTokenExpiration();
@@ -148,7 +154,10 @@ namespace RealEstateSolution.AuthService.Services
                 return new AuthResponse { Success = false, Message = "无效的刷新令牌" };
             }
 
-            var accessToken = _jwtTokenHelper.GenerateAccessToken(user);
+            // 获取用户角色
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var accessToken = _jwtTokenHelper.GenerateAccessToken(user, roles);
             var refreshToken = _jwtTokenHelper.GenerateRefreshToken();
             var accessTokenExpiration = _jwtTokenHelper.GetAccessTokenExpiration();
             var refreshTokenExpiration = _jwtTokenHelper.GetRefreshTokenExpiration();

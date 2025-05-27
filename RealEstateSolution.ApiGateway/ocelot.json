@@ -15,7 +15,7 @@
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
             },
-            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ] // 添加自定义处理
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ]
         },
         {
             "DownstreamPathTemplate": "/api/client/{everything}",
@@ -31,6 +31,12 @@
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
+            },
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
+            "AddHeadersToRequest": {
+                "X-User-Id": "Claims[sub]",
+                "X-User-Name": "Claims[name]",
+                "X-User-Roles": "Claims[role]"
             }
         },
         {
@@ -45,9 +51,15 @@
             "UpstreamPathTemplate": "/api/Contract/{everything}",
             "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
             "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
+            "AddHeadersToRequest": {
+                "X-User-Id": "Claims[sub]",
+                "X-User-Name": "Claims[name]",
+                "X-User-Roles": "Claims[role]"
+            }
         },
         {
             "DownstreamPathTemplate": "/api/auth/{everything}",
@@ -60,7 +72,6 @@
             ],
             "UpstreamPathTemplate": "/api/auth/{everything}",
             "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-      
         },
         {
             "DownstreamPathTemplate": "/api/matching/{everything}",
@@ -74,9 +85,15 @@
             "UpstreamPathTemplate": "/api/matching/{everything}",
             "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
             "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
+            "AddHeadersToRequest": {
+                "X-User-Id": "Claims[sub]",
+                "X-User-Name": "Claims[name]",
+                "X-User-Roles": "Claims[role]"
+            }
         },
         {
             "DownstreamPathTemplate": "/api/recycle/{everything}",
@@ -90,12 +107,18 @@
             "UpstreamPathTemplate": "/api/recycle/{everything}",
             "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
             "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "DelegatingHandlers": [ "JwtRevocationCheckHandler" ],
+            "AddHeadersToRequest": {
+                "X-User-Id": "Claims[sub]",
+                "X-User-Name": "Claims[name]",
+                "X-User-Roles": "Claims[role]"
+            }
         }
     ],
-  "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000"
-  }
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5000"
+    }
 } 

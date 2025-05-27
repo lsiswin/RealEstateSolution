@@ -45,23 +45,8 @@ builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>()); // 添�
 // 在PropertyService的Program.cs中添加
 // 配置JWT设置
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options => {
-//        // 必须显式声明不验证但接受任意令牌
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateIssuerSigningKey = false,
-//            SignatureValidator = (token, parameters) => new JwtSecurityToken(token), // 绕过签名验证
-//            ValidateAudience = false,
-//            ValidateIssuer = false,
-//            ValidateLifetime = false
-//        };
 
-//        // 重要：处理空方案情况
-//        options.Challenge = "Gateway";
-//        options.ForwardDefaultSelector = ctx => JwtBearerDefaults.AuthenticationScheme;
-//    });
-// 配置JWT认证
+// 配置JWT认证 - 只验证用户身份，不进行完整JWT验证（因为ApiGateway已经验证过）
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -69,32 +54,40 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+    // 方案1：简化的JWT验证配置
+    var jwtSettings = builder.Configuration.GetSection("Jwt");
+    var key = Encoding.UTF8.GetBytes(jwtSettings["Key"] ?? "default-key-for-property-service");
+    
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSettings!.Issuer,
-        ValidAudience = jwtSettings.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-        ClockSkew = TimeSpan.Zero,
+        ValidateIssuerSigningKey = false, // 不验证签名（ApiGateway已验证）
+        IssuerSigningKey = new SymmetricSecurityKey(key), // 提供密钥但不验证
+        ValidateIssuer = false,           // 不验证发行者（ApiGateway已验证）
+        ValidateAudience = false,         // 不验证受众（ApiGateway已验证）
+        ValidateLifetime = false,         // 不验证过期时间（ApiGateway已验证）
+        RequireExpirationTime = false,    // 不要求过期时间
+        RequireSignedTokens = false,      // 不要求签名令牌
         // 关键配置：确保声明映射正确
-        NameClaimType = ClaimTypes.NameIdentifier // 对应ClaimTypes.NameIdentifier
+        NameClaimType = ClaimTypes.NameIdentifier
     };
 
+    // 不需要检查令牌撤销，因为ApiGateway已经检查过
     options.Events = new JwtBearerEvents
     {
-        OnTokenValidated = async context =>
+        OnAuthenticationFailed = context =>
         {
-            var redisService = context.HttpContext.RequestServices.GetRequiredService<IRedisService>();
-            var token = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-
-            if (await redisService.IsTokenBlacklistedAsync(token))
-            {
-                context.Fail("Token has been revoked");
-            }
+            // 记录认证失败但不阻止请求（因为可能是从ApiGateway转发的有效请求）
+            var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+            logger.LogInformation("JWT认证失败: {Exception}", context.Exception?.Message);
+            return Task.CompletedTask;
+        },
+        OnTokenValidated = context =>
+        {
+            // 记录成功验证的用户信息
+            var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+            var userId = context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            logger.LogInformation("用户身份验证成功: {UserId}", userId);
+            return Task.CompletedTask;
         }
     };
 });
@@ -121,12 +114,18 @@ if (app.Environment.IsDevelopment())
 
 // 使用请求日志中间件
 app.UseMiddleware<RequestLoggingMiddleware>();
+
+app.UseHttpsRedirection();
+
+// 使用用户上下文中间件 - 必须在认证中间件之前
+app.UseUserContext();
+
 app.Use(async (context, next) => {
     var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
     logger.LogInformation("接收请求头：{Headers}", context.Request.Headers);
     await next();
 });
-app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseRouting();
 // 必须位于Routing之后

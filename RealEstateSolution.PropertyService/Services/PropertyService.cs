@@ -106,21 +106,8 @@ public class PropertyService : IPropertyService
 
             var existingProperty = await _propertyRepository.GetByIdAsync(id);
             
-            // 更新属性
-            existingProperty.Title = property.Title;
-            existingProperty.Description = property.Description;
-            existingProperty.Price = property.Price;
-            existingProperty.Area = property.Area;
-            existingProperty.Address = property.Address;
-            existingProperty.Type = property.Type;
-            existingProperty.Decoration = property.Decoration;
-            existingProperty.Orientation = property.Orientation;
-            existingProperty.Floor = property.Floor;
-            existingProperty.TotalFloors = property.TotalFloors;
-            existingProperty.Rooms = property.Rooms;
-            existingProperty.Bathrooms = property.Bathrooms;
-            existingProperty.Images = property.Images;
-            existingProperty.UpdateTime = DateTime.Now;
+            // 使用AutoMapper更新属性
+            _mapper.Map(property, existingProperty);
 
             _propertyRepository.Update(existingProperty);
             await _unitOfWork.SaveChangesAsync();
