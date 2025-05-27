@@ -24,7 +24,7 @@ namespace RealEstateSolution.PropertyService.Extension
                 .ForMember(dest => dest.Bathrooms, opt => opt.MapFrom(src => src.Bathrooms))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                 .ForMember(dest => dest.OwnerId, opt => opt.MapFrom(src => src.OwnerId))
-                .ForMember(dest => dest.ImageUrls, opt => opt.MapFrom(src => src.Images.Select(pi => pi.ImageUrl).ToList()))
+                .ForMember(dest => dest.ImageUrls, opt => opt.MapFrom(src => src.Images.Select(pi => pi.FilePath).ToList()))
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CreateTime))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.UpdateTime));
 

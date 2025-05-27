@@ -3,10 +3,6 @@
     "Name": "Wpf启动配置",
     "Projects": [
       {
-        "Path": "RealEstateSolution.WpfClient\\RealEstateSolution.WpfClient.csproj",
-        "Action": "Start"
-      },
-      {
         "Path": "RealEstateSolution.PropertyService\\RealEstateSolution.PropertyService.csproj",
         "Action": "Start"
       },
@@ -82,6 +78,10 @@
       },
       {
         "Path": "RealEstateSolution.PropertyService\\RealEstateSolution.PropertyService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ClientService\\RealEstateSolution.ClientService.csproj",
         "Action": "Start"
       }
     ]

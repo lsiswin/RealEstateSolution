@@ -1,4 +1,7 @@
+using RealEstateSolution.ClientService.Models;
+using RealEstateSolution.Common.Utils;
 using RealEstateSolution.Database.Models;
+using System.Threading.Tasks;
 
 namespace RealEstateSolution.ClientService.Services;
 
@@ -8,47 +11,48 @@ namespace RealEstateSolution.ClientService.Services;
 public interface IClientService
 {
     /// <summary>
-    /// 创建客户
+    /// 获取客户列表
     /// </summary>
-    Task<Client> CreateClientAsync(Client client);
-
-    /// <summary>
-    /// 更新客户信息
-    /// </summary>
-    Task<Client> UpdateClientAsync(Client client);
+    Task<ApiResponse<PagedList<Client>>> GetClientsAsync(
+        int userId,
+        string name = null,
+        string phone = null,
+        ClientType? type = null,
+        int pageIndex = 1,
+        int pageSize = 10);
 
     /// <summary>
     /// 获取客户详情
     /// </summary>
-    Task<Client?> GetClientByIdAsync(int id);
+    Task<ApiResponse<Client>> GetClientByIdAsync(int id, int userId);
 
     /// <summary>
-    /// 搜索客户
+    /// 创建客户
     /// </summary>
-    Task<IEnumerable<Client>> SearchClientsAsync(
-        string? keyword,
-        ClientType? type,
-        ClientStatus? status,
-        DateTime? startDate,
-        DateTime? endDate);
+    Task<ApiResponse<Client>> CreateClientAsync(Client client, int userId);
+
+    /// <summary>
+    /// 更新客户信息
+    /// </summary>
+    Task<ApiResponse<Client>> UpdateClientAsync(int id, Client client, int userId);
 
     /// <summary>
     /// 删除客户
     /// </summary>
-    Task DeleteClientAsync(int id);
+    Task<ApiResponse> DeleteClientAsync(int id, int userId);
 
     /// <summary>
-    /// 获取客户购房需求
+    /// 获取客户需求
     /// </summary>
-    Task<ClientRequirements?> GetClientRequirementsAsync(int clientId);
+    Task<ApiResponse<ClientRequirement>> GetClientRequirementsAsync(int clientId, int userId);
 
     /// <summary>
-    /// 更新客户购房需求
+    /// 更新客户需求
     /// </summary>
-    Task<ClientRequirements> UpdateClientRequirementsAsync(ClientRequirements requirements);
+    Task<ApiResponse<ClientRequirement>> UpdateClientRequirementsAsync(int clientId, ClientRequirement requirements, int userId);
 
     /// <summary>
-    /// 更新客户状态
+    /// 获取客户统计数据
     /// </summary>
-    Task UpdateClientStatusAsync(int clientId, ClientStatus status);
+    Task<ApiResponse<ClientStats>> GetClientStatsAsync(int userId);
 } 

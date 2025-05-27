@@ -1,141 +1,142 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateSolution.ClientService.Models;
 using RealEstateSolution.ClientService.Services;
+using RealEstateSolution.Common.Utils;
 using RealEstateSolution.Database.Models;
+using RealEstateSolution.ClientService.Dtos;
+using System.Security.Claims;
 
-namespace RealEstateSolution.ClientService.Controllers;
-
-/// <summary>
-/// 客户控制器
-/// </summary>
-[ApiController]
-[Route("api/[controller]")]
-//[Authorize]
-public class ClientController : ControllerBase
+namespace RealEstateSolution.ClientService.Controllers
 {
-    private readonly IClientService _clientService;
-
-    public ClientController(IClientService clientService)
-    {
-        _clientService = clientService;
-    }
-
     /// <summary>
-    /// 创建客户
+    /// 客户管理控制器
     /// </summary>
-    [HttpPost]
-    public async Task<IActionResult> CreateClient([FromBody] Client client)
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize]
+    public class ClientController : ControllerBase
     {
-        var result = await _clientService.CreateClientAsync(client);
-        return Ok(new { message = "客户创建成功", data = result });
-    }
+        private readonly IClientService _clientService;
 
-    /// <summary>
-    /// 更新客户信息
-    /// </summary>
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateClient(int id, [FromBody] Client client)
-    {
-        if (id != client.Id)
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public ClientController(IClientService clientService)
         {
-            return BadRequest(new { message = "ID不匹配" });
+            _clientService = clientService;
         }
 
-        try
+        /// <summary>
+        /// 获取当前用户ID
+        /// </summary>
+        private int GetCurrentUserId()
         {
-            var result = await _clientService.UpdateClientAsync(client);
-            return Ok(new { message = "客户信息更新成功", data = result });
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-    }
-
-    /// <summary>
-    /// 获取客户详情
-    /// </summary>
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetClient(int id)
-    {
-        var client = await _clientService.GetClientByIdAsync(id);
-        if (client == null)
-        {
-            return NotFound(new { message = $"未找到ID为{id}的客户" });
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+            {
+                throw new UnauthorizedAccessException("无效的用户身份");
+            }
+            return userId;
         }
 
-        return Ok(new { data = client });
-    }
-
-    /// <summary>
-    /// 搜索客户
-    /// </summary>
-    [HttpGet("search")]
-    public async Task<IActionResult> SearchClients(
-        [FromQuery] string? keyword,
-        [FromQuery] ClientType? type,
-        [FromQuery] ClientStatus? status,
-        [FromQuery] DateTime? startDate,
-        [FromQuery] DateTime? endDate)
-    {
-        var clients = await _clientService.SearchClientsAsync(keyword, type, status, startDate, endDate);
-        return Ok(new { data = clients });
-    }
-
-    /// <summary>
-    /// 删除客户
-    /// </summary>
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteClient(int id)
-    {
-        try
+        /// <summary>
+        /// 获取客户列表
+        /// </summary>
+        [HttpGet]
+        public async Task<ApiResponse<PagedList<Client>>> GetClients(
+            [FromQuery] string name = null,
+            [FromQuery] string phone = null,
+            [FromQuery] ClientType? type = null,
+            [FromQuery] int pageIndex = 1,
+            [FromQuery] int pageSize = 10)
         {
-            await _clientService.DeleteClientAsync(id);
-            return Ok(new { message = "客户删除成功" });
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-    }
-
-    /// <summary>
-    /// 获取客户购房需求
-    /// </summary>
-    [HttpGet("{clientId}/requirements")]
-    public async Task<IActionResult> GetClientRequirements(int clientId)
-    {
-        var requirements = await _clientService.GetClientRequirementsAsync(clientId);
-        if (requirements == null)
-        {
-            return NotFound(new { message = $"未找到ID为{clientId}的客户的购房需求" });
+            var userId = GetCurrentUserId();
+            return await _clientService.GetClientsAsync(userId, name, phone, type, pageIndex, pageSize);
         }
 
-        return Ok(new { data = requirements });
-    }
-
-    /// <summary>
-    /// 更新客户购房需求
-    /// </summary>
-    [HttpPut("{clientId}/requirements")]
-    public async Task<IActionResult> UpdateClientRequirements(int clientId, [FromBody] ClientRequirements requirements)
-    {
-        if (clientId != requirements.ClientId)
+        /// <summary>
+        /// 获取客户详情
+        /// </summary>
+        [HttpGet("{id}")]
+        public async Task<ApiResponse<Client>> GetClient(int id)
         {
-            return BadRequest(new { message = "客户ID不匹配" });
+            var userId = GetCurrentUserId();
+            return await _clientService.GetClientByIdAsync(id, userId);
         }
 
-        var result = await _clientService.UpdateClientRequirementsAsync(requirements);
-        return Ok(new { message = "客户购房需求更新成功", data = result });
-    }
+        /// <summary>
+        /// 创建客户
+        /// </summary>
+        [HttpPost]
+        public async Task<ApiResponse<Client>> CreateClient([FromBody] Client client)
+        {
+            var userId = GetCurrentUserId();
+            return await _clientService.CreateClientAsync(client, userId);
+        }
 
-    /// <summary>
-    /// 更新客户状态
-    /// </summary>
-    [HttpPut("{id}/status")]
-    public async Task<IActionResult> UpdateClientStatus(int id, [FromBody] ClientStatus status)
-    {
-        await _clientService.UpdateClientStatusAsync(id, status);
-        return Ok(new { message = "客户状态更新成功" });
+        /// <summary>
+        /// 更新客户信息
+        /// </summary>
+        [HttpPut("{id}")]
+        public async Task<ApiResponse<Client>> UpdateClient(int id, [FromBody] Client client)
+        {
+            var userId = GetCurrentUserId();
+            return await _clientService.UpdateClientAsync(id, client, userId);
+        }
+
+        /// <summary>
+        /// 删除客户
+        /// </summary>
+        [HttpDelete("{id}")]
+        public async Task<ApiResponse> DeleteClient(int id)
+        {
+            var userId = GetCurrentUserId();
+            return await _clientService.DeleteClientAsync(id, userId);
+        }
+
+        /// <summary>
+        /// 获取客户需求
+        /// </summary>
+        [HttpGet("{id}/requirements")]
+        public async Task<ApiResponse<ClientRequirement>> GetClientRequirements(int id)
+        {
+            var userId = GetCurrentUserId();
+            return await _clientService.GetClientRequirementsAsync(id, userId);
+        }
+
+        /// <summary>
+        /// 更新客户需求
+        /// </summary>
+        [HttpPut("{id}/requirements")]
+        public async Task<ApiResponse<ClientRequirement>> UpdateClientRequirements(int id, [FromBody] ClientRequirementDto requirementDto)
+        {
+            var userId = GetCurrentUserId();
+            
+            // 将DTO转换为领域模型
+            var requirement = new ClientRequirement
+            {
+                ClientId = id,
+                MinPrice = requirementDto.MinPrice,
+                MaxPrice = requirementDto.MaxPrice,
+                MinArea = requirementDto.MinArea,
+                MaxArea = requirementDto.MaxArea,
+                Location = requirementDto.Location,
+                PropertyType = requirementDto.PropertyType,
+                OtherRequirements = requirementDto.OtherRequirements
+            };
+            
+            return await _clientService.UpdateClientRequirementsAsync(id, requirement, userId);
+        }
+
+        /// <summary>
+        /// 获取客户统计数据
+        /// </summary>
+        [HttpGet("stats")]
+        public async Task<ApiResponse<ClientStats>> GetClientStats()
+        {
+            var userId = GetCurrentUserId();
+            return await _clientService.GetClientStatsAsync(userId);
+        }
     }
 }

@@ -236,7 +236,7 @@ public class Property
     /// 业主ID
     /// </summary>
     [Required]
-    public int OwnerId { get; set; }
+    public string OwnerId { get; set; }
 
     /// <summary>
     /// 房源图片

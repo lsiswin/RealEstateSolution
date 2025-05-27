@@ -1,0 +1,998 @@
+2025-05-27 11:06:08.691 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 11:06:09.179 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 11:06:09.345 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 11:06:09.349 +08:00 [INF] Hosting environment: Development
+2025-05-27 11:06:09.352 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 11:06:11.171 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger - null null
+2025-05-27 11:06:11.746 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger - 301 0 null 592.1885ms
+2025-05-27 11:06:11.775 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2025-05-27 11:06:11.892 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 118.569ms
+2025-05-27 11:06:12.033 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui-bundle.js - null null
+2025-05-27 11:06:12.033 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - null null
+2025-05-27 11:06:12.033 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.css - null null
+2025-05-27 11:06:12.192 +08:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-05-27 11:06:12.201 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.css - 200 202 text/css 166.437ms
+2025-05-27 11:06:12.232 +08:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-05-27 11:06:12.242 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - 200 154949 text/css 209.3878ms
+2025-05-27 11:06:12.284 +08:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-05-27 11:06:12.286 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui-bundle.js - 200 1466908 text/javascript 253.4498ms
+2025-05-27 11:06:13.534 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - null null
+2025-05-27 11:06:13.537 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.js - null null
+2025-05-27 11:06:13.552 +08:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-05-27 11:06:13.552 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.js - 200 null application/javascript;charset=utf-8 16.0317ms
+2025-05-27 11:06:13.555 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - 200 229223 text/javascript 21.9748ms
+2025-05-27 11:06:13.570 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:06:13.587 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 17.2155ms
+2025-05-27 11:06:13.605 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:06:13.685 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.4852ms
+2025-05-27 11:06:15.152 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:06:15.192 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.9207ms
+2025-05-27 11:17:16.815 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:17:17.077 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:17:17.118 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:17:17.160 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:17:17.177 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:17:17.187 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 47ms
+2025-05-27 11:17:17.224 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 422.9357ms
+2025-05-27 11:17:25.752 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:17:25.759 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:17:25.763 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:17:25.771 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:17:25.774 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:17:25.777 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 10ms
+2025-05-27 11:17:25.783 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 30.7383ms
+2025-05-27 11:18:20.385 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:18:20.392 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:18:20.399 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:18:20.405 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:18:20.410 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:18:20.413 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 10ms
+2025-05-27 11:18:20.419 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 37.0953ms
+2025-05-27 11:19:14.969 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:19:14.981 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:19:14.993 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:19:14.996 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:19:14.998 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:19:15.002 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 5ms
+2025-05-27 11:19:15.005 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 35.9192ms
+2025-05-27 11:19:33.005 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:19:33.010 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:19:33.013 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:19:33.017 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:19:33.019 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:19:33.020 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 3ms
+2025-05-27 11:19:33.023 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 18.8935ms
+2025-05-27 11:22:41.878 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:22:41.893 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:22:41.898 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:22:41.902 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:22:41.904 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:22:41.908 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 5ms
+2025-05-27 11:22:41.914 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 36.0511ms
+2025-05-27 11:23:05.583 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:23:05.623 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:23:05.629 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:23:05.631 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:23:05.633 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:23:05.636 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 5ms
+2025-05-27 11:23:05.639 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 55.9996ms
+2025-05-27 11:29:44.439 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 11:29:44.794 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 11:29:44.988 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 11:29:44.990 +08:00 [INF] Hosting environment: Development
+2025-05-27 11:29:44.993 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 11:29:46.030 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:29:46.083 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 73.5491ms
+2025-05-27 11:29:46.161 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:29:46.321 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 161.2916ms
+2025-05-27 11:29:46.685 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:29:49.446 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2761.7982ms
+2025-05-27 11:30:40.559 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:30:40.657 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:30:40.695 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:30:40.710 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:30:40.793 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 11:30:42.927 +08:00 [WRN] The property 'Property.Images' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-05-27 11:30:54.959 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 14154.31ms
+2025-05-27 11:30:54.970 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:30:54.989 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 14285ms
+2025-05-27 11:30:54.995 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: 无效的用户身份
+   at RealEstateSolution.PropertyService.Controllers.PropertyController.GetCurrentUserId() in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Controllers\PropertyController.cs:line 33
+   at RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty(Int32 id) in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Controllers\PropertyController.cs:line 82
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at RealEstateSolution.PropertyService.Extension.Middleware.RequestLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Extension\Middleware\RequestLoggingMiddleware.cs:line 24
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-05-27 11:30:55.019 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 500 null text/plain; charset=utf-8 14462.4571ms
+2025-05-27 11:31:21.749 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:31:21.756 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:31:21.760 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:31:21.763 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:31:21.765 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 11:33:03.217 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 101448.4753ms
+2025-05-27 11:33:03.232 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:33:03.259 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 101496ms
+2025-05-27 11:33:03.271 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: 无效的用户身份
+   at RealEstateSolution.PropertyService.Controllers.PropertyController.GetCurrentUserId()
+   at RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty(Int32 id)
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at RealEstateSolution.PropertyService.Extension.Middleware.RequestLoggingMiddleware.InvokeAsync(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-05-27 11:33:03.312 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 500 null text/plain; charset=utf-8 101562.9255ms
+2025-05-27 11:33:04.274 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2025-05-27 11:33:04.423 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 148.6658ms
+2025-05-27 11:33:04.983 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:33:04.993 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 11.1637ms
+2025-05-27 11:33:05.133 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:33:05.171 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.179ms
+2025-05-27 11:33:05.445 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:33:05.456 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/favicon-32x32.png - null null
+2025-05-27 11:33:05.473 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.7487ms
+2025-05-27 11:33:05.510 +08:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-05-27 11:33:05.521 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/favicon-32x32.png - 200 628 image/png 65.0321ms
+2025-05-27 11:39:14.460 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 11:39:14.866 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 11:39:15.014 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 11:39:15.020 +08:00 [INF] Hosting environment: Development
+2025-05-27 11:39:15.033 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 11:39:15.899 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:39:15.931 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 42.8524ms
+2025-05-27 11:39:16.066 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:39:16.160 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 95.886ms
+2025-05-27 11:39:16.308 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:39:16.514 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 206.3114ms
+2025-05-27 11:39:40.915 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:39:40.963 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:39:40.979 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:39:40.988 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:39:40.994 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:39:40.997 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 12ms
+2025-05-27 11:39:41.006 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 91.6389ms
+2025-05-27 11:39:50.310 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:39:50.316 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:39:50.317 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10500: Signature validation failed. No security keys were provided to validate the signature.
+2025-05-27 11:39:50.320 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:39:50.323 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:39:50.324 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 5ms
+2025-05-27 11:39:50.326 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 15.8649ms
+2025-05-27 11:47:55.802 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 11:47:56.846 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 11:47:57.204 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 11:47:57.208 +08:00 [INF] Hosting environment: Development
+2025-05-27 11:47:57.211 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 11:47:59.397 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:47:59.661 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 339.0753ms
+2025-05-27 11:48:00.168 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:48:00.784 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 620.1847ms
+2025-05-27 11:48:02.742 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:48:03.083 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 340.7413ms
+2025-05-27 11:48:30.313 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:48:30.322 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI2YmYzMzEzMi0yOTNiLTQ3ODgtOTNhNC0xOTI4Njg4MWRkY2EiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMTgyOTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.1Gg9wS0oipa4XBJsP3SOx4nZ4VbfWSmtbqG3qKZlJfg]","[traceparent, 00-e965e1dd404cd48d7011c9941cfed99c-1ee0dd438a6b3c2f-00]","[Content-Length, 0]"]
+2025-05-27 11:48:30.450 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:48:30.466 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 11:48:30.473 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:48:30.478 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:48:30.481 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 161ms
+2025-05-27 11:48:30.490 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 177.954ms
+2025-05-27 11:49:13.356 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:49:13.359 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI2YmYzMzEzMi0yOTNiLTQ3ODgtOTNhNC0xOTI4Njg4MWRkY2EiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMTgyOTMsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.1Gg9wS0oipa4XBJsP3SOx4nZ4VbfWSmtbqG3qKZlJfg]","[traceparent, 00-9e285b59ca999890c9e64d07ef05fd44-ce4388fa0378c724-00]","[Content-Length, 0]"]
+2025-05-27 11:49:13.364 +08:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureUsingDelegates(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-05-27 11:49:13.365 +08:00 [INF] Bearer was not authenticated. Failure message: IDX10506: Signature validation failed. The user defined 'Delegate' specified on TokenValidationParameters did not return a 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken', but returned a 'System.IdentityModel.Tokens.Jwt.JwtSecurityToken' when validating token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+2025-05-27 11:49:13.367 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 11:49:13.368 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 11:49:13.369 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 9ms
+2025-05-27 11:49:13.370 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 15.1707ms
+2025-05-27 11:52:45.646 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 11:52:46.121 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 11:52:46.324 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 11:52:46.327 +08:00 [INF] Hosting environment: Development
+2025-05-27 11:52:46.329 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 11:52:47.486 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:52:47.528 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 57.8425ms
+2025-05-27 11:52:47.801 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:52:47.970 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 169.5468ms
+2025-05-27 11:52:48.538 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:52:48.616 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 78.3323ms
+2025-05-27 11:53:02.562 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:53:02.571 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwMTMzMDI2Ni01ZWVmLTQzNjktODU1OS0zODQ1NzU5N2YyNmYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMTg1NzQsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.zqCwgrX3zOqhSBUJWwIJeYLvOIQEEuVAwsEOQYPnNgM]","[traceparent, 00-99addee5383a2b8dbdb96637b6f8d302-816d167dad9c4d38-00]","[Content-Length, 0]"]
+2025-05-27 11:53:02.849 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:53:02.870 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 11:53:03.410 +08:00 [WRN] The property 'Property.Images' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-05-27 11:53:03.576 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 702.4611ms
+2025-05-27 11:53:03.578 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:53:03.613 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 1045ms
+2025-05-27 11:53:03.618 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: 无效的用户身份
+   at RealEstateSolution.PropertyService.Controllers.PropertyController.GetCurrentUserId() in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Controllers\PropertyController.cs:line 34
+   at RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty(Int32 id) in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Controllers\PropertyController.cs:line 83
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Program.cs:line 127
+--- End of stack trace from previous location ---
+   at RealEstateSolution.PropertyService.Extension.Middleware.RequestLoggingMiddleware.InvokeAsync(HttpContext context) in D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService\Extension\Middleware\RequestLoggingMiddleware.cs:line 24
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-05-27 11:53:03.646 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 500 null text/plain; charset=utf-8 1085.764ms
+2025-05-27 11:53:45.317 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 11:53:45.320 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwMTMzMDI2Ni01ZWVmLTQzNjktODU1OS0zODQ1NzU5N2YyNmYiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMTg1NzQsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.zqCwgrX3zOqhSBUJWwIJeYLvOIQEEuVAwsEOQYPnNgM]","[traceparent, 00-4d0644bc541053b5bf939e17bc0ee113-86126f0f1f47b681-00]","[Content-Length, 0]"]
+2025-05-27 11:53:45.327 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 11:53:45.328 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 11:54:35.279 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 11:54:35.632 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 11:54:36.094 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 11:54:36.097 +08:00 [INF] Hosting environment: Development
+2025-05-27 11:54:36.098 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 11:54:37.324 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 11:54:37.324 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 11:54:37.417 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 102.1082ms
+2025-05-27 11:54:37.467 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 155.8182ms
+2025-05-27 11:54:37.825 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 11:54:37.868 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 43.7247ms
+2025-05-27 12:33:33.641 +08:00 [WRN] The property 'Property.Images' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-05-27 12:33:33.748 +08:00 [WRN] The property 'Property.Images' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-05-27 12:33:45.927 +08:00 [WRN] The property 'Property.Images' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-05-27 12:33:46.164 +08:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-05-27 12:33:46.189 +08:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-05-27 12:33:46.191 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-05-27 12:33:46.192 +08:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-05-27 12:33:46.216 +08:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-05-27 12:33:46.225 +08:00 [INF] Applying migration '20250527043333_init1'.
+2025-05-27 12:33:46.283 +08:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] DROP CONSTRAINT [FK_PropertyImages_Properties_PropertyId];
+2025-05-27 12:33:46.296 +08:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_PropertyImages_PropertyId] ON [PropertyImages];
+2025-05-27 12:33:46.400 +08:00 [INF] Executed DbCommand (104ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertyImages]') AND [c].[name] = N'ImageUrl');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [PropertyImages] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [PropertyImages] DROP COLUMN [ImageUrl];
+2025-05-27 12:33:46.679 +08:00 [INF] Executed DbCommand (279ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyImages].[CreateTime]', N'UploadedAt', N'COLUMN';
+2025-05-27 12:33:46.694 +08:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] ADD [FileName] nvarchar(max) NOT NULL DEFAULT N'';
+2025-05-27 12:33:46.698 +08:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] ADD [FilePath] nvarchar(max) NOT NULL DEFAULT N'';
+2025-05-27 12:33:46.701 +08:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] ADD [FileSize] bigint NOT NULL DEFAULT CAST(0 AS bigint);
+2025-05-27 12:33:46.705 +08:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] ADD [FileType] nvarchar(max) NOT NULL DEFAULT N'';
+2025-05-27 12:33:46.707 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] ADD [IsMain] bit NOT NULL DEFAULT CAST(0 AS bit);
+2025-05-27 12:33:46.709 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertyImages] ADD [UploadedBy] int NOT NULL DEFAULT 0;
+2025-05-27 12:33:46.726 +08:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Properties]') AND [c].[name] = N'OwnerId');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [Properties] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [Properties] ALTER COLUMN [OwnerId] nvarchar(max) NOT NULL;
+2025-05-27 12:33:46.740 +08:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Properties]') AND [c].[name] = N'Description');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [Properties] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [Properties] ALTER COLUMN [Description] nvarchar(1000) NULL;
+2025-05-27 12:33:46.750 +08:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var3 sysname;
+SELECT @var3 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Properties]') AND [c].[name] = N'Area');
+IF @var3 IS NOT NULL EXEC(N'ALTER TABLE [Properties] DROP CONSTRAINT [' + @var3 + '];');
+ALTER TABLE [Properties] ALTER COLUMN [Area] decimal(10,2) NOT NULL;
+2025-05-27 12:33:46.754 +08:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Properties] ADD [Images] nvarchar(max) NOT NULL DEFAULT N'';
+2025-05-27 12:33:46.758 +08:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250527043333_init1', N'8.0.0');
+2025-05-27 12:35:06.761 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 12:35:07.224 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 12:35:07.395 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 12:35:07.397 +08:00 [INF] Hosting environment: Development
+2025-05-27 12:35:07.400 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 12:35:08.596 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 12:35:08.642 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 59.7635ms
+2025-05-27 12:35:08.860 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 12:35:09.088 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 230.3001ms
+2025-05-27 12:35:09.604 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 12:35:09.691 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 87.3906ms
+2025-05-27 12:36:27.428 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 12:36:27.436 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJmY2JlOTYwOC0yN2YzLTQ1ODYtYTc4MC0yYTUyNjgxZWIxOTkiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjExNzAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.m-F0gRR5JjAJaN0r9_AP4gSSsAqQ06PgeFsnViN7wos]","[traceparent, 00-acd36673df7223a89d0b625ee49dfd27-0f971e04c0294d29-00]","[Content-Length, 0]"]
+2025-05-27 12:36:27.776 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:36:27.797 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:36:28.434 +08:00 [WRN] The property 'Property.Images' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-05-27 12:36:44.577 +08:00 [INF] Executed DbCommand (43ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Images], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:36:44.613 +08:00 [ERR] An exception occurred while iterating over the results of a query for context type 'RealEstateSolution.PropertyService.Data.PropertyDbContext'.
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-05-27 12:37:10.232 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:37:10.248 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 42447.6623ms
+2025-05-27 12:37:10.250 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:37:10.251 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 42818ms
+2025-05-27 12:37:10.257 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 200 null application/json; charset=utf-8 42830.5456ms
+2025-05-27 12:37:13.731 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 12:37:13.736 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJmY2JlOTYwOC0yN2YzLTQ1ODYtYTc4MC0yYTUyNjgxZWIxOTkiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjExNzAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.m-F0gRR5JjAJaN0r9_AP4gSSsAqQ06PgeFsnViN7wos]","[traceparent, 00-516cace3299f7f88c08b1671b39fdf74-cf73e6a3b9149a12-00]","[Content-Length, 0]"]
+2025-05-27 12:37:13.746 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:37:13.748 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:37:31.522 +08:00 [INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Images], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:37:31.525 +08:00 [ERR] An exception occurred while iterating over the results of a query for context type 'RealEstateSolution.PropertyService.Data.PropertyDbContext'.
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-05-27 12:37:31.605 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:37:31.608 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 17857.8963ms
+2025-05-27 12:37:31.610 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:37:31.612 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 17875ms
+2025-05-27 12:37:31.616 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 200 null application/json; charset=utf-8 17884.7044ms
+2025-05-27 12:37:43.279 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 12:37:43.283 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJmY2JlOTYwOC0yN2YzLTQ1ODYtYTc4MC0yYTUyNjgxZWIxOTkiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjExNzAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.m-F0gRR5JjAJaN0r9_AP4gSSsAqQ06PgeFsnViN7wos]","[traceparent, 00-e01eb7ef9ec1bc05684d013cd7735d20-970cf68747f5953a-00]","[Content-Length, 0]"]
+2025-05-27 12:37:43.301 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:37:43.303 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:37:55.549 +08:00 [INF] Executed DbCommand (18ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Images], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:37:55.552 +08:00 [ERR] An exception occurred while iterating over the results of a query for context type 'RealEstateSolution.PropertyService.Data.PropertyDbContext'.
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-05-27 12:41:43.840 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:41:43.855 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 240549.107ms
+2025-05-27 12:41:43.873 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:41:43.878 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 240595ms
+2025-05-27 12:41:43.880 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 200 null application/json; charset=utf-8 240600.8437ms
+2025-05-27 12:41:46.894 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 12:41:46.897 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJmY2JlOTYwOC0yN2YzLTQ1ODYtYTc4MC0yYTUyNjgxZWIxOTkiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjExNzAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.m-F0gRR5JjAJaN0r9_AP4gSSsAqQ06PgeFsnViN7wos]","[traceparent, 00-a053dfde5311a87bdaa9e52ca2619538-0742fc05efb27257-00]","[Content-Length, 0]"]
+2025-05-27 12:41:46.901 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:41:46.902 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:41:55.473 +08:00 [INF] Executed DbCommand (20ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Images], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:41:55.476 +08:00 [ERR] An exception occurred while iterating over the results of a query for context type 'RealEstateSolution.PropertyService.Data.PropertyDbContext'.
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.Text.Json.JsonException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: The input does not contain any JSON tokens. Expected the input to start with a valid JSON token, when isFinalBlock is true. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at lambda_method12(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-05-27 12:43:07.913 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:43:07.943 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 81039.2293ms
+2025-05-27 12:43:07.956 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:43:07.964 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 81067ms
+2025-05-27 12:43:07.973 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 200 null application/json; charset=utf-8 81079.2022ms
+2025-05-27 12:43:09.020 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2025-05-27 12:43:09.155 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 135.0146ms
+2025-05-27 12:43:09.704 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 12:43:09.717 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 12.9392ms
+2025-05-27 12:43:09.821 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 12:43:09.858 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.4054ms
+2025-05-27 12:43:10.070 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 12:43:10.084 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 14.7275ms
+2025-05-27 12:46:32.213 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 12:46:32.565 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 12:46:32.687 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 12:46:32.689 +08:00 [INF] Hosting environment: Development
+2025-05-27 12:46:32.691 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 12:46:34.000 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 12:46:34.041 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 53.9327ms
+2025-05-27 12:46:34.171 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 12:46:34.429 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 260.3779ms
+2025-05-27 12:46:34.697 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 12:46:34.759 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 61.9974ms
+2025-05-27 12:46:56.590 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 12:46:56.599 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI3MWIzNTk3MC02NGY1LTQ3YzUtYjM3NC03NjI1ZGZiMjU1N2MiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjE4MDIsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.vMpkf8NxIdY-Hk-ko2JHEG9syHcGKIYF2AMF03C5MOc]","[traceparent, 00-b78afef156e7ca331b359ed5e49bcc72-83b4c06ed37d63c5-00]","[Content-Length, 0]"]
+2025-05-27 12:46:56.857 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:46:56.876 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:47:00.995 +08:00 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:48:08.539 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:48:08.560 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 71680.6151ms
+2025-05-27 12:48:08.562 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:48:08.563 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 200，耗时: 71967ms
+2025-05-27 12:48:08.569 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 200 null application/json; charset=utf-8 71980.4236ms
+2025-05-27 12:53:26.599 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 12:53:26.915 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 12:53:27.078 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 12:53:27.080 +08:00 [INF] Hosting environment: Development
+2025-05-27 12:53:27.083 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 12:53:27.922 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 12:53:27.951 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 37.78ms
+2025-05-27 12:53:28.301 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 12:53:28.466 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 167.7401ms
+2025-05-27 12:53:28.830 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 12:53:28.880 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 50.8782ms
+2025-05-27 12:53:48.061 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/1 - null 0
+2025-05-27 12:53:48.071 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[traceparent, 00-ae9a9c0bfa941152800372ca4bfe88c8-cbe9ba9bfb1d7ccc-00]","[Content-Length, 0]"]
+2025-05-27 12:53:48.380 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 404，耗时: 312ms
+2025-05-27 12:53:48.392 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 404 0 null 332.1371ms
+2025-05-27 12:53:48.397 +08:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:5001/api/property/1, Response status code: 404
+2025-05-27 12:54:09.301 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - null 0
+2025-05-27 12:54:09.329 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[traceparent, 00-f87ad1635660fd9edf742f1b8d5cd090-8a432eb38e8cb7f8-00]","[Content-Length, 0]"]
+2025-05-27 12:54:09.351 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:54:09.373 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:54:13.825 +08:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:54:13.944 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:54:13.966 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 4588.8021ms
+2025-05-27 12:54:13.968 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:54:13.969 +08:00 [INF] 请求 GET /api/property/GetProperty/1 完成，状态码: 200，耗时: 4639ms
+2025-05-27 12:54:13.975 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/1 - 200 null application/json; charset=utf-8 4673.9086ms
+2025-05-27 12:55:10.095 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - application/json 1212
+2025-05-27 12:55:10.100 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[Content-Type, application/json]","[traceparent, 00-be6bc741807001f7d0757a61c9dbf335-1efa4105abe146ad-00]","[Content-Length, 1212]"]
+2025-05-27 12:55:10.123 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:55:10.133 +08:00 [INF] Route matched with {action = "RegisterProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] RegisterProperty(RealEstateSolution.Database.Models.Property) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:55:10.574 +08:00 [ERR] Failed executing DbCommand (44ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 200), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime2), @p5='?' (DbType = Int32), @p6='?' (Size = 1000), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (Size = 4000), @p10='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (Size = 100), @p14='?' (DbType = Int32), @p15='?' (DbType = Int32), @p16='?' (DbType = DateTime2), @p17='?' (DbType = Int32), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Int64), @p21='?' (Size = 4000), @p22='?' (DbType = Boolean), @p23='?' (DbType = Int32), @p24='?' (DbType = DateTime2), @p25='?' (DbType = Int32), @p26='?' (DbType = Int32), @p27='?' (Size = 4000), @p28='?' (Size = 4000), @p29='?' (DbType = Int64), @p30='?' (Size = 4000), @p31='?' (DbType = Boolean), @p32='?' (DbType = Int32), @p33='?' (DbType = DateTime2), @p34='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Properties] ([Id], [Address], [Area], [Bathrooms], [CreateTime], [Decoration], [Description], [Floor], [Orientation], [OwnerId], [Price], [Rooms], [Status], [Title], [TotalFloors], [Type], [UpdateTime])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+INSERT INTO [PropertyImages] ([Id], [FileName], [FilePath], [FileSize], [FileType], [IsMain], [PropertyId], [UploadedAt], [UploadedBy])
+VALUES (@p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25),
+(@p26, @p27, @p28, @p29, @p30, @p31, @p32, @p33, @p34);
+2025-05-27 12:55:10.632 +08:00 [ERR] An exception occurred in the database while saving changes for context type 'RealEstateSolution.PropertyService.Data.PropertyDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): 当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'Properties' 中的标识列插入显式值。
+当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'PropertyImages' 中的标识列插入显式值。
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:2d1a4107-3732-4346-9555-cc3e18d2b83f
+Error Number:544,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): 当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'Properties' 中的标识列插入显式值。
+当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'PropertyImages' 中的标识列插入显式值。
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:2d1a4107-3732-4346-9555-cc3e18d2b83f
+Error Number:544,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-05-27 12:55:10.748 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:55:10.750 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService) in 614.4781ms
+2025-05-27 12:55:10.752 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:55:10.753 +08:00 [INF] 请求 POST /api/property/RegisterProperty 完成，状态码: 200，耗时: 653ms
+2025-05-27 12:55:10.757 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - 200 null application/json; charset=utf-8 661.3445ms
+2025-05-27 12:55:28.487 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - application/json 1212
+2025-05-27 12:55:28.489 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[Content-Type, application/json]","[traceparent, 00-55b21a40638c4fb9050f50527dd33073-a05f673a14010345-00]","[Content-Length, 1212]"]
+2025-05-27 12:55:28.495 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:55:28.496 +08:00 [INF] Route matched with {action = "RegisterProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] RegisterProperty(RealEstateSolution.Database.Models.Property) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:55:41.690 +08:00 [ERR] Failed executing DbCommand (18ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 200), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Int32), @p4='?' (DbType = DateTime2), @p5='?' (DbType = Int32), @p6='?' (Size = 1000), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (Size = 4000), @p10='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (Size = 100), @p14='?' (DbType = Int32), @p15='?' (DbType = Int32), @p16='?' (DbType = DateTime2), @p17='?' (DbType = Int32), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Int64), @p21='?' (Size = 4000), @p22='?' (DbType = Boolean), @p23='?' (DbType = Int32), @p24='?' (DbType = DateTime2), @p25='?' (DbType = Int32), @p26='?' (DbType = Int32), @p27='?' (Size = 4000), @p28='?' (Size = 4000), @p29='?' (DbType = Int64), @p30='?' (Size = 4000), @p31='?' (DbType = Boolean), @p32='?' (DbType = Int32), @p33='?' (DbType = DateTime2), @p34='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Properties] ([Id], [Address], [Area], [Bathrooms], [CreateTime], [Decoration], [Description], [Floor], [Orientation], [OwnerId], [Price], [Rooms], [Status], [Title], [TotalFloors], [Type], [UpdateTime])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);
+INSERT INTO [PropertyImages] ([Id], [FileName], [FilePath], [FileSize], [FileType], [IsMain], [PropertyId], [UploadedAt], [UploadedBy])
+VALUES (@p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25),
+(@p26, @p27, @p28, @p29, @p30, @p31, @p32, @p33, @p34);
+2025-05-27 12:55:41.695 +08:00 [ERR] An exception occurred in the database while saving changes for context type 'RealEstateSolution.PropertyService.Data.PropertyDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): 当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'Properties' 中的标识列插入显式值。
+当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'PropertyImages' 中的标识列插入显式值。
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:2d1a4107-3732-4346-9555-cc3e18d2b83f
+Error Number:544,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): 当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'Properties' 中的标识列插入显式值。
+当 IDENTITY_INSERT 设置为 OFF 时，不能为表 'PropertyImages' 中的标识列插入显式值。
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:2d1a4107-3732-4346-9555-cc3e18d2b83f
+Error Number:544,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-05-27 12:56:20.917 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:56:20.934 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService) in 52435.1737ms
+2025-05-27 12:56:20.935 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:56:20.936 +08:00 [INF] 请求 POST /api/property/RegisterProperty 完成，状态码: 200，耗时: 52446ms
+2025-05-27 12:56:20.937 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - 200 null application/json; charset=utf-8 52450.8141ms
+2025-05-27 12:57:17.391 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - application/json 781
+2025-05-27 12:57:17.405 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[Content-Type, application/json]","[traceparent, 00-7539324e524a2bc3f525afa290f18467-926595cce17b6385-00]","[Content-Length, 781]"]
+2025-05-27 12:57:17.423 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:57:17.426 +08:00 [INF] Route matched with {action = "RegisterProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] RegisterProperty(RealEstateSolution.Database.Models.Property) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:57:17.441 +08:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-05-27 12:57:17.475 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService) in 45.2503ms
+2025-05-27 12:57:17.478 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:57:17.480 +08:00 [INF] 请求 POST /api/property/RegisterProperty 完成，状态码: 400，耗时: 74ms
+2025-05-27 12:57:17.483 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - 400 null application/problem+json; charset=utf-8 92.3843ms
+2025-05-27 12:57:36.605 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - application/json 801
+2025-05-27 12:57:36.607 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[Content-Type, application/json]","[traceparent, 00-8134d9efa40bc771d13ed86ab9f324bb-fdddebdc3ff0393c-00]","[Content-Length, 801]"]
+2025-05-27 12:57:36.612 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:57:36.612 +08:00 [INF] Route matched with {action = "RegisterProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] RegisterProperty(RealEstateSolution.Database.Models.Property) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:57:36.615 +08:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-05-27 12:57:36.617 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService) in 2.9899ms
+2025-05-27 12:57:36.618 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:57:36.618 +08:00 [INF] 请求 POST /api/property/RegisterProperty 完成，状态码: 400，耗时: 11ms
+2025-05-27 12:57:36.620 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - 400 null application/problem+json; charset=utf-8 14.6828ms
+2025-05-27 12:57:44.358 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - application/json 805
+2025-05-27 12:57:44.361 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[Content-Type, application/json]","[traceparent, 00-38f136d663de881a5130f55d7f400823-b9c5addee8816acb-00]","[Content-Length, 805]"]
+2025-05-27 12:57:44.368 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:57:44.369 +08:00 [INF] Route matched with {action = "RegisterProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] RegisterProperty(RealEstateSolution.Database.Models.Property) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:57:55.911 +08:00 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?' (Size = 200), @p1='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (Size = 1000), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (Size = 4000), @p9='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (Size = 100), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Properties] ([Address], [Area], [Bathrooms], [CreateTime], [Decoration], [Description], [Floor], [Orientation], [OwnerId], [Price], [Rooms], [Status], [Title], [TotalFloors], [Type], [UpdateTime])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
+2025-05-27 12:57:55.930 +08:00 [INF] Executed DbCommand (3ms) [Parameters=[@p16='?' (Size = 4000), @p17='?' (Size = 4000), @p18='?' (DbType = Int64), @p19='?' (Size = 4000), @p20='?' (DbType = Boolean), @p21='?' (DbType = Int32), @p22='?' (DbType = DateTime2), @p23='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [PropertyImages] ([FileName], [FilePath], [FileSize], [FileType], [IsMain], [PropertyId], [UploadedAt], [UploadedBy])
+OUTPUT INSERTED.[Id]
+VALUES (@p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23);
+2025-05-27 12:58:05.499 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:58:05.503 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService) in 21132.9457ms
+2025-05-27 12:58:05.504 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.RegisterProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:58:05.505 +08:00 [INF] 请求 POST /api/property/RegisterProperty 完成，状态码: 200，耗时: 21143ms
+2025-05-27 12:58:05.507 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/RegisterProperty - 200 null application/json; charset=utf-8 21148.9274ms
+2025-05-27 12:58:17.442 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 12:58:17.444 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[traceparent, 00-604f4fe6b4ab00f8486594f97b37b8bf-37dce5d433efba3c-00]","[Content-Length, 0]"]
+2025-05-27 12:58:17.449 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:58:17.450 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 12:58:17.457 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 12:58:17.474 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 12:58:17.475 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 24.1166ms
+2025-05-27 12:58:17.485 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 12:58:17.486 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 42ms
+2025-05-27 12:58:17.488 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 46.6015ms
+2025-05-27 13:00:15.555 +08:00 [INF] Request starting HTTP/1.1 PUT https://localhost:5001/api/property/UpdateProperty/5 - application/json 804
+2025-05-27 13:00:15.558 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[Content-Type, application/json]","[traceparent, 00-bf2abe53d984454be17d375350c7dcfa-81c3001fda9c2808-00]","[Content-Length, 804]"]
+2025-05-27 13:00:15.562 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.UpdateProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:00:15.566 +08:00 [INF] Route matched with {action = "UpdateProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] UpdateProperty(Int32, RealEstateSolution.Database.Models.Property) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:00:23.781 +08:00 [INF] Executed DbCommand (18ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:00:51.539 +08:00 [INF] Executed DbCommand (15ms) [Parameters=[@p16='?' (DbType = Int32), @p0='?' (Size = 200), @p1='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (Size = 1000), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (Size = 4000), @p9='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (Size = 100), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime2), @p17='?' (Size = 4000), @p18='?' (Size = 4000), @p19='?' (DbType = Int64), @p20='?' (Size = 4000), @p21='?' (DbType = Boolean), @p22='?' (DbType = Int32), @p23='?' (DbType = DateTime2), @p24='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Properties] SET [Address] = @p0, [Area] = @p1, [Bathrooms] = @p2, [CreateTime] = @p3, [Decoration] = @p4, [Description] = @p5, [Floor] = @p6, [Orientation] = @p7, [OwnerId] = @p8, [Price] = @p9, [Rooms] = @p10, [Status] = @p11, [Title] = @p12, [TotalFloors] = @p13, [Type] = @p14, [UpdateTime] = @p15
+OUTPUT 1
+WHERE [Id] = @p16;
+INSERT INTO [PropertyImages] ([FileName], [FilePath], [FileSize], [FileType], [IsMain], [PropertyId], [UploadedAt], [UploadedBy])
+OUTPUT INSERTED.[Id]
+VALUES (@p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24);
+2025-05-27 13:00:56.001 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:00:56.002 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.UpdateProperty (RealEstateSolution.PropertyService) in 40435.0067ms
+2025-05-27 13:00:56.003 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.UpdateProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:00:56.004 +08:00 [INF] 请求 PUT /api/property/UpdateProperty/5 完成，状态码: 200，耗时: 40446ms
+2025-05-27 13:00:56.006 +08:00 [INF] Request finished HTTP/1.1 PUT https://localhost:5001/api/property/UpdateProperty/5 - 200 null application/json; charset=utf-8 40450.4499ms
+2025-05-27 13:01:01.166 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:01:01.169 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiIwYzU0NzhkMS01YmNhLTQ2YzItYTg5Ni1mZDRiZGI0NTFhZWUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjIyMTUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.CtaPNCBtcUaoe16PoqyT5MSsYoJxOFPU-jfY0My-SNc]","[traceparent, 00-d9c8a09121375c86e71804d12ab1ede3-3b2b20397b6ed91e-00]","[Content-Length, 0]"]
+2025-05-27 13:01:01.173 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:01:01.174 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:01:01.179 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:01:01.182 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:01:01.183 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 7.8345ms
+2025-05-27 13:01:01.184 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:01:01.185 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 16ms
+2025-05-27 13:01:01.186 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 20.1973ms
+2025-05-27 13:03:12.186 +08:00 [INF] Request starting HTTP/2 PATCH https://localhost:5001/api/Property/ChangePropertyStatus/5/status - application/json 17
+2025-05-27 13:03:12.193 +08:00 [INF] 接收请求头：["[Accept, text/plain]","[Host, localhost:5001]","[User-Agent, Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0]","[Accept-Encoding, gzip, deflate, br, zstd]","[Accept-Language, zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6]","[Content-Type, application/json]","[Origin, https://localhost:5001]","[Referer, https://localhost:5001/swagger/index.html]","[Content-Length, 17]","[sec-ch-ua-platform, \"Windows\"]","[sec-ch-ua, \"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"]","[sec-ch-ua-mobile, ?0]","[sec-fetch-site, same-origin]","[sec-fetch-mode, cors]","[sec-fetch-dest, empty]","[priority, u=1, i]"]
+2025-05-27 13:03:12.200 +08:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-05-27 13:03:12.204 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-27 13:03:12.204 +08:00 [INF] 请求 PATCH /api/Property/ChangePropertyStatus/5/status 完成，状态码: 401，耗时: 11ms
+2025-05-27 13:03:12.206 +08:00 [INF] Request finished HTTP/2 PATCH https://localhost:5001/api/Property/ChangePropertyStatus/5/status - 401 0 null 21.8214ms
+2025-05-27 13:09:53.821 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 13:09:54.683 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 13:09:55.284 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 13:09:55.428 +08:00 [INF] Hosting environment: Development
+2025-05-27 13:09:55.459 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 13:10:01.841 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 13:10:01.944 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 13:10:02.019 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 223.5719ms
+2025-05-27 13:10:02.517 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 576.5728ms
+2025-05-27 13:10:04.197 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 13:10:04.357 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 163.0212ms
+2025-05-27 13:10:27.859 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:10:27.889 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4MzcyMjBkYy1hZjY2LTRmYjAtYWMxZi1hMTA0NDc3MTIzYTUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMyMTAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.mwwqKAGsbgEdPTLHjcRSiaxKHHQOrIVMRj_c66KOo-c]","[traceparent, 00-875479986d3330ecdb92de79aae0e0a8-c83644480af329be-00]","[Content-Length, 0]"]
+2025-05-27 13:10:29.292 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:10:29.377 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:10:35.577 +08:00 [INF] Executed DbCommand (193ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:10:36.146 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:10:36.220 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 6823.342ms
+2025-05-27 13:10:36.231 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:10:36.241 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 8362ms
+2025-05-27 13:10:36.274 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 8418.3152ms
+2025-05-27 13:10:45.080 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:10:45.083 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4MzcyMjBkYy1hZjY2LTRmYjAtYWMxZi1hMTA0NDc3MTIzYTUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMyMTAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.mwwqKAGsbgEdPTLHjcRSiaxKHHQOrIVMRj_c66KOo-c]","[traceparent, 00-9c91d0cd203999c1e8ba5d0eea7c6c5a-21045cbccf168bc9-00]","[Content-Length, 0]"]
+2025-05-27 13:10:45.093 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:10:45.095 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:10:45.146 +08:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:10:45.150 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:10:45.152 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 55.543ms
+2025-05-27 13:10:45.154 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:10:45.155 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 72ms
+2025-05-27 13:10:45.157 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 77.4396ms
+2025-05-27 13:10:47.669 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:10:47.671 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiI4MzcyMjBkYy1hZjY2LTRmYjAtYWMxZi1hMTA0NDc3MTIzYTUiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMyMTAsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.mwwqKAGsbgEdPTLHjcRSiaxKHHQOrIVMRj_c66KOo-c]","[traceparent, 00-c80f3486f4e8430fa342648d47086156-c35f68ebae5365b0-00]","[Content-Length, 0]"]
+2025-05-27 13:10:47.677 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:10:47.679 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:10:47.691 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:10:47.694 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:10:47.696 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 15.7501ms
+2025-05-27 13:10:47.697 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:10:47.698 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 26ms
+2025-05-27 13:10:47.699 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 30.055ms
+2025-05-27 13:11:47.426 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-27 13:11:47.938 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-27 13:11:48.085 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-27 13:11:48.087 +08:00 [INF] Hosting environment: Development
+2025-05-27 13:11:48.089 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-27 13:11:48.991 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-27 13:11:49.028 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 52.6383ms
+2025-05-27 13:11:49.372 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-27 13:11:49.582 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 210.7726ms
+2025-05-27 13:11:50.566 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-27 13:11:50.693 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 126.9368ms
+2025-05-27 13:12:28.219 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:12:28.227 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJkMzQ2NzBkNy0wMTMyLTQxNTQtYWVjMS00NTEzOGY0YjhiOTQiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMzMzUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.iY2F7uye0TeqgwB5Gf1Eyj6qmKx1P25qq8hzxM65WiQ]","[traceparent, 00-51e3be306056d022077d2fe0a240f523-7387cf6267153a49-00]","[Content-Length, 0]"]
+2025-05-27 13:12:28.505 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:28.526 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:12:29.640 +08:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:12:29.760 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:12:29.777 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 1246.4159ms
+2025-05-27 13:12:29.779 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:29.781 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 1556ms
+2025-05-27 13:12:29.788 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 1568.9204ms
+2025-05-27 13:12:32.712 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:12:32.716 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJkMzQ2NzBkNy0wMTMyLTQxNTQtYWVjMS00NTEzOGY0YjhiOTQiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMzMzUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.iY2F7uye0TeqgwB5Gf1Eyj6qmKx1P25qq8hzxM65WiQ]","[traceparent, 00-b599a660f26744257ce3693eb4f416d4-d8ca8f292028e2bd-00]","[Content-Length, 0]"]
+2025-05-27 13:12:32.727 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:32.729 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:12:32.777 +08:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:12:32.782 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:12:32.784 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 53.4818ms
+2025-05-27 13:12:32.786 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:32.787 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 71ms
+2025-05-27 13:12:32.790 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 77.1963ms
+2025-05-27 13:12:34.441 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:12:34.447 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJkMzQ2NzBkNy0wMTMyLTQxNTQtYWVjMS00NTEzOGY0YjhiOTQiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMzMzUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.iY2F7uye0TeqgwB5Gf1Eyj6qmKx1P25qq8hzxM65WiQ]","[traceparent, 00-803c551a391c716698a561ea6a821563-684321238200d0a1-00]","[Content-Length, 0]"]
+2025-05-27 13:12:34.460 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:34.462 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:12:34.481 +08:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:12:34.487 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:12:34.490 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 25.3293ms
+2025-05-27 13:12:34.492 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:34.494 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 47ms
+2025-05-27 13:12:34.497 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 56.7189ms
+2025-05-27 13:12:35.773 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - null 0
+2025-05-27 13:12:35.779 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJkMzQ2NzBkNy0wMTMyLTQxNTQtYWVjMS00NTEzOGY0YjhiOTQiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMzMzUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.iY2F7uye0TeqgwB5Gf1Eyj6qmKx1P25qq8hzxM65WiQ]","[traceparent, 00-cbb92ef9c87ba7a25ad1c7952bebd616-bded60efdd8ad16b-00]","[Content-Length, 0]"]
+2025-05-27 13:12:35.785 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:35.787 +08:00 [INF] Route matched with {action = "GetProperty", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] GetProperty(Int32) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:12:35.793 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:12:35.797 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:12:35.799 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService) in 10.4115ms
+2025-05-27 13:12:35.801 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.GetProperty (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:35.802 +08:00 [INF] 请求 GET /api/property/GetProperty/5 完成，状态码: 200，耗时: 23ms
+2025-05-27 13:12:35.804 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/GetProperty/5 - 200 null application/json; charset=utf-8 31.766ms
+2025-05-27 13:12:54.567 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/property/ChangePropertyStatus/5/status - application/json 19
+2025-05-27 13:12:54.569 +08:00 [INF] 接收请求头：["[Accept, */*]","[Connection, keep-alive]","[Host, localhost:5001]","[User-Agent, Apifox/1.0.0 (https://apifox.com)]","[Accept-Encoding, gzip, deflate, br]","[Authorization, Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZkMzViZDUwLTA3NTQtNDU3Yy04MmJkLTg1M2ViOGU4MjI0NSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImxzaXNsb3NlckBnbWFpbC5jb20iLCJqdGkiOiJkMzQ2NzBkNy0wMTMyLTQxNTQtYWVjMS00NTEzOGY0YjhiOTQiLCJTZWN1cml0eVN0YW1wIjoiNlFBWElWN1dGTVBJRktLRUZHV1RNRUQzSEM3NTQzRUgiLCJleHAiOjE3NDgzMjMzMzUsImlzcyI6ImxzIiwiYXVkIjoiY29sZCJ9.iY2F7uye0TeqgwB5Gf1Eyj6qmKx1P25qq8hzxM65WiQ]","[Content-Type, application/json]","[traceparent, 00-2b1b0030d707da7304d89c31933530a5-e99222f17e6ef9f3-00]","[Content-Length, 19]"]
+2025-05-27 13:12:54.574 +08:00 [INF] Executing endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.ChangePropertyStatus (RealEstateSolution.PropertyService)'
+2025-05-27 13:12:54.579 +08:00 [INF] Route matched with {action = "ChangePropertyStatus", controller = "Property"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Database.Models.Property]] ChangePropertyStatus(Int32, RealEstateSolution.PropertyService.Models.PropertyStatusUpdateDto) on controller RealEstateSolution.PropertyService.Controllers.PropertyController (RealEstateSolution.PropertyService).
+2025-05-27 13:13:05.843 +08:00 [INF] Executed DbCommand (18ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[Area], [p].[Bathrooms], [p].[CreateTime], [p].[Decoration], [p].[Description], [p].[Floor], [p].[Orientation], [p].[OwnerId], [p].[Price], [p].[Rooms], [p].[Status], [p].[Title], [p].[TotalFloors], [p].[Type], [p].[UpdateTime]
+FROM [Properties] AS [p]
+WHERE [p].[Id] = @__p_0
+2025-05-27 13:13:14.892 +08:00 [INF] Executed DbCommand (6ms) [Parameters=[@p16='?' (DbType = Int32), @p0='?' (Size = 200), @p1='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (Size = 1000), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (Size = 4000), @p9='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (Size = 100), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32), @p15='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Properties] SET [Address] = @p0, [Area] = @p1, [Bathrooms] = @p2, [CreateTime] = @p3, [Decoration] = @p4, [Description] = @p5, [Floor] = @p6, [Orientation] = @p7, [OwnerId] = @p8, [Price] = @p9, [Rooms] = @p10, [Status] = @p11, [Title] = @p12, [TotalFloors] = @p13, [Type] = @p14, [UpdateTime] = @p15
+OUTPUT 1
+WHERE [Id] = @p16;
+2025-05-27 13:13:16.816 +08:00 [INF] Executing ObjectResult, writing value of type 'RealEstateSolution.Common.Utils.ApiResponse`1[[RealEstateSolution.Database.Models.Property, RealEstateSolution.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-05-27 13:13:16.818 +08:00 [INF] Executed action RealEstateSolution.PropertyService.Controllers.PropertyController.ChangePropertyStatus (RealEstateSolution.PropertyService) in 22237.5345ms
+2025-05-27 13:13:16.819 +08:00 [INF] Executed endpoint 'RealEstateSolution.PropertyService.Controllers.PropertyController.ChangePropertyStatus (RealEstateSolution.PropertyService)'
+2025-05-27 13:13:16.820 +08:00 [INF] 请求 POST /api/property/ChangePropertyStatus/5/status 完成，状态码: 200，耗时: 22250ms
+2025-05-27 13:13:16.821 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/property/ChangePropertyStatus/5/status - 200 null application/json; charset=utf-8 22254.7712ms

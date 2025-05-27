@@ -46,7 +46,7 @@ namespace RealEstateSolution.AuthService.Models
         /// <summary>
         /// 用户ID
         /// </summary>
-        public string Id { get; set; } = string.Empty;
+        public string Id { get; set; }
 
         /// <summary>
         /// 用户名

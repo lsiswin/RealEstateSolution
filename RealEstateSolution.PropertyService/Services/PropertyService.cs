@@ -5,6 +5,13 @@ using RealEstateSolution.Common.Redis;
 using RealEstateSolution.Common.Utils;
 using RealEstateSolution.Database.Models;
 using RealEstateSolution.PropertyService.Data;
+using RealEstateSolution.PropertyService.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 
 namespace RealEstateSolution.PropertyService.Services;
 
@@ -17,24 +24,27 @@ public class PropertyService : IPropertyService
     private readonly IGenericRepository<Property> _propertyRepository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IRedisService _redisService;
+    private readonly IMapper _mapper;
     private const string PropertyCacheKeyPrefix = "property:";
     private const int CacheExpirationMinutes = 30;
 
     public PropertyService(
         IUnitOfWork<PropertyDbContext> unitOfWork,
         IHttpContextAccessor httpContextAccessor,
-        IRedisService redisService)
+        IRedisService redisService,
+        IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _propertyRepository = unitOfWork.Repository<Property>();
         _httpContextAccessor = httpContextAccessor;
         _redisService = redisService;
+        _mapper = mapper;
     }
 
     /// <summary>
     /// 验证用户是否有权限操作房源
     /// </summary>
-    private async Task<bool> ValidatePropertyAccess(int propertyId, int userId, bool isGet = false)
+    private async Task<bool> ValidatePropertyAccess(int propertyId, string userId, bool isGet = false)
     {
         var property = await _propertyRepository.GetByIdAsync(propertyId);
         if (property == null)
@@ -60,7 +70,7 @@ public class PropertyService : IPropertyService
     /// <summary>
     /// 登记新房源
     /// </summary>
-    public async Task<ApiResponse<Property>> RegisterPropertyAsync(Property property, int userId)
+    public async Task<ApiResponse<Property>> RegisterPropertyAsync(Property property, string userId)
     {
         try
         {
@@ -88,7 +98,7 @@ public class PropertyService : IPropertyService
     /// <summary>
     /// 修改房源信息
     /// </summary>
-    public async Task<ApiResponse<Property>> UpdatePropertyAsync(int id, Property property, int userId)
+    public async Task<ApiResponse<Property>> UpdatePropertyAsync(int id, Property property, string userId)
     {
         try
         {
@@ -132,7 +142,7 @@ public class PropertyService : IPropertyService
     /// <summary>
     /// 变更房源状态
     /// </summary>
-    public async Task<ApiResponse<Property>> ChangePropertyStatusAsync(int id, PropertyStatus status, int userId)
+    public async Task<ApiResponse<Property>> ChangePropertyStatusAsync(int id, PropertyStatus status, string userId)
     {
         try
         {
@@ -162,7 +172,7 @@ public class PropertyService : IPropertyService
     /// <summary>
     /// 获取房源详情
     /// </summary>
-    public async Task<ApiResponse<Property>> GetPropertyByIdAsync(int id, int userId)
+    public async Task<ApiResponse<Property>> GetPropertyByIdAsync(int id, string userId)
     {
         try
         {
@@ -204,7 +214,7 @@ public class PropertyService : IPropertyService
     /// 查询房源列表
     /// </summary>
     public async Task<ApiResponse<PagedList<Property>>> QueryPropertiesAsync(
-        int userId,
+        string userId,
         bool isAgent,
         PropertyType? type = null,
         decimal? minPrice = null,
@@ -270,7 +280,7 @@ public class PropertyService : IPropertyService
     /// <summary>
     /// 删除房源
     /// </summary>
-    public async Task<ApiResponse> DeletePropertyAsync(int id, int userId)
+    public async Task<ApiResponse> DeletePropertyAsync(int id, string userId)
     {
         try
         {
@@ -289,5 +299,184 @@ public class PropertyService : IPropertyService
         {
             return ApiResponse.Error(ex.Message);
         }
+    }
+
+    /// <summary>
+    /// 获取房源统计数据
+    /// </summary>
+    public async Task<ApiResponse<PropertyStats>> GetPropertyStatsAsync(string userId, bool isAgent)
+    {
+        try
+        {
+            var query = _propertyRepository.Query();
+            
+            // 如果不是经纪人，只能查看自己的房源
+            if (!isAgent)
+            {
+                query = query.Where(p => p.OwnerId == userId);
+            }
+
+            // 获取统计数据
+            var totalCount = await query.CountAsync();
+            var forSaleCount = await query.CountAsync(p => p.Status == PropertyStatus.ForSale);
+            var soldCount = await query.CountAsync(p => p.Status == PropertyStatus.Sold);
+            var forRentCount = await query.CountAsync(p => p.Status == PropertyStatus.ForRent);
+            var rentedCount = await query.CountAsync(p => p.Status == PropertyStatus.Rented);
+
+            // 获取房源类型分布
+            var typeDistribution = await query
+                .GroupBy(p => p.Type)
+                .Select(g => new { Type = g.Key, Count = g.Count() })
+                .ToListAsync();
+
+            // 构建统计数据
+            var stats = new PropertyStats
+            {
+                Total = totalCount,
+                ForSale = forSaleCount,
+                Sold = soldCount,
+                ForRent = forRentCount,
+                Rented = rentedCount,
+                TypeDistribution = typeDistribution.ToDictionary(
+                    x => x.Type.ToString(), 
+                    x => x.Count
+                )
+            };
+
+            return ApiResponse<PropertyStats>.Ok(stats, "获取房源统计数据成功");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<PropertyStats>.Error("获取房源统计数据失败");
+        }
+    }
+    
+    /// <summary>
+    /// 上传房源图片
+    /// </summary>
+    public async Task<ApiResponse<PropertyImageDto>> UploadPropertyImageAsync(int propertyId, IFormFile file, string userId)
+    {
+        try
+        {
+            // 检查房源是否存在
+            var property = await _propertyRepository.GetByIdAsync(propertyId);
+                
+            if (property == null)
+            {
+                return ApiResponse<PropertyImageDto>.Error("房源不存在");
+            }
+            
+            // 检查权限
+            if (property.OwnerId != userId && !IsUserAuthorized(userId, "property:manage"))
+            {
+                return ApiResponse<PropertyImageDto>.Error("无权上传图片");
+            }
+            
+            // 检查文件类型
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                return ApiResponse<PropertyImageDto>.Error("不支持的文件类型，请上传jpg、jpeg、png或gif格式的图片");
+            }
+            
+            // 生成文件名和保存路径
+            var fileName = $"{Guid.NewGuid()}{fileExtension}";
+            var directoryPath = Path.Combine(_httpContextAccessor.HttpContext!.Request.Host.Value, "uploads", "properties", propertyId.ToString());
+            var filePath = Path.Combine(directoryPath, fileName);
+            
+            // 确保目录存在
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            
+            // 保存文件
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            
+            // 创建图片记录
+            var dbImage = new PropertyImage
+            {
+                PropertyId = propertyId,
+                FilePath = $"/uploads/properties/{propertyId}/{fileName}",
+                UploadedAt = DateTime.UtcNow
+            };
+            
+            await _unitOfWork.Repository<PropertyImage>().AddAsync(dbImage);
+            await _unitOfWork.SaveChangesAsync();
+            
+            // 使用AutoMapper转换为DTO并设置额外属性
+            var image = _mapper.Map<PropertyImageDto>(dbImage);
+            image.IsMain = property.Images.Count == 0; // 如果是第一张图片，设为主图
+            
+            return ApiResponse<PropertyImageDto>.Ok(image, "上传图片成功");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<PropertyImageDto>.Error("上传图片失败");
+        }
+    }
+    
+    /// <summary>
+    /// 删除房源图片
+    /// </summary>
+    public async Task<ApiResponse> DeletePropertyImageAsync(int propertyId, int imageId, string userId)
+    {
+        try
+        {
+            // 检查房源是否存在
+            var property = await _propertyRepository.GetByIdAsync(propertyId);
+                
+            if (property == null)
+            {
+                return ApiResponse.Error("房源不存在");
+            }
+            
+            // 检查权限
+            if (property.OwnerId != userId && !IsUserAuthorized(userId, "property:manage"))
+            {
+                return ApiResponse.Error("无权删除图片");
+            }
+            
+            // 查找图片
+            var imageRepository = _unitOfWork.Repository<PropertyImage>();
+            var dbImage = await imageRepository.Query()
+                .FirstOrDefaultAsync(i => i.Id == imageId && i.PropertyId == propertyId);
+                
+            if (dbImage == null)
+            {
+                return ApiResponse.Error("图片不存在");
+            }
+            
+            // 删除物理文件
+            var filePath = Path.Combine(_httpContextAccessor.HttpContext!.Request.Host.Value, dbImage.FilePath.TrimStart('/'));
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            
+            // 删除数据库记录
+            imageRepository.Delete(dbImage);
+            await _unitOfWork.SaveChangesAsync();
+            
+            return ApiResponse.Ok("删除图片成功");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse.Error("删除图片失败");
+        }
+    }
+    
+    /// <summary>
+    /// 检查用户是否有特定权限
+    /// </summary>
+    private bool IsUserAuthorized(string userId, string permission)
+    {
+        // TODO: 实现权限检查逻辑，可以通过调用授权服务或检查缓存
+        // 这里简化处理，返回true
+        return true;
     }
 }

@@ -59,7 +59,7 @@ public class PropertyRepository : GenericRepository<Property>, IPropertyReposito
         return await query.OrderByDescending(p => p.CreateTime).ToListAsync();
     }
 
-    public async Task<IEnumerable<Property>> GetOwnerPropertiesAsync(int ownerId)
+    public async Task<IEnumerable<Property>> GetOwnerPropertiesAsync(string ownerId)
     {
         return await _dbSet.Where(p => p.OwnerId == ownerId)
             .OrderByDescending(p => p.CreateTime)
@@ -77,35 +77,14 @@ public class PropertyRepository : GenericRepository<Property>, IPropertyReposito
         }
     }
 
-    public async Task AddPropertyImageAsync(int propertyId, string imageUrl)
-    {
-        var property = await _dbSet.Include(p => p.Images).FirstOrDefaultAsync(p => p.Id == propertyId);
-        if (property != null)
-        {
-            var image = new PropertyImage
-            {
-                PropertyId = propertyId,
-                ImageUrl = imageUrl,
-                CreateTime = DateTime.Now
-            };
-
-            if (property.Images == null)
-            {
-                property.Images = new List<PropertyImage>();
-            }
-
-            property.Images.Add(image);
-            property.UpdateTime = DateTime.Now;
-            await _context.SaveChangesAsync();
-        }
-    }
+    
 
     public async Task DeletePropertyImageAsync(int propertyId, string imageUrl)
     {
         var property = await _dbSet.Include(p => p.Images).FirstOrDefaultAsync(p => p.Id == propertyId);
         if (property?.Images != null)
         {
-            var image = property.Images.FirstOrDefault(i => i.ImageUrl == imageUrl);
+            var image = property.Images.FirstOrDefault(i => i.FilePath == imageUrl);
             if (image != null)
             {
                 property.Images.Remove(image);

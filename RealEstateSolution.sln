@@ -1,14 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateSolution.WpfClient", "RealEstateSolution.WpfClient\RealEstateSolution.WpfClient.csproj", "{AA1FFA55-951B-4C02-93D6-9A73E5DCCD74}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateSolution.BlazorAdmin", "RealEstateSolution.BlazorAdmin\RealEstateSolution.BlazorAdmin\RealEstateSolution.BlazorAdmin.csproj", "{D97937E4-D9B0-4DC6-BFFE-ED7166A64EBE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateSolution.BlazorAdmin.Client", "RealEstateSolution.BlazorAdmin\RealEstateSolution.BlazorAdmin.Client\RealEstateSolution.BlazorAdmin.Client.csproj", "{EBD45D2B-0CB3-4B4B-ABE3-1BCB97039803}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateSolution.PropertyService", "RealEstateSolution.PropertyService\RealEstateSolution.PropertyService.csproj", "{5DE008AC-0D95-4330-9C12-AAA87FDCFFDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateSolution.ClientService", "RealEstateSolution.ClientService\RealEstateSolution.ClientService.csproj", "{C386EC09-D673-423A-87B0-1CCB66605D61}"
@@ -33,18 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AA1FFA55-951B-4C02-93D6-9A73E5DCCD74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA1FFA55-951B-4C02-93D6-9A73E5DCCD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA1FFA55-951B-4C02-93D6-9A73E5DCCD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA1FFA55-951B-4C02-93D6-9A73E5DCCD74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D97937E4-D9B0-4DC6-BFFE-ED7166A64EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D97937E4-D9B0-4DC6-BFFE-ED7166A64EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D97937E4-D9B0-4DC6-BFFE-ED7166A64EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D97937E4-D9B0-4DC6-BFFE-ED7166A64EBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBD45D2B-0CB3-4B4B-ABE3-1BCB97039803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBD45D2B-0CB3-4B4B-ABE3-1BCB97039803}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBD45D2B-0CB3-4B4B-ABE3-1BCB97039803}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBD45D2B-0CB3-4B4B-ABE3-1BCB97039803}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DE008AC-0D95-4330-9C12-AAA87FDCFFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DE008AC-0D95-4330-9C12-AAA87FDCFFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE008AC-0D95-4330-9C12-AAA87FDCFFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU

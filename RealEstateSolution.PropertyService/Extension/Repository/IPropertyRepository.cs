@@ -22,17 +22,14 @@ public interface IPropertyRepository : IGenericRepository<Property>
     /// <summary>
     /// 获取房主的所有房源
     /// </summary>
-    Task<IEnumerable<Property>> GetOwnerPropertiesAsync(int ownerId);
+    Task<IEnumerable<Property>> GetOwnerPropertiesAsync(string ownerId);
 
     /// <summary>
     /// 更新房源状态
     /// </summary>
     Task UpdateStatusAsync(int id, PropertyStatus status);
 
-    /// <summary>
-    /// 添加房源图片
-    /// </summary>
-    Task AddPropertyImageAsync(int propertyId, string imageUrl);
+    
 
     /// <summary>
     /// 删除房源图片

@@ -4,6 +4,7 @@ using RealEstateSolution.Database.Models;
 using RealEstateSolution.PropertyService.Services;
 using RealEstateSolution.Common.Utils;
 using System.Security.Claims;
+using RealEstateSolution.PropertyService.Models;
 
 namespace RealEstateSolution.PropertyService.Controllers;
 
@@ -11,7 +12,7 @@ namespace RealEstateSolution.PropertyService.Controllers;
 /// 房源管理控制器
 /// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [Authorize]
 public class PropertyController : ControllerBase
 {
@@ -25,10 +26,10 @@ public class PropertyController : ControllerBase
     /// <summary>
     /// 获取当前用户ID
     /// </summary>
-    private int GetCurrentUserId()
+    private string GetCurrentUserId()
     {
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userId))
         {
             throw new UnauthorizedAccessException("无效的用户身份");
         }
@@ -66,11 +67,11 @@ public class PropertyController : ControllerBase
     /// <summary>
     /// 变更房源状态
     /// </summary>
-    [HttpPatch("{id}/status")]
-    public async Task<ApiResponse<Property>> ChangePropertyStatus(int id, [FromBody] PropertyStatus status)
+    [HttpPost("{id}/status")]
+    public async Task<ApiResponse<Property>> ChangePropertyStatus(int id, [FromBody] PropertyStatusUpdateDto statusUpdate)
     {
         var userId = GetCurrentUserId();
-        return await _propertyService.ChangePropertyStatusAsync(id, status, userId);
+        return await _propertyService.ChangePropertyStatusAsync(id, statusUpdate.Status, userId);
     }
 
     /// <summary>
@@ -113,4 +114,35 @@ public class PropertyController : ControllerBase
         var userId = GetCurrentUserId();
         return await _propertyService.DeletePropertyAsync(id, userId);
     }
+
+    /// <summary>
+    /// 获取房源统计数据
+    /// </summary>
+    [HttpGet("stats")]
+    public async Task<ApiResponse<PropertyStats>> GetPropertyStats()
+    {
+        var userId = GetCurrentUserId();
+        var isAgent = IsAgent();
+        return await _propertyService.GetPropertyStatsAsync(userId, isAgent);
+    }
+    
+    ///// <summary>
+    ///// 上传房源图片
+    ///// </summary>
+    //[HttpPost("{id}/images")]
+    //public async Task<ApiResponse<PropertyImage>> UploadPropertyImage(int id, IFormFile file)
+    //{
+    //    var userId = GetCurrentUserId();
+    //    return await _propertyService.UploadPropertyImageAsync(id, file, userId);
+    //}
+    
+    /// <summary>
+    /// 删除房源图片
+    /// </summary>
+    //[HttpDelete("{propertyId}/images/{imageId}")]
+    //public async Task<ApiResponse> DeletePropertyImage(int propertyId, int imageId)
+    //{
+    //    var userId = GetCurrentUserId();
+    //    return await _propertyService.DeletePropertyImageAsync(propertyId, imageId, userId);
+    //}
 } 

@@ -7,6 +7,7 @@ using RealEstateSolution.ClientService.Repository;
 using RealEstateSolution.ClientService.Services;
 using System.Text;
 using AutoMapper;
+using RealEstateSolution.ClientService.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,9 @@ builder.Services.AddDbContext<ClientDbContext>(options =>
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
 
-
 // 添加控制器
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(option=> option.AddProfile<MappingProfile>());
 
 // 添加Swagger
 builder.Services.AddSwaggerGen();

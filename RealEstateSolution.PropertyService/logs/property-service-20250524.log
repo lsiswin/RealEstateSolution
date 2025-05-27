@@ -85,3 +85,14 @@ DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
 2025-05-24 13:50:25.270 +08:00 [INF] AuthenticationScheme: Bearer was challenged.
 2025-05-24 13:50:25.275 +08:00 [INF] 请求 GET /api/property/1 完成，状态码: 401，耗时: 12ms
 2025-05-24 13:50:25.281 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/property/1 - 401 0 null 51.111ms
+2025-05-24 15:32:38.327 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-24 15:32:38.830 +08:00 [INF] Now listening on: https://localhost:5001
+2025-05-24 15:32:39.255 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-24 15:32:39.258 +08:00 [INF] Hosting environment: Development
+2025-05-24 15:32:39.259 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.PropertyService
+2025-05-24 15:32:41.599 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-24 15:32:41.772 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13804 application/javascript; charset=utf-8 178.6075ms
+2025-05-24 15:32:42.214 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2025-05-24 15:32:42.622 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 410.0065ms
+2025-05-24 15:32:43.960 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2025-05-24 15:32:44.201 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 242.0396ms

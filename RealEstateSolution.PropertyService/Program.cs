@@ -10,6 +10,11 @@ using RealEstateSolution.PropertyService.Extension.Middleware;
 using RealEstateSolution.PropertyService.Extension.HealthChecks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using RealEstateSolution.Common.Utils;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using RealEstateSolution.PropertyService.Extension.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,25 +40,64 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
     ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis") ?? "localhost"));
 builder.Services.AddScoped<IRedisService, RedisService>();
-
-// 配置AutoMapper
-builder.Services.AddAutoMapper(typeof(Program));
+// 修改 AutoMapper 注册代码以消除二义性  
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>()); // 添加映射配置文件  
 // 在PropertyService的Program.cs中添加
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+// 配置JWT设置
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddJwtBearer(options => {
+//        // 必须显式声明不验证但接受任意令牌
+//        options.TokenValidationParameters = new TokenValidationParameters
+//        {
+//            ValidateIssuerSigningKey = false,
+//            SignatureValidator = (token, parameters) => new JwtSecurityToken(token), // 绕过签名验证
+//            ValidateAudience = false,
+//            ValidateIssuer = false,
+//            ValidateLifetime = false
+//        };
+
+//        // 重要：处理空方案情况
+//        options.Challenge = "Gateway";
+//        options.ForwardDefaultSelector = ctx => JwtBearerDefaults.AuthenticationScheme;
+//    });
+// 配置JWT认证
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.TokenValidationParameters = new TokenValidationParameters
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings!.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+        ClockSkew = TimeSpan.Zero,
+        // 关键配置：确保声明映射正确
+        NameClaimType = ClaimTypes.NameIdentifier // 对应ClaimTypes.NameIdentifier
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnTokenValidated = async context =>
         {
-            ValidateIssuerSigningKey = false, // 不验证签名
-            ValidateIssuer = false,           // 不验证颁发者
-            ValidateAudience = false,         // 不验证受众
-            ValidateLifetime = false,         // 不验证过期时间
-            RequireExpirationTime = false     // 不要求过期时间
-        };
-    });
-// 配置缓存
-builder.Services.AddMemoryCache();
-builder.Services.AddScoped<ICacheService, CacheService>();
+            var redisService = context.HttpContext.RequestServices.GetRequiredService<IRedisService>();
+            var token = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+
+            if (await redisService.IsTokenBlacklistedAsync(token))
+            {
+                context.Fail("Token has been revoked");
+            }
+        }
+    };
+});
 
 // 配置健康检查
 builder.Services.AddHealthChecks()
@@ -77,8 +121,15 @@ if (app.Environment.IsDevelopment())
 
 // 使用请求日志中间件
 app.UseMiddleware<RequestLoggingMiddleware>();
-
+app.Use(async (context, next) => {
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+    logger.LogInformation("接收请求头：{Headers}", context.Request.Headers);
+    await next();
+});
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseRouting();
+// 必须位于Routing之后
 app.UseAuthorization();
 
 // 配置健康检查端点

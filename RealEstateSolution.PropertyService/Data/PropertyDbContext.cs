@@ -27,24 +27,9 @@ public class PropertyDbContext : DbContext
             entity.Property(e => e.Price).HasPrecision(18, 2);
             entity.Property(e => e.Area).HasPrecision(10, 2);
             
-            // 将Images列表转换为JSON存储
-            entity.Property(e => e.Images)
-                .HasConversion(
-                    v => System.Text.Json.JsonSerializer.Serialize(v, new System.Text.Json.JsonSerializerOptions()),
-                    v => System.Text.Json.JsonSerializer.Deserialize<List<PropertyImage>>(v, new System.Text.Json.JsonSerializerOptions())
-                );
+            
         });
 
-        modelBuilder.Entity<PropertyImage>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.ImageUrl).HasMaxLength(500).IsRequired();
-            entity.Property(e => e.PropertyId).IsRequired();
-            entity.Property(e => e.CreateTime).IsRequired();
-            entity.HasOne(e => e.Property)
-                .WithMany(p => p.Images)
-                .HasForeignKey(e => e.PropertyId)
-                .OnDelete(DeleteBehavior.Cascade);
-        });
+        
     }
 } 

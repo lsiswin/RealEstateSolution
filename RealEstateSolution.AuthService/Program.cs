@@ -11,6 +11,7 @@ using StackExchange.Redis;
 using RealEstateSolution.AuthService.Extension;
 using RealEstateSolution.Common.Redis;
 using RealEstateSolution.Common.Utils;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -51,7 +52,9 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = jwtSettings!.Issuer,
         ValidAudience = jwtSettings.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-        ClockSkew = TimeSpan.Zero
+        ClockSkew = TimeSpan.Zero,
+        // 关键配置：确保声明映射正确
+        NameClaimType = ClaimTypes.NameIdentifier // 对应ClaimTypes.NameIdentifier
     };
 
     options.Events = new JwtBearerEvents
