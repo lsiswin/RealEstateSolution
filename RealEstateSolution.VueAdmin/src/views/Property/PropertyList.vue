@@ -1,45 +1,72 @@
 <template>
-  <div class="property-list-container">
-    <!-- 搜索筛选区域 -->
-    <el-card class="search-card" shadow="never">
-      <el-form :model="searchForm" :inline="true" class="search-form">
-        <el-form-item label="房产类型">
-          <el-select v-model="searchForm.type" placeholder="请选择房产类型" clearable>
-            <el-option label="住宅" :value="PropertyType.Residential" />
-            <el-option label="商业" :value="PropertyType.Commercial" />
-            <el-option label="办公" :value="PropertyType.Office" />
-            <el-option label="工业" :value="PropertyType.Industrial" />
-            <el-option label="土地" :value="PropertyType.Land" />
-          </el-select>
-        </el-form-item>
-        
-        <el-form-item label="房产状态">
-          <el-select v-model="searchForm.status" placeholder="请选择房产状态" clearable>
-            <el-option label="待售" :value="PropertyStatus.ForSale" />
-            <el-option label="已售" :value="PropertyStatus.Sold" />
-            <el-option label="待租" :value="PropertyStatus.ForRent" />
-            <el-option label="已租" :value="PropertyStatus.Rented" />
-            <el-option label="下架" :value="PropertyStatus.Offline" />
-            <el-option label="可用" :value="PropertyStatus.Available" />
-          </el-select>
-        </el-form-item>
-        
-        <el-form-item label="价格范围">
-          <el-input-number v-model="searchForm.minPrice" placeholder="最低价格" :min="0" controls-position="right" style="width: 120px" />
-          <span style="margin: 0 8px">-</span>
-          <el-input-number v-model="searchForm.maxPrice" placeholder="最高价格" :min="0" controls-position="right" style="width: 120px" />
-        </el-form-item>
-        
-        <el-form-item label="面积范围">
-          <el-input-number v-model="searchForm.minArea" placeholder="最小面积" :min="0" controls-position="right" style="width: 120px" />
-          <span style="margin: 0 8px">-</span>
-          <el-input-number v-model="searchForm.maxArea" placeholder="最大面积" :min="0" controls-position="right" style="width: 120px" />
-        </el-form-item>
-        
+  <div class="property-list">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <h2>房源列表</h2>
+      <p>管理和查看所有房源信息</p>
+    </div>
+
+    <!-- 搜索和筛选区域 -->
+    <el-card class="search-card">
+      <el-form :model="searchForm" :inline="true" label-width="80px">
         <el-form-item label="关键词">
-          <el-input v-model="searchForm.keyword" placeholder="请输入标题或地址关键词" clearable style="width: 200px" />
+          <el-input
+            v-model="searchForm.keyword"
+            placeholder="请输入房源标题或地址"
+            clearable
+            style="width: 200px"
+          />
         </el-form-item>
-        
+        <el-form-item label="房源类型">
+          <el-select v-model="searchForm.type" placeholder="请选择" clearable style="width: 150px">
+            <el-option
+              v-for="(text, value) in propertyTypeOptions"
+              :key="value"
+              :label="text"
+              :value="Number(value)"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="房源状态">
+          <el-select v-model="searchForm.status" placeholder="请选择" clearable style="width: 150px">
+            <el-option
+              v-for="(text, value) in propertyStatusOptions"
+              :key="value"
+              :label="text"
+              :value="Number(value)"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="价格范围">
+          <el-input
+            v-model.number="searchForm.minPrice"
+            placeholder="最低价"
+            type="number"
+            style="width: 100px"
+          />
+          <span style="margin: 0 8px">-</span>
+          <el-input
+            v-model.number="searchForm.maxPrice"
+            placeholder="最高价"
+            type="number"
+            style="width: 100px"
+          />
+        </el-form-item>
+        <el-form-item label="面积范围">
+          <el-input
+            v-model.number="searchForm.minArea"
+            placeholder="最小面积"
+            type="number"
+            style="width: 100px"
+          />
+          <span style="margin: 0 8px">-</span>
+          <el-input
+            v-model.number="searchForm.maxArea"
+            placeholder="最大面积"
+            type="number"
+            style="width: 100px"
+          />
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleSearch" :loading="loading">
             <el-icon><Search /></el-icon>
@@ -54,7 +81,7 @@
     </el-card>
 
     <!-- 操作按钮区域 -->
-    <el-card class="action-card" shadow="never">
+    <div class="action-bar">
       <el-button type="primary" @click="handleAdd">
         <el-icon><Plus /></el-icon>
         添加房源
@@ -63,82 +90,59 @@
         <el-icon><Delete /></el-icon>
         批量删除
       </el-button>
-    </el-card>
+    </div>
 
-    <!-- 房源列表 -->
-    <el-card class="table-card" shadow="never">
+    <!-- 房源列表表格 -->
+    <el-card class="table-card">
       <el-table
-        v-loading="loading"
         :data="propertyList"
+        v-loading="loading"
         @selection-change="handleSelectionChange"
-        stripe
         style="width: 100%"
       >
         <el-table-column type="selection" width="55" />
-        <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="title" label="标题" min-width="200" show-overflow-tooltip />
-        <el-table-column prop="type" label="类型" width="80">
-          <template #default="{ row }">
-            {{ getPropertyTypeText(row.type) }}
+        <el-table-column prop="id" label="房源编号" width="100" />
+        <el-table-column prop="title" label="房源标题" min-width="200" show-overflow-tooltip />
+        <el-table-column prop="type" label="房源类型" width="100">
+          <template #default="scope">
+            {{ getPropertyTypeText(scope.row.type) }}
           </template>
         </el-table-column>
-        <el-table-column prop="price" label="价格" width="120">
-          <template #default="{ row }">
-            <span class="price-text">¥{{ formatPrice(row.price) }}</span>
+        <el-table-column prop="price" label="价格(万)" width="120">
+          <template #default="scope">
+            {{ (scope.row.price / 10000).toFixed(1) }}
           </template>
         </el-table-column>
-        <el-table-column prop="area" label="面积" width="100">
-          <template #default="{ row }">
-            {{ row.area }}㎡
-          </template>
-        </el-table-column>
+        <el-table-column prop="area" label="面积(㎡)" width="100" />
         <el-table-column prop="address" label="地址" min-width="200" show-overflow-tooltip />
-        <el-table-column prop="decoration" label="装修" width="80">
-          <template #default="{ row }">
-            {{ getDecorationTypeText(row.decoration) }}
-          </template>
-        </el-table-column>
-        <el-table-column prop="orientation" label="朝向" width="80">
-          <template #default="{ row }">
-            {{ getOrientationTypeText(row.orientation) }}
-          </template>
-        </el-table-column>
-        <el-table-column prop="rooms" label="房间" width="80">
-          <template #default="{ row }">
-            {{ row.rooms }}室{{ row.bathrooms }}卫
-          </template>
-        </el-table-column>
-        <el-table-column prop="status" label="状态" width="80">
-          <template #default="{ row }">
-            <el-tag :type="getPropertyStatusColor(row.status)">
-              {{ getPropertyStatusText(row.status) }}
+        <el-table-column prop="status" label="状态" width="100">
+          <template #default="scope">
+            <el-tag :type="getPropertyStatusColor(scope.row.status)">
+              {{ getPropertyStatusText(scope.row.status) }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="createTime" label="创建时间" width="180">
-          <template #default="{ row }">
-            {{ formatDateTime(row.createTime) }}
+        <el-table-column prop="createTime" label="创建时间" width="150">
+          <template #default="scope">
+            {{ formatDate(scope.row.createTime) }}
           </template>
         </el-table-column>
         <el-table-column label="操作" width="200" fixed="right">
-          <template #default="{ row }">
-            <el-button type="primary" size="small" @click="handleView(row)">
-              <el-icon><View /></el-icon>
+          <template #default="scope">
+            <el-button type="primary" size="small" @click="handleView(scope.row)">
               查看
             </el-button>
-            <el-button type="warning" size="small" @click="handleEdit(row)">
-              <el-icon><Edit /></el-icon>
+            <el-button type="warning" size="small" @click="handleEdit(scope.row)">
               编辑
             </el-button>
-            <el-button type="danger" size="small" @click="handleDelete(row)">
-              <el-icon><Delete /></el-icon>
+            <el-button type="danger" size="small" @click="handleDelete(scope.row)">
               删除
             </el-button>
           </template>
         </el-table-column>
       </el-table>
 
-      <!-- 分页 -->
+      <!-- 分页组件 -->
       <div class="pagination-container">
         <el-pagination
           v-model:current-page="pagination.pageIndex"
@@ -158,50 +162,78 @@
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Search, Refresh, Plus, Delete, View, Edit } from '@element-plus/icons-vue'
+import { Search, Refresh, Plus, Delete } from '@element-plus/icons-vue'
+
+// API imports
 import {
   queryProperties,
   deleteProperty,
+  getPropertyTypeText,
+  getPropertyStatusText,
+  getPropertyStatusColor,
   PropertyType,
   PropertyStatus,
-  Property,
-  PropertyQueryParams,
-  getPropertyTypeText,
-  getDecorationTypeText,
-  getOrientationTypeText,
-  getPropertyStatusText,
-  getPropertyStatusColor
+  type Property,
+  type PropertyQueryParams
 } from '@/api/property'
 
 const router = useRouter()
 
-// 响应式数据
+// 加载状态
 const loading = ref(false)
-const propertyList = ref<Property[]>([])
-const selectedIds = ref<number[]>([])
 
 // 搜索表单
 const searchForm = reactive<PropertyQueryParams>({
+  keyword: '',
   type: undefined,
   status: undefined,
   minPrice: undefined,
   maxPrice: undefined,
   minArea: undefined,
-  maxArea: undefined,
-  keyword: ''
+  maxArea: undefined
 })
 
-// 分页数据
+// 房源列表
+const propertyList = ref<Property[]>([])
+
+// 分页信息
 const pagination = reactive({
   pageIndex: 1,
   pageSize: 10,
   total: 0
 })
 
+// 选中的房源ID
+const selectedIds = ref<number[]>([])
+
+// 房源类型选项
+const propertyTypeOptions = {
+  [PropertyType.Apartment]: '公寓',
+  [PropertyType.House]: '别墅',
+  [PropertyType.Commercial]: '商业',
+  [PropertyType.Office]: '办公',
+  [PropertyType.Shop]: '商铺',
+  [PropertyType.Warehouse]: '仓库'
+}
+
+// 房源状态选项
+const propertyStatusOptions = {
+  [PropertyStatus.Available]: '可售',
+  [PropertyStatus.Pending]: '待定',
+  [PropertyStatus.Sold]: '已售',
+  [PropertyStatus.Rented]: '已租',
+  [PropertyStatus.Withdrawn]: '已下架'
+}
+
+// 格式化日期
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('zh-CN')
+}
+
 // 获取房源列表
 const fetchPropertyList = async () => {
+  loading.value = true
   try {
-    loading.value = true
     const params: PropertyQueryParams = {
       ...searchForm,
       pageIndex: pagination.pageIndex,
@@ -215,8 +247,9 @@ const fetchPropertyList = async () => {
     } else {
       ElMessage.error(response.message || '获取房源列表失败')
     }
-  } catch (error: any) {
-    ElMessage.error(error.message || '获取房源列表失败')
+  } catch (error) {
+    console.error('获取房源列表失败:', error)
+    ElMessage.error('获取房源列表失败')
   } finally {
     loading.value = false
   }
@@ -228,19 +261,37 @@ const handleSearch = () => {
   fetchPropertyList()
 }
 
-// 重置
+// 重置搜索
 const handleReset = () => {
   Object.assign(searchForm, {
+    keyword: '',
     type: undefined,
     status: undefined,
     minPrice: undefined,
     maxPrice: undefined,
     minArea: undefined,
-    maxArea: undefined,
-    keyword: ''
+    maxArea: undefined
   })
   pagination.pageIndex = 1
   fetchPropertyList()
+}
+
+// 分页大小改变
+const handleSizeChange = (size: number) => {
+  pagination.pageSize = size
+  pagination.pageIndex = 1
+  fetchPropertyList()
+}
+
+// 当前页改变
+const handleCurrentChange = (page: number) => {
+  pagination.pageIndex = page
+  fetchPropertyList()
+}
+
+// 选择改变
+const handleSelectionChange = (selection: Property[]) => {
+  selectedIds.value = selection.map(item => item.id)
 }
 
 // 添加房源
@@ -249,34 +300,39 @@ const handleAdd = () => {
 }
 
 // 查看房源
-const handleView = (row: Property) => {
-  router.push(`/property/detail/${row.id}`)
+const handleView = (property: Property) => {
+  router.push(`/property/detail/${property.id}`)
 }
 
 // 编辑房源
-const handleEdit = (row: Property) => {
-  router.push(`/property/edit/${row.id}`)
+const handleEdit = (property: Property) => {
+  router.push(`/property/edit/${property.id}`)
 }
 
 // 删除房源
-const handleDelete = async (row: Property) => {
+const handleDelete = async (property: Property) => {
   try {
-    await ElMessageBox.confirm(`确定要删除房源"${row.title}"吗？`, '提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    })
+    await ElMessageBox.confirm(
+      `确定要删除房源"${property.title}"吗？`,
+      '确认删除',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }
+    )
     
-    const response = await deleteProperty(row.id)
+    const response = await deleteProperty(property.id)
     if (response.success) {
       ElMessage.success('删除成功')
       fetchPropertyList()
     } else {
       ElMessage.error(response.message || '删除失败')
     }
-  } catch (error: any) {
+  } catch (error) {
     if (error !== 'cancel') {
-      ElMessage.error(error.message || '删除失败')
+      console.error('删除房源失败:', error)
+      ElMessage.error('删除失败')
     }
   }
 }
@@ -284,86 +340,74 @@ const handleDelete = async (row: Property) => {
 // 批量删除
 const handleBatchDelete = async () => {
   try {
-    await ElMessageBox.confirm(`确定要删除选中的${selectedIds.value.length}个房源吗？`, '提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
-    })
+    await ElMessageBox.confirm(
+      `确定要删除选中的 ${selectedIds.value.length} 个房源吗？`,
+      '确认批量删除',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }
+    )
     
     // 批量删除逻辑
-    for (const id of selectedIds.value) {
-      await deleteProperty(id)
-    }
+    const deletePromises = selectedIds.value.map(id => deleteProperty(id))
+    await Promise.all(deletePromises)
     
     ElMessage.success('批量删除成功')
     selectedIds.value = []
     fetchPropertyList()
-  } catch (error: any) {
+  } catch (error) {
     if (error !== 'cancel') {
-      ElMessage.error(error.message || '批量删除失败')
+      console.error('批量删除失败:', error)
+      ElMessage.error('批量删除失败')
     }
   }
 }
 
-// 选择变化
-const handleSelectionChange = (selection: Property[]) => {
-  selectedIds.value = selection.map(item => item.id)
-}
-
-// 分页大小变化
-const handleSizeChange = (size: number) => {
-  pagination.pageSize = size
-  pagination.pageIndex = 1
-  fetchPropertyList()
-}
-
-// 当前页变化
-const handleCurrentChange = (page: number) => {
-  pagination.pageIndex = page
-  fetchPropertyList()
-}
-
-// 格式化价格
-const formatPrice = (price: number): string => {
-  if (price >= 10000) {
-    return (price / 10000).toFixed(1) + '万'
-  }
-  return price.toLocaleString()
-}
-
-// 格式化日期时间
-const formatDateTime = (dateTime: string): string => {
-  return new Date(dateTime).toLocaleString('zh-CN')
-}
-
-// 组件挂载时获取数据
+// 初始化
 onMounted(() => {
   fetchPropertyList()
 })
 </script>
 
 <style scoped>
-.property-list-container {
-  padding: 20px;
+.property-list {
+  padding: 0;
 }
 
-.search-card,
-.action-card,
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.page-header p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.search-card {
+  margin-bottom: 16px;
+}
+
+.action-bar {
+  margin-bottom: 16px;
+}
+
 .table-card {
-  margin-bottom: 20px;
-}
-
-.search-form {
-  margin-bottom: 0;
-}
-
-.price-text {
-  color: #e6a23c;
-  font-weight: bold;
+  margin-bottom: 24px;
 }
 
 .pagination-container {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
-  text-align: right;
 }
 </style> 

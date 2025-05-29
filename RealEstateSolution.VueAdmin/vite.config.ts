@@ -22,6 +22,21 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    open: true
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'element-plus': ['element-plus'],
+          'vue-vendor': ['vue', 'vue-router', 'pinia'],
+          'echarts': ['echarts']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
+  },
+  optimizeDeps: {
+    include: ['element-plus', 'vue', 'vue-router', 'pinia', 'echarts', 'axios']
+  }
 }) 

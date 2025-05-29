@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-// 房源管理路由出口
+// 房源管理模块的路由容器
 </script> 

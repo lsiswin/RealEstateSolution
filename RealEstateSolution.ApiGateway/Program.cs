@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("DevCors", policy =>
     {
-        policy.WithOrigins("http://localhost:3001") // 前端地址
+        policy.WithOrigins("http://localhost:3000") // 前端地址
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials(); // 如果使用 Cookie 或 Authorization Header

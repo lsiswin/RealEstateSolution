@@ -119,7 +119,7 @@ const registerForm = reactive({
 })
 
 // 自定义验证函数
-const validateConfirmPassword = (rule: any, value: string, callback: any) => {
+const validateConfirmPassword = (_rule: any, value: string, callback: any) => {
   if (value === '') {
     callback(new Error('请确认密码'))
   } else if (value !== registerForm.password) {
@@ -129,7 +129,7 @@ const validateConfirmPassword = (rule: any, value: string, callback: any) => {
   }
 }
 
-const validatePhone = (rule: any, value: string, callback: any) => {
+const validatePhone = (_rule: any, value: string, callback: any) => {
   if (value && !/^1[3-9]\d{9}$/.test(value)) {
     callback(new Error('请输入正确的手机号码'))
   } else {
