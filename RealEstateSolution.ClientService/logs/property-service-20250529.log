@@ -1,0 +1,58 @@
+2025-05-29 15:52:40.011 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-29 15:52:40.253 +08:00 [INF] Now listening on: https://localhost:5003
+2025-05-29 15:52:40.340 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-29 15:52:40.341 +08:00 [INF] Hosting environment: Development
+2025-05-29 15:52:40.343 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.ClientService
+2025-05-29 15:52:42.999 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-29 15:52:43.028 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_vs/browserLink - null null
+2025-05-29 15:52:43.030 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - 200 13800 application/javascript; charset=utf-8 37.0921ms
+2025-05-29 15:52:43.099 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 78.3082ms
+2025-05-29 15:52:43.305 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - null null
+2025-05-29 15:52:43.344 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.0369ms
+2025-05-29 15:53:12.126 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/api/Client?pageIndex=1&pageSize=10 - null null
+2025-05-29 15:53:12.150 +08:00 [INF] 接收请求头：["[Accept, text/plain]","[Host, localhost:5003]","[User-Agent, Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0]","[Accept-Encoding, gzip, deflate, br, zstd]","[Accept-Language, zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6]","[Referer, https://localhost:5003/swagger/index.html]","[sec-ch-ua-platform, \"Windows\"]","[sec-ch-ua, \"Not(A:Brand\";v=\"99\", \"Microsoft Edge\";v=\"133\", \"Chromium\";v=\"133\"]","[sec-ch-ua-mobile, ?0]","[sec-fetch-site, same-origin]","[sec-fetch-mode, cors]","[sec-fetch-dest, empty]","[priority, u=1, i]"]
+2025-05-29 15:53:12.236 +08:00 [INF] Executing endpoint 'RealEstateSolution.ClientService.Controllers.ClientController.GetClients (RealEstateSolution.ClientService)'
+2025-05-29 15:53:12.259 +08:00 [INF] Route matched with {action = "GetClients", controller = "Client"}. Executing controller action with signature System.Threading.Tasks.Task`1[RealEstateSolution.Common.Utils.ApiResponse`1[RealEstateSolution.Common.Utils.PagedList`1[RealEstateSolution.Database.Models.Client]]] GetClients(System.String, System.String, System.Nullable`1[RealEstateSolution.Database.Models.ClientType], Int32, Int32) on controller RealEstateSolution.ClientService.Controllers.ClientController (RealEstateSolution.ClientService).
+2025-05-29 15:53:12.778 +08:00 [WRN] No store type was specified for the decimal property 'MaxArea' on entity type 'ClientRequirements'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-05-29 15:53:12.779 +08:00 [WRN] No store type was specified for the decimal property 'MaxPrice' on entity type 'ClientRequirements'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-05-29 15:53:12.780 +08:00 [WRN] No store type was specified for the decimal property 'MinArea' on entity type 'ClientRequirements'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-05-29 15:53:12.781 +08:00 [WRN] No store type was specified for the decimal property 'MinPrice' on entity type 'ClientRequirements'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-05-29 15:53:12.782 +08:00 [WRN] No store type was specified for the decimal property 'Area' on entity type 'Property'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-05-29 15:53:12.783 +08:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Property'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-05-29 15:53:13.002 +08:00 [INF] Executed action RealEstateSolution.ClientService.Controllers.ClientController.GetClients (RealEstateSolution.ClientService) in 738.6474ms
+2025-05-29 15:53:13.006 +08:00 [INF] Executed endpoint 'RealEstateSolution.ClientService.Controllers.ClientController.GetClients (RealEstateSolution.ClientService)'
+2025-05-29 15:53:13.026 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.UnauthorizedAccessException: 无效的用户身份
+   at RealEstateSolution.ClientService.Controllers.ClientController.GetCurrentUserId() in D:\Cshrap\RealEstateSolution\RealEstateSolution.ClientService\Controllers\ClientController.cs:line 37
+   at RealEstateSolution.ClientService.Controllers.ClientController.GetClients(String name, String phone, Nullable`1 type, Int32 pageIndex, Int32 pageSize) in D:\Cshrap\RealEstateSolution\RealEstateSolution.ClientService\Controllers\ClientController.cs:line 53
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in D:\Cshrap\RealEstateSolution\RealEstateSolution.ClientService\Program.cs:line 102
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-05-29 15:53:13.056 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/api/Client?pageIndex=1&pageSize=10 - 500 null text/plain; charset=utf-8 929.935ms
+2025-05-29 15:55:16.174 +08:00 [INF] User profile is available. Using 'C:\Users\lsisl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-29 15:55:16.617 +08:00 [INF] Now listening on: https://localhost:5003
+2025-05-29 15:55:16.741 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-29 15:55:16.744 +08:00 [INF] Hosting environment: Development
+2025-05-29 15:55:16.746 +08:00 [INF] Content root path: D:\Cshrap\RealEstateSolution\RealEstateSolution.ClientService
+2025-05-29 15:55:18.118 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-29 15:55:18.154 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_framework/aspnetcore-browser-refresh.js - 200 13800 application/javascript; charset=utf-8 37.9994ms
+2025-05-29 15:55:18.282 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/_vs/browserLink - null null
+2025-05-29 15:55:18.497 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/_vs/browserLink - 200 null text/javascript; charset=UTF-8 215.5879ms
+2025-05-29 15:55:19.003 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - null null
+2025-05-29 15:55:19.068 +08:00 [INF] Request finished HTTP/2 GET https://localhost:5003/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 65.6405ms

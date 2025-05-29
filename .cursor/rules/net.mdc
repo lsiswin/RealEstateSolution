@@ -24,8 +24,7 @@ alwaysApply: false
   - Prefix interface names with "I" (e.g., 'IUserService').
 
   ##Summary
-  - After each code generation, summarize the actions taken in the README.md file,The documentation is based on the existing README.md file and should not be recreated,
-  Do not automatically start the project
+  - After each code generation, summarize the actions taken in the D:\Cshrap\RealEstateSolution\README.md file,The documentation is based on the existing D:\Cshrap\RealEstateSolution\README.md file and should not be recreated
 
   ## C# and .NET Usage
   - Use C# 10+ features when appropriate (e.g., record types, pattern matching, null-coalescing assignment).

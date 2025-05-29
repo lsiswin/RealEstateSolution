@@ -85,8 +85,6 @@ public enum ClientStatus
 /// </summary>
 public class Client
 {
-    public ClientStatus Status;
-
     /// <summary>
     /// 主键
     /// </summary>
@@ -118,6 +116,24 @@ public class Client
     /// </summary>
     [MaxLength(200)]
     public string Address { get; set; }
+
+    /// <summary>
+    /// 客户类型
+    /// </summary>
+    [Required]
+    public ClientType Type { get; set; } = ClientType.Buyer;
+
+    /// <summary>
+    /// 客户状态
+    /// </summary>
+    [Required]
+    public ClientStatus Status { get; set; } = ClientStatus.Potential;
+
+    /// <summary>
+    /// 客户来源
+    /// </summary>
+    [Required]
+    public ClientSource Source { get; set; } = ClientSource.Website;
 
     /// <summary>
     /// 创建时间

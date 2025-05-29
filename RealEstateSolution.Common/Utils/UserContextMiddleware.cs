@@ -1,6 +1,9 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
-namespace RealEstateSolution.PropertyService.Extension.Middleware
+namespace RealEstateSolution.Common.Utils
 {
     /// <summary>
     /// 用户上下文中间件 - 处理从ApiGateway传递的用户信息
@@ -23,7 +26,7 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
                 _logger.LogInformation("=== UserContextMiddleware 开始处理请求 ===");
                 _logger.LogInformation("请求路径: {Path}", context.Request.Path);
                 _logger.LogInformation("请求方法: {Method}", context.Request.Method);
-                
+
                 // 记录所有请求头
                 foreach (var header in context.Request.Headers)
                 {
@@ -35,7 +38,7 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
                 {
                     var userId = userIdHeader.FirstOrDefault();
                     _logger.LogInformation("从ApiGateway接收到用户ID: {UserId}", userId);
-                    
+
                     if (!string.IsNullOrEmpty(userId))
                     {
                         // 创建用户身份信息
@@ -74,12 +77,12 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
                         // 创建身份和主体
                         var identity = new ClaimsIdentity(claims, "Gateway");
                         var principal = new ClaimsPrincipal(identity);
-                        
+
                         // 设置用户上下文
                         context.User = principal;
 
-                        _logger.LogInformation("从ApiGateway设置用户上下文成功: UserId={UserId}, UserName={UserName}, Claims={ClaimsCount}", 
-                            userId, 
+                        _logger.LogInformation("从ApiGateway设置用户上下文成功: UserId={UserId}, UserName={UserName}, Claims={ClaimsCount}",
+                            userId,
                             claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value,
                             claims.Count);
                     }
@@ -87,14 +90,14 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
                 else
                 {
                     _logger.LogInformation("未从ApiGateway接收到X-User-Id头部");
-                    
+
                     // 如果没有从ApiGateway传递用户信息，尝试从JWT中提取
                     var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
                     if (!string.IsNullOrEmpty(authHeader) && authHeader.StartsWith("Bearer "))
                     {
                         _logger.LogInformation("检测到Authorization头部，将依赖JWT认证");
                         var token = authHeader.Substring("Bearer ".Length).Trim();
-                        
+
                         // 尝试解析JWT令牌以获取调试信息
                         try
                         {
@@ -103,7 +106,7 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
                             {
                                 var jwt = handler.ReadJwtToken(token);
                                 _logger.LogInformation("JWT令牌解析成功，Claims数量: {ClaimsCount}", jwt.Claims.Count());
-                                
+
                                 foreach (var claim in jwt.Claims)
                                 {
                                     _logger.LogInformation("JWT Claim: {Type} = {Value}", claim.Type, claim.Value);
@@ -124,7 +127,7 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
                         _logger.LogInformation("未检测到Authorization头部");
                     }
                 }
-                
+
                 _logger.LogInformation("=== UserContextMiddleware 处理完成 ===");
             }
             catch (Exception ex)
@@ -146,4 +149,4 @@ namespace RealEstateSolution.PropertyService.Extension.Middleware
             return builder.UseMiddleware<UserContextMiddleware>();
         }
     }
-} 
+}

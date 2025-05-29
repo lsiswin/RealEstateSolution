@@ -1,16 +1,18 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RealEstateSolution.Database.Models;
+using RealEstateSolution.ContractService.Models;
 using RealEstateSolution.ContractService.Services;
 using RealEstateSolution.Common.Utils;
+using System.Security.Claims;
+using DbModels = RealEstateSolution.Database.Models;
 
 namespace RealEstateSolution.ContractService.Controllers;
 
 /// <summary>
-/// 合同服务控制器
+/// 合同管理控制器
 /// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [Authorize]
 public class ContractController : ControllerBase
 {
@@ -22,61 +24,54 @@ public class ContractController : ControllerBase
     }
 
     /// <summary>
-    /// 创建合同
+    /// 获取当前用户ID
     /// </summary>
-    [HttpPost]
-    public async Task<ApiResponse<Contract>> CreateContract([FromBody] Contract contract)
+    private string GetCurrentUserId()
     {
-        var result = await _contractService.CreateContractAsync(contract);
-        return new ApiResponse<Contract> { Data = result };
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userId))
+        {
+            throw new UnauthorizedAccessException("无效的用户身份");
+        }
+        return userId;
     }
 
     /// <summary>
-    /// 更新合同
+    /// 获取合同列表
     /// </summary>
-    [HttpPut("{id}")]
-    public async Task<ApiResponse> UpdateContract(int id, [FromBody] Contract contract)
+    [HttpGet]
+    public async Task<ApiResponse<PagedList<ContractDto>>> GetContracts([FromQuery] ContractQueryDto query)
     {
-        if (id != contract.Id)
-        {
-            return new ApiResponse { Message = "ID不匹配" };
-        }
-        await _contractService.UpdateContractAsync(contract);
-        return new ApiResponse { Message = "合同已更新" };
+        return await _contractService.GetContractsAsync(query);
     }
 
     /// <summary>
     /// 获取合同详情
     /// </summary>
     [HttpGet("{id}")]
-    public async Task<ApiResponse<Contract>> GetContract(int id)
+    public async Task<ApiResponse<ContractDto>> GetContract(int id)
     {
-        var contract = await _contractService.GetContractByIdAsync(id);
-        if (contract == null)
-        {
-            return new ApiResponse<Contract> { Message = "未找到合同" };
-        }
-        return new ApiResponse<Contract> { Data = contract };
+        return await _contractService.GetContractByIdAsync(id);
     }
 
     /// <summary>
-    /// 搜索合同
+    /// 创建合同
     /// </summary>
-    [HttpGet("search")]
-    public async Task<ApiResponse<IEnumerable<Contract>>> SearchContracts(
-        [FromQuery] string? keyword,
-        [FromQuery] ContractType? type,
-        [FromQuery] ContractStatus? status,
-        [FromQuery] DateTime? startDate,
-        [FromQuery] DateTime? endDate)
+    [HttpPost]
+    public async Task<ApiResponse<ContractDto>> CreateContract([FromBody] ContractDto contractDto)
     {
-        var contracts = await _contractService.SearchContractsAsync(
-            keyword,
-            type,
-            status,
-            startDate,
-            endDate);
-        return new ApiResponse<IEnumerable<Contract>> { Data = contracts };
+        var userId = GetCurrentUserId();
+        return await _contractService.CreateContractAsync(contractDto, userId);
+    }
+
+    /// <summary>
+    /// 更新合同
+    /// </summary>
+    [HttpPut("{id}")]
+    public async Task<ApiResponse<ContractDto>> UpdateContract(int id, [FromBody] ContractDto contractDto)
+    {
+        var userId = GetCurrentUserId();
+        return await _contractService.UpdateContractAsync(id, contractDto, userId);
     }
 
     /// <summary>
@@ -85,37 +80,55 @@ public class ContractController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ApiResponse> DeleteContract(int id)
     {
-        await _contractService.DeleteContractAsync(id);
-        return new ApiResponse { Message = "合同已删除" };
+        var userId = GetCurrentUserId();
+        return await _contractService.DeleteContractAsync(id, userId);
     }
 
     /// <summary>
     /// 更新合同状态
     /// </summary>
-    [HttpPut("{id}/status")]
-    public async Task<ApiResponse> UpdateContractStatus(int id, [FromQuery] ContractStatus status)
+    [HttpPost("{id}/status")]
+    public async Task<ApiResponse<ContractDto>> UpdateContractStatus(int id, [FromBody] DbModels.ContractStatus status)
     {
-        await _contractService.UpdateContractStatusAsync(id, status);
-        return new ApiResponse { Message = "合同状态已更新" };
+        var userId = GetCurrentUserId();
+        return await _contractService.UpdateContractStatusAsync(id, status, userId);
     }
 
     /// <summary>
-    /// 获取客户的所有合同
+    /// 获取合同模板列表
     /// </summary>
-    [HttpGet("client/{clientId}")]
-    public async Task<ApiResponse<IEnumerable<Contract>>> GetClientContracts(int clientId)
+    [HttpGet]
+    public async Task<ApiResponse<List<ContractTemplateDto>>> GetContractTemplates([FromQuery] DbModels.ContractType? type = null)
     {
-        var contracts = await _contractService.GetClientContractsAsync(clientId);
-        return new ApiResponse<IEnumerable<Contract>> { Data = contracts };
+        return await _contractService.GetContractTemplatesAsync(type);
     }
 
     /// <summary>
-    /// 获取房源的所有合同
+    /// 根据模板创建合同
     /// </summary>
-    [HttpGet("property/{propertyId}")]
-    public async Task<ApiResponse<IEnumerable<Contract>>> GetPropertyContracts(int propertyId)
+    [HttpPost("{templateId}")]
+    public async Task<ApiResponse<ContractDto>> CreateContractFromTemplate(int templateId, [FromBody] ContractDto contractDto)
     {
-        var contracts = await _contractService.GetPropertyContractsAsync(propertyId);
-        return new ApiResponse<IEnumerable<Contract>> { Data = contracts };
+        var userId = GetCurrentUserId();
+        return await _contractService.CreateContractFromTemplateAsync(templateId, contractDto, userId);
+    }
+
+    /// <summary>
+    /// 生成合同编号
+    /// </summary>
+    [HttpGet]
+    public async Task<ApiResponse<string>> GenerateContractNumber([FromQuery] DbModels.ContractType type)
+    {
+        var contractNumber = await _contractService.GenerateContractNumberAsync(type);
+        return new ApiResponse<string> { Success = true, Data = contractNumber };
+    }
+
+    /// <summary>
+    /// 获取合同统计
+    /// </summary>
+    [HttpGet]
+    public async Task<ApiResponse<ContractStatsDto>> GetContractStats()
+    {
+        return await _contractService.GetContractStatsAsync();
     }
 }

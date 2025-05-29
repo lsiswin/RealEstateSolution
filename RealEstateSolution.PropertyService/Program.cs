@@ -11,10 +11,9 @@ using RealEstateSolution.PropertyService.Extension.HealthChecks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using RealEstateSolution.Common.Utils;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using RealEstateSolution.PropertyService.Extension.Profiles;
+using RealEstateSolution.PropertyService.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +40,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
     ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis") ?? "localhost"));
 builder.Services.AddScoped<IRedisService, RedisService>();
 // 修改 AutoMapper 注册代码以消除二义性  
-builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>()); // 添加映射配置文件  
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<PropertyMappingProfile>()); // 添加映射配置文件  
 // 在PropertyService的Program.cs中添加
 // 配置JWT设置
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));

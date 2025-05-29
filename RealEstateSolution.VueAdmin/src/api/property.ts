@@ -79,11 +79,14 @@ export interface PropertyImage {
 
 // 房产统计接口
 export interface PropertyStats {
-  totalCount: number
-  forSaleCount: number
-  forRentCount: number
-  soldCount: number
-  rentedCount: number
+  totalProperties: number
+  forSaleProperties: number
+  forRentProperties: number
+  soldProperties: number
+  rentedProperties: number
+  offlineProperties: number
+  newPropertiesLast30Days: number
+  soldPropertiesLast30Days: number
   averagePrice: number
   averageArea: number
 }
@@ -190,47 +193,47 @@ export const getPropertyStatusColor = (status: PropertyStatus): string => {
  * 查询房源列表（分页）
  */
 export const queryProperties = (params: PropertyQueryParams = {}): Promise<ApiResponse<PagedList<Property>>> => {
-  return request.get('/api/Property/QueryProperties', { params })
+  return request.get('/api/property/GetProperties', { params })
 }
 
 /**
  * 获取房源详情
  */
 export const getPropertyById = (id: number): Promise<ApiResponse<Property>> => {
-  return request.get(`/api/Property/GetProperty/${id}`)
+  return request.get(`/api/property/GetProperty/${id}`)
 }
 
 /**
  * 创建房源
  */
 export const createProperty = (property: Partial<Property>): Promise<ApiResponse<Property>> => {
-  return request.post('/api/Property/RegisterProperty', property)
+  return request.post('/api/property/RegisterProperty', property)
 }
 
 /**
  * 更新房源
  */
 export const updateProperty = (id: number, property: Partial<Property>): Promise<ApiResponse<Property>> => {
-  return request.put(`/api/Property/UpdateProperty/${id}`, property)
+  return request.put(`/api/property/UpdateProperty/${id}`, property)
 }
 
 /**
  * 删除房源
  */
 export const deleteProperty = (id: number): Promise<ApiResponse> => {
-  return request.delete(`/api/Property/DeleteProperty/${id}`)
+  return request.delete(`/api/property/DeleteProperty/${id}`)
 }
 
 /**
  * 更改房源状态
  */
-export const changePropertyStatus = (id: number, status: PropertyStatus): Promise<ApiResponse<Property>> => {
-  return request.post(`/api/Property/ChangePropertyStatus/${id}`, { status })
+export const changePropertyStatus = (id: number): Promise<ApiResponse<Property>> => {
+  return request.post(`/api/property/ChangePropertyStatus/${id}`)
 }
 
 /**
  * 获取房源统计数据
  */
 export const getPropertyStats = (): Promise<ApiResponse<PropertyStats>> => {
-  return request.get('/api/Property/GetPropertyStats')
+  return request.get('/api/property/GetPropertyStats')
 } 

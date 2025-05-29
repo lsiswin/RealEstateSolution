@@ -75,6 +75,14 @@
       {
         "Path": "RealEstateSolution.ApiGateway\\RealEstateSolution.ApiGateway.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.PropertyService\\RealEstateSolution.PropertyService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ClientService\\RealEstateSolution.ClientService.csproj",
+        "Action": "Start"
       }
     ]
   }

@@ -15,14 +15,14 @@ namespace RealEstateSolution.AuthService.Services
     /// </summary>
     public class RoleService : IRoleService
     {
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly ApplicationDbContext _dbContext;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public RoleService(
-            RoleManager<IdentityRole> roleManager,
+            RoleManager<ApplicationRole> roleManager,
             ApplicationDbContext dbContext)
         {
             _roleManager = roleManager;
@@ -39,7 +39,7 @@ namespace RealEstateSolution.AuthService.Services
             {
                 Id = r.Id,
                 Name = r.Name,
-                Description = GetRoleDescription(r.Id)
+                Description = r.Description
             }).ToList();
 
             return new ApiResponse<List<RoleDto>>
@@ -73,7 +73,7 @@ namespace RealEstateSolution.AuthService.Services
                 {
                     Id = role.Id,
                     Name = role.Name,
-                    Description = GetRoleDescription(role.Id)
+                    Description = role.Description
                 }
             };
         }
@@ -95,7 +95,7 @@ namespace RealEstateSolution.AuthService.Services
             }
 
             // 创建角色
-            var role = new IdentityRole(request.Name);
+            var role = new ApplicationRole(request.Name);
             var result = await _roleManager.CreateAsync(role);
             if (!result.Succeeded)
             {
@@ -214,8 +214,7 @@ namespace RealEstateSolution.AuthService.Services
                 };
             }
 
-            // 删除角色描述和权限
-            await DeleteRoleDescriptionAsync(id);
+            // 删除角色权限
             await DeleteRolePermissionsAsync(id);
 
             return new ApiResponse
@@ -330,50 +329,7 @@ namespace RealEstateSolution.AuthService.Services
                 Message = "分配角色权限成功"
             };
         }
-
-        /// <summary>
-        /// 获取角色描述
-        /// </summary>
-        private string GetRoleDescription(string roleId)
-        {
-            return _dbContext.RolePermissions
-                .FirstOrDefault(rd => rd.RoleId == roleId).ToString();
-        }
-
-        /// <summary>
-        /// 保存角色描述
-        /// </summary>
-        //private async Task SaveRoleDescriptionAsync(string roleId, string description)
-        //{
-        //    var roleDesc = await _dbContext.RoleDescriptions
-        //        .FirstOrDefaultAsync(rd => rd.RoleId == roleId);
-
-        //    if (roleDesc == null)
-        //    {
-        //        _dbContext.RoleDescriptions.Add(new RoleDescription
-        //        {
-        //            RoleId = roleId,
-        //            Description = description
-        //        });
-        //    }
-        //    else
-        //    {
-        //        roleDesc.Description = description;
-        //    }
-
-        //    await _dbContext.SaveChangesAsync();
-        //}
-
-        /// <summary>
-        /// 删除角色描述
-        /// </summary>
-        private async Task DeleteRoleDescriptionAsync(string roleId)
-        {
-            await _dbContext.RolePermissions
-                .Where(rd => rd.RoleId == roleId)
-                .ExecuteDeleteAsync();
-        }
-
+      
         /// <summary>
         /// 删除角色权限
         /// </summary>

@@ -4,7 +4,7 @@ import { useUserStore } from '@/stores/user'
 
 // 创建axios实例
 const request: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:5098', // 默认认证服务地址
+  baseURL: 'https://localhost:5098', // 使用vite代理
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
@@ -15,6 +15,13 @@ const request: AxiosInstance = axios.create({
 request.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const userStore = useUserStore()
+    
+    console.log('发送请求:', {
+      url: config.url,
+      method: config.method,
+      baseURL: config.baseURL,
+      data: config.data
+    })
     
     // 添加认证token
     if (userStore.token) {
@@ -33,9 +40,23 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   (response: AxiosResponse) => {
+    console.log('收到响应:', {
+      status: response.status,
+      data: response.data,
+      url: response.config.url
+    })
     return response.data
   },
   (error) => {
+    console.error('响应错误详情:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      data: error.response?.data,
+      url: error.config?.url
+    })
+    
     const userStore = useUserStore()
     
     if (error.response?.status === 401) {
@@ -46,6 +67,10 @@ request.interceptors.response.use(
       ElMessage.error('服务器错误，请稍后重试')
     } else if (error.response?.data?.message) {
       ElMessage.error(error.response.data.message)
+    } else if (error.code === 'ECONNABORTED') {
+      ElMessage.error('请求超时，请检查网络连接')
+    } else if (error.code === 'ERR_NETWORK') {
+      ElMessage.error('无法连接到服务器，请检查服务是否启动')
     } else {
       ElMessage.error('网络错误，请检查网络连接')
     }

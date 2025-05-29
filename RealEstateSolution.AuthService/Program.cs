@@ -16,6 +16,8 @@ using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<JwtTokenHelper>();
 // 添加Redis服务
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>

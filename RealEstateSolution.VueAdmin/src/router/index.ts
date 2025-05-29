@@ -27,7 +27,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
       children: [
         {
-          path: 'dashboard',
+          path: '/dashboard',
           name: 'Dashboard',
           component: () => import('@/views/Dashboard.vue').catch(
             (error) => {
@@ -183,12 +183,22 @@ const router = createRouter({
 })
 
 // 路由守卫
-router.beforeEach((to, _from, next) => {
+router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
+  
+  console.log('路由守卫检查:', {
+    to: to.path,
+    from: from.path,
+    isLoggedIn: userStore.isLoggedIn,
+    token: !!userStore.token,
+    userInfo: !!userStore.userInfo,
+    requiresAuth: to.meta.requiresAuth
+  })
   
   // 检查是否需要认证
   if (to.meta.requiresAuth !== false) {
     if (!userStore.isLoggedIn) {
+      console.log('用户未登录，重定向到登录页')
       ElMessage.warning('请先登录')
       next('/login')
       return
@@ -197,10 +207,12 @@ router.beforeEach((to, _from, next) => {
   
   // 如果已登录用户访问登录页，重定向到首页
   if (to.path === '/login' && userStore.isLoggedIn) {
+    console.log('已登录用户访问登录页，重定向到首页')
     next('/')
     return
   }
   
+  console.log('路由守卫通过，继续导航')
   next()
 })
 

@@ -86,73 +86,75 @@ public class MatchingService : IMatchingService
 
     public async Task<IEnumerable<Matching>> AutoMatchAsync(int clientId)
     {
-        var client = await _context.Clients
-            .Include(c => c.Requirements)
-            .FirstOrDefaultAsync(c => c.Id == clientId);
+        //var client = await _context.Clients
+        //    .Include(c => c.Requirements)
+        //    .FirstOrDefaultAsync(c => c.Id == clientId);
 
-        if (client == null)
-        {
-            throw new KeyNotFoundException($"客户ID {clientId} 不存在");
-        }
+        //if (client == null)
+        //{
+        //    throw new KeyNotFoundException($"客户ID {clientId} 不存在");
+        //}
 
-        var properties = await _context.Properties
-            .Include(p => p.Images)
-            .Where(p => p.Status == PropertyStatus.ForSale || p.Status == PropertyStatus.ForRent)
-            .ToListAsync();
+        //var properties = await _context.Properties
+        //    .Include(p => p.Images)
+        //    .Where(p => p.Status == PropertyStatus.ForSale || p.Status == PropertyStatus.ForRent)
+        //    .ToListAsync();
 
-        var matchings = new List<Matching>();
-        foreach (var property in properties)
-        {
-            var score = await CalculateMatchingScoreAsync(client, property);
-            if (score >= 0.7) // 匹配度阈值
-            {
-                var matching = new Matching
-                {
-                    ClientId = clientId,
-                    PropertyId = property.Id,
-                    Type = MatchingType.Auto,
-                    Status = MatchingStatus.Pending,
-                    Score = score,
-                    Reason = GenerateMatchingReason(client, property, score),
-                    CreateTime = DateTime.Now,
-                    UpdateTime = DateTime.Now
-                };
+        //var matchings = new List<Matching>();
+        //foreach (var property in properties)
+        //{
+        //    var score = await CalculateMatchingScoreAsync(client, property);
+        //    if (score >= 0.7) // 匹配度阈值
+        //    {
+        //        var matching = new Matching
+        //        {
+        //            ClientId = clientId,
+        //            PropertyId = property.Id,
+        //            Type = MatchingType.Auto,
+        //            Status = MatchingStatus.Pending,
+        //            Score = score,
+        //            Reason = GenerateMatchingReason(client, property, score),
+        //            CreateTime = DateTime.Now,
+        //            UpdateTime = DateTime.Now
+        //        };
 
-                matchings.Add(await CreateMatchingAsync(matching));
-            }
-        }
+        //        matchings.Add(await CreateMatchingAsync(matching));
+        //    }
+        //}
 
-        return matchings;
+        //return matchings;
+        return null;
     }
 
     public async Task<Matching> ManualMatchAsync(int clientId, int propertyId)
     {
-        var client = await _context.Clients.FindAsync(clientId);
-        if (client == null)
-        {
-            throw new KeyNotFoundException($"客户ID {clientId} 不存在");
-        }
+        //var client = await _context.Clients.FindAsync(clientId);
+        //if (client == null)
+        //{
+        //    throw new KeyNotFoundException($"客户ID {clientId} 不存在");
+        //}
 
-        var property = await _context.Properties.FindAsync(propertyId);
-        if (property == null)
-        {
-            throw new KeyNotFoundException($"房源ID {propertyId} 不存在");
-        }
+        //var property = await _context.Properties.FindAsync(propertyId);
+        //if (property == null)
+        //{
+        //    throw new KeyNotFoundException($"房源ID {propertyId} 不存在");
+        //}
 
-        var score = await CalculateMatchingScoreAsync(client, property);
-        var matching = new Matching
-        {
-            ClientId = clientId,
-            PropertyId = propertyId,
-            Type = MatchingType.Manual,
-            Status = MatchingStatus.Pending,
-            Score = score,
-            Reason = GenerateMatchingReason(client, property, score),
-            CreateTime = DateTime.Now,
-            UpdateTime = DateTime.Now
-        };
+        //var score = await CalculateMatchingScoreAsync(client, property);
+        //var matching = new Matching
+        //{
+        //    ClientId = clientId,
+        //    PropertyId = propertyId,
+        //    Type = MatchingType.Manual,
+        //    Status = MatchingStatus.Pending,
+        //    Score = score,
+        //    Reason = GenerateMatchingReason(client, property, score),
+        //    CreateTime = DateTime.Now,
+        //    UpdateTime = DateTime.Now
+        //};
 
-        return await CreateMatchingAsync(matching);
+        //return await CreateMatchingAsync(matching);
+        return null;
     }
 
     public async Task<double> CalculateMatchingScoreAsync(Client client, Property property)

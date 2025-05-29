@@ -1,57 +1,34 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealEstateSolution.Database.Models;
 
 /// <summary>
-/// 合同类型
-/// </summary>
-public enum ContractType
-{
-    /// <summary>
-    /// 买卖合同
-    /// </summary>
-    Sale = 1,
-
-    /// <summary>
-    /// 租赁合同
-    /// </summary>
-    Rent = 2
-}
-
-/// <summary>
-/// 合同状态
+/// 合同状态枚举
 /// </summary>
 public enum ContractStatus
 {
-    /// <summary>
-    /// 草稿
-    /// </summary>
-    Draft = 1,
-
-    /// <summary>
-    /// 待签署
-    /// </summary>
-    Pending = 2,
-
-    /// <summary>
-    /// 已签署
-    /// </summary>
-    Signed = 3,
-
-    /// <summary>
-    /// 已完成
-    /// </summary>
-    Completed = 4,
-
-    /// <summary>
-    /// 已取消
-    /// </summary>
-    Cancelled = 5
+    Draft = 0,      // 草稿
+    Pending = 1,    // 待签署
+    Signed = 2,     // 已签署
+    Completed = 3,  // 已完成
+    Cancelled = 4   // 已取消
 }
 
 /// <summary>
-/// 合同模型
+/// 合同类型枚举
 /// </summary>
+public enum ContractType
+{
+    Sale = 0,       // 买卖合同
+    Rent = 1,       // 租赁合同
+    Commission = 2  // 委托合同
+}
+
+/// <summary>
+/// 合同实体
+/// </summary>
+[Table("Contracts")]
 public class Contract
 {
     /// <summary>
@@ -64,8 +41,15 @@ public class Contract
     /// 合同编号
     /// </summary>
     [Required]
-    [MaxLength(50)]
+    [StringLength(50)]
     public string ContractNumber { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 合同标题
+    /// </summary>
+    [Required]
+    [StringLength(200)]
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
     /// 合同类型
@@ -78,80 +62,90 @@ public class Contract
     public ContractStatus Status { get; set; }
 
     /// <summary>
-    /// 房产ID
+    /// 房源ID
     /// </summary>
     public int PropertyId { get; set; }
 
     /// <summary>
-    /// 房产信息
+    /// 房源信息
     /// </summary>
-    public Property? Property { get; set; }
+    [ForeignKey("PropertyId")]
+    public virtual Property? Property { get; set; }
 
     /// <summary>
-    /// 客户ID
+    /// 甲方客户ID
     /// </summary>
-    public int ClientId { get; set; }
+    public int PartyAId { get; set; }
 
     /// <summary>
-    /// 客户信息
+    /// 甲方客户信息
     /// </summary>
-    public Client? Client { get; set; }
+    [ForeignKey("PartyAId")]
+    public virtual Client? PartyA { get; set; }
+
+    /// <summary>
+    /// 乙方客户ID
+    /// </summary>
+    public int PartyBId { get; set; }
+
+    /// <summary>
+    /// 乙方客户信息
+    /// </summary>
+    [ForeignKey("PartyBId")]
+    public virtual Client? PartyB { get; set; }
 
     /// <summary>
     /// 合同金额
     /// </summary>
+    [Column(TypeName = "decimal(18,2)")]
     public decimal Amount { get; set; }
 
     /// <summary>
-    /// 合同开始日期
+    /// 签署日期
     /// </summary>
-    public DateTime StartDate { get; set; }
+    public DateTime? SignDate { get; set; }
 
     /// <summary>
-    /// 合同结束日期
+    /// 生效日期
     /// </summary>
-    public DateTime? EndDate { get; set; }
+    public DateTime? EffectiveDate { get; set; }
 
     /// <summary>
-    /// 付款方式
+    /// 到期日期
     /// </summary>
-    [MaxLength(200)]
-    public string? PaymentMethod { get; set; }
+    public DateTime? ExpiryDate { get; set; }
 
     /// <summary>
-    /// 合同条款
+    /// 合同内容（Word文档内容）
     /// </summary>
-    [MaxLength(2000)]
-    public string? Terms { get; set; }
+    [Column(TypeName = "ntext")]
+    public string Content { get; set; } = string.Empty;
 
     /// <summary>
     /// 备注
     /// </summary>
-    [MaxLength(500)]
-    public string? Remark { get; set; }
+    [StringLength(1000)]
+    public string? Notes { get; set; }
+
+    /// <summary>
+    /// 创建人ID
+    /// </summary>
+    [Required]
+    [StringLength(450)]
+    public string CreatedBy { get; set; } = string.Empty;
 
     /// <summary>
     /// 创建时间
     /// </summary>
-    public DateTime CreateTime { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     /// <summary>
     /// 更新时间
     /// </summary>
-    public DateTime UpdateTime { get; set; }
+    public DateTime UpdatedAt { get; set; }
 
     /// <summary>
-    /// 签署时间
+    /// 是否删除
     /// </summary>
-    public DateTime? SignTime { get; set; }
-
-    /// <summary>
-    /// 完成时间
-    /// </summary>
-    public DateTime? CompleteTime { get; set; }
-
-    /// <summary>
-    /// 取消时间
-    /// </summary>
-    public DateTime? CancelTime { get; set; }
+    public bool IsDeleted { get; set; }
 } 

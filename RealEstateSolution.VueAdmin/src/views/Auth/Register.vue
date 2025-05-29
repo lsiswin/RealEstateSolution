@@ -102,7 +102,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
-import { register, RegisterRequest } from '@/api/auth'
+import { register, RegisterRequest } from '@/api/user'
 
 const router = useRouter()
 const registerFormRef = ref<FormInstance>()

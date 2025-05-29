@@ -7,7 +7,11 @@ export interface UserInfo {
   userName: string
   email: string
   realName?: string
+  phone?: string
   roles: string[]
+  isActive: boolean
+  createTime: string
+  lastLoginTime?: string
 }
 
 export const useUserStore = defineStore('user', () => {

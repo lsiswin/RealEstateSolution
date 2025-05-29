@@ -7,6 +7,15 @@ namespace RealEstateSolution.AuthService.Models.IdentityModels;
 /// </summary>
 public class ApplicationRole : IdentityRole
 {
+    public ApplicationRole()
+    {
+    }
+
+    public ApplicationRole(string roleName) : base(roleName)
+    {
+    }
+
+
     /// <summary>
     /// 角色描述
     /// </summary>

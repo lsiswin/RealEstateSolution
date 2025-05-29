@@ -46,5 +46,20 @@ namespace RealEstateSolution.ClientService.Dtos
         /// 其他要求
         /// </summary>
         public string OtherRequirements { get; set; }
+
+        /// <summary>
+        /// 价格范围显示（只读）
+        /// </summary>
+        public string PriceRangeDisplay { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 面积范围显示（只读）
+        /// </summary>
+        public string AreaRangeDisplay { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 房源类型显示（只读）
+        /// </summary>
+        public string PropertyTypeDisplay { get; set; } = string.Empty;
     }
 } 

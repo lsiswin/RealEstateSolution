@@ -1,3 +1,6 @@
+using AutoMapper;
+using RealEstateSolution.Common.Utils;
+using RealEstateSolution.ContractService.Models;
 using RealEstateSolution.ContractService.Repository;
 using RealEstateSolution.Database.Models;
 
@@ -9,72 +12,332 @@ namespace RealEstateSolution.ContractService.Services;
 public class ContractService : IContractService
 {
     private readonly IContractRepository _contractRepository;
+    private readonly IMapper _mapper;
 
-    public ContractService(IContractRepository contractRepository)
+    public ContractService(IContractRepository contractRepository, IMapper mapper)
     {
         _contractRepository = contractRepository;
+        _mapper = mapper;
     }
 
-    public async Task<Contract> CreateContractAsync(Contract contract)
+    public async Task<ApiResponse<PagedList<ContractDto>>> GetContractsAsync(ContractQueryDto query)
     {
-        contract.ContractNumber = await _contractRepository.GenerateContractNumberAsync();
-        contract.CreateTime = DateTime.Now;
-        contract.UpdateTime = DateTime.Now;
-        contract.Status = ContractStatus.Draft;
-
-        await _contractRepository.AddAsync(contract);
-        return contract;
-    }
-
-    public async Task<Contract> UpdateContractAsync(Contract contract)
-    {
-        var existingContract = await _contractRepository.GetByIdAsync(contract.Id);
-        if (existingContract == null)
+        try
         {
-            throw new KeyNotFoundException($"合同ID {contract.Id} 不存在");
+            var contracts = await _contractRepository.SearchContractsAsync(
+                query.Keyword, 
+                query.Type, 
+                query.Status, 
+                query.StartDate, 
+                query.EndDate);
+
+            // 应用分页
+            var totalCount = contracts.Count();
+            var pagedContracts = contracts
+                .Skip((query.PageIndex - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .ToList();
+
+            var contractDtos = _mapper.Map<List<ContractDto>>(pagedContracts);
+            
+            var pagedResult = new PagedList<ContractDto>(
+                contractDtos,
+                totalCount,
+                query.PageIndex,
+                query.PageSize);
+
+            return new ApiResponse<PagedList<ContractDto>>
+            {
+                Success = true,
+                Data = pagedResult,
+                Message = "获取合同列表成功"
+            };
         }
-
-        contract.UpdateTime = DateTime.Now;
-         _contractRepository.Update(contract);
-        return contract;
-    }
-
-    public async Task<Contract?> GetContractByIdAsync(int id)
-    {
-        return await _contractRepository.GetByIdAsync(id);
-    }
-
-    public async Task<IEnumerable<Contract>> SearchContractsAsync(
-        string? keyword,
-        ContractType? type,
-        ContractStatus? status,
-        DateTime? startDate,
-        DateTime? endDate)
-    {
-        return await _contractRepository.SearchContractsAsync(keyword, type, status, startDate, endDate);
-    }
-
-    public async Task UpdateContractStatusAsync(int contractId, ContractStatus status)
-    {
-        await _contractRepository.UpdateStatusAsync(contractId, status);
-    }
-
-    public async Task<IEnumerable<Contract>> GetClientContractsAsync(int clientId)
-    {
-        return await _contractRepository.GetClientContractsAsync(clientId);
-    }
-
-    public async Task<IEnumerable<Contract>> GetPropertyContractsAsync(int propertyId)
-    {
-        return await _contractRepository.GetPropertyContractsAsync(propertyId);
-    }
-
-    public async Task DeleteContractAsync(int id)
-    {
-        var contract = await _contractRepository.GetByIdAsync(id);
-        if (contract != null)
+        catch (Exception ex)
         {
-             _contractRepository.Delete(contract);
+            return new ApiResponse<PagedList<ContractDto>>
+            {
+                Success = false,
+                Message = $"获取合同列表失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse<ContractDto>> GetContractByIdAsync(int id)
+    {
+        try
+        {
+            var contract = await _contractRepository.GetByIdAsync(id);
+            if (contract == null)
+            {
+                return new ApiResponse<ContractDto>
+                {
+                    Success = false,
+                    Message = "合同不存在"
+                };
+            }
+
+            var contractDto = _mapper.Map<ContractDto>(contract);
+            return new ApiResponse<ContractDto>
+            {
+                Success = true,
+                Data = contractDto,
+                Message = "获取合同详情成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<ContractDto>
+            {
+                Success = false,
+                Message = $"获取合同详情失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse<ContractDto>> CreateContractAsync(ContractDto contractDto, string userId)
+    {
+        try
+        {
+            var contract = _mapper.Map<Contract>(contractDto);
+            contract.ContractNumber = await GenerateContractNumberAsync(contract.Type);
+            contract.CreatedBy = userId;
+            contract.CreatedAt = DateTime.Now;
+            contract.UpdatedAt = DateTime.Now;
+            contract.Status = ContractStatus.Draft;
+
+            await _contractRepository.AddAsync(contract);
+            
+            var resultDto = _mapper.Map<ContractDto>(contract);
+            return new ApiResponse<ContractDto>
+            {
+                Success = true,
+                Data = resultDto,
+                Message = "创建合同成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<ContractDto>
+            {
+                Success = false,
+                Message = $"创建合同失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse<ContractDto>> UpdateContractAsync(int id, ContractDto contractDto, string userId)
+    {
+        try
+        {
+            var existingContract = await _contractRepository.GetByIdAsync(id);
+            if (existingContract == null)
+            {
+                return new ApiResponse<ContractDto>
+                {
+                    Success = false,
+                    Message = "合同不存在"
+                };
+            }
+
+            // 更新允许修改的字段
+            existingContract.Title = contractDto.Title;
+            existingContract.Amount = contractDto.Amount;
+            existingContract.EffectiveDate = contractDto.StartDate;
+            existingContract.ExpiryDate = contractDto.EndDate;
+            existingContract.Content = contractDto.Terms;
+            existingContract.Notes = contractDto.Notes;
+            existingContract.UpdatedAt = DateTime.Now;
+
+            _contractRepository.Update(existingContract);
+            
+            var resultDto = _mapper.Map<ContractDto>(existingContract);
+            return new ApiResponse<ContractDto>
+            {
+                Success = true,
+                Data = resultDto,
+                Message = "更新合同成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<ContractDto>
+            {
+                Success = false,
+                Message = $"更新合同失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse> DeleteContractAsync(int id, string userId)
+    {
+        try
+        {
+            var contract = await _contractRepository.GetByIdAsync(id);
+            if (contract == null)
+            {
+                return new ApiResponse
+                {
+                    Success = false,
+                    Message = "合同不存在"
+                };
+            }
+
+            contract.IsDeleted = true;
+            contract.UpdatedAt = DateTime.Now;
+            _contractRepository.Update(contract);
+
+            return new ApiResponse
+            {
+                Success = true,
+                Message = "删除合同成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse
+            {
+                Success = false,
+                Message = $"删除合同失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse<ContractDto>> UpdateContractStatusAsync(int id, ContractStatus status, string userId)
+    {
+        try
+        {
+            var contract = await _contractRepository.GetByIdAsync(id);
+            if (contract == null)
+            {
+                return new ApiResponse<ContractDto>
+                {
+                    Success = false,
+                    Message = "合同不存在"
+                };
+            }
+
+            contract.Status = status;
+            contract.UpdatedAt = DateTime.Now;
+            
+            // 如果状态变为已签署，设置签署日期
+            if (status == ContractStatus.Signed && !contract.SignDate.HasValue)
+            {
+                contract.SignDate = DateTime.Now;
+            }
+
+            _contractRepository.Update(contract);
+            
+            var resultDto = _mapper.Map<ContractDto>(contract);
+            return new ApiResponse<ContractDto>
+            {
+                Success = true,
+                Data = resultDto,
+                Message = "更新合同状态成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<ContractDto>
+            {
+                Success = false,
+                Message = $"更新合同状态失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse<List<ContractTemplateDto>>> GetContractTemplatesAsync(ContractType? type = null)
+    {
+        try
+        {
+            // 这里需要实现模板仓储，暂时返回空列表
+            var templates = new List<ContractTemplateDto>();
+            
+            return new ApiResponse<List<ContractTemplateDto>>
+            {
+                Success = true,
+                Data = templates,
+                Message = "获取合同模板成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<List<ContractTemplateDto>>
+            {
+                Success = false,
+                Message = $"获取合同模板失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse<ContractDto>> CreateContractFromTemplateAsync(int templateId, ContractDto contractDto, string userId)
+    {
+        try
+        {
+            // 这里需要实现从模板创建合同的逻辑
+            // 暂时直接创建合同
+            return await CreateContractAsync(contractDto, userId);
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<ContractDto>
+            {
+                Success = false,
+                Message = $"从模板创建合同失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<string> GenerateContractNumberAsync(ContractType type)
+    {
+        var prefix = type switch
+        {
+            ContractType.Sale => "HT-S",
+            ContractType.Rent => "HT-R", 
+            ContractType.Commission => "HT-C",
+            _ => "HT"
+        };
+        
+        var timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+        var random = new Random().Next(100, 999);
+        
+        return $"{prefix}-{timestamp}-{random}";
+    }
+
+    public async Task<ApiResponse<ContractStatsDto>> GetContractStatsAsync()
+    {
+        try
+        {
+            var allContracts = await _contractRepository.SearchContractsAsync(null, null, null, null, null);
+            
+            var stats = new ContractStatsDto
+            {
+                TotalContracts = allContracts.Count(),
+                DraftContracts = allContracts.Count(c => c.Status == ContractStatus.Draft),
+                PendingContracts = allContracts.Count(c => c.Status == ContractStatus.Pending),
+                SignedContracts = allContracts.Count(c => c.Status == ContractStatus.Signed),
+                CompletedContracts = allContracts.Count(c => c.Status == ContractStatus.Completed),
+                CancelledContracts = allContracts.Count(c => c.Status == ContractStatus.Cancelled),
+                TotalAmount = allContracts.Sum(c => c.Amount),
+                MonthlyAmount = allContracts
+                    .Where(c => c.CreatedAt >= DateTime.Now.AddMonths(-1))
+                    .Sum(c => c.Amount)
+            };
+
+            return new ApiResponse<ContractStatsDto>
+            {
+                Success = true,
+                Data = stats,
+                Message = "获取合同统计成功"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<ContractStatsDto>
+            {
+                Success = false,
+                Message = $"获取合同统计失败: {ex.Message}"
+            };
         }
     }
 } 

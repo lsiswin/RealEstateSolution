@@ -101,7 +101,6 @@ namespace RealEstateSolution.AuthService.Services
 
             // 获取用户角色（新注册用户可能没有角色）
             var roles = await _userManager.GetRolesAsync(user);
-
             var accessToken = _jwtTokenHelper.GenerateAccessToken(user, roles);
             var refreshToken = _jwtTokenHelper.GenerateRefreshToken();
             var accessTokenExpiration = _jwtTokenHelper.GetAccessTokenExpiration();
@@ -123,6 +122,7 @@ namespace RealEstateSolution.AuthService.Services
                     Email = user.Email
                 }
             };
+
         }
 
         /// <summary>

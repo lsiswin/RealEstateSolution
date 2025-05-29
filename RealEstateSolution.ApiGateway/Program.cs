@@ -13,12 +13,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("DevCors", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // 前端地址
+        policy.WithOrigins("http://localhost:3000", "https://localhost:3000") // 前端地址，支持HTTP和HTTPS
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials(); // 如果使用 Cookie 或 Authorization Header
     });
-});// 配置JWT
+});
+// 配置JWT
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 var key = Encoding.ASCII.GetBytes(jwtSettings.Key);
 builder.Services.AddAuthentication(options =>
@@ -28,7 +29,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer("Bearer",options =>
 {
-    options.RequireHttpsMetadata = false;
+    options.RequireHttpsMetadata = false; // 开发环境可以设为false
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -55,6 +56,12 @@ builder.Services.AddOcelot(builder.Configuration).AddDelegatingHandler<JwtRevoca
 // 添加CORS服务
 
 var app = builder.Build();
+
+// 配置HTTPS重定向（开发环境）
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 // 启用CORS
 app.UseCors("DevCors");

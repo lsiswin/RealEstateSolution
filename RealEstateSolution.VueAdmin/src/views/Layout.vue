@@ -174,7 +174,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from 'element-plus'
 import router from '@/router'
 import { useUserStore } from '@/stores/user'
-import { logout } from '@/api/auth'
+import { logout } from '@/api/user'
 import { getCurrentUser, changePassword as changeUserPassword, updateProfile as updateUserProfile, type ChangePasswordParams, type UpdateProfileParams } from '@/api/user'
 import {ArrowDown, OfficeBuilding, User} from "@element-plus/icons-vue"
 
@@ -254,7 +254,45 @@ const passwordRules: FormRules = {
 const menuRoutes = computed(() => {
   const routes = router.getRoutes()
   const mainRoute = routes.find(r => r.path === '/')
-  return mainRoute?.children?.filter(child => child.meta?.title) || []
+  let filteredRoutes = mainRoute?.children?.filter(child => child.meta?.title) || []
+  
+  // 基于角色过滤菜单
+  const userRoles = userStore.userInfo?.roles || []
+  const isAdmin = userRoles.includes('管理员') || userRoles.includes('admin')
+  const isAgent = userRoles.includes('经纪人') || userRoles.includes('broker')
+  
+  // 过滤菜单项
+  filteredRoutes = filteredRoutes.map(route => {
+    // 如果是系统管理菜单
+    if (route.path === '/system') {
+      const systemChildren = route.children?.filter(child => {
+        // 管理员可以看到所有系统管理功能
+        if (isAdmin) {
+          return true
+        }
+        // 经纪人只能看到用户管理，不能看到角色管理
+        if (isAgent) {
+          return child.path !== 'roles'
+        }
+        return false
+      }) || []
+      
+      // 如果没有可显示的子菜单，则不显示该菜单
+      if (systemChildren.length === 0) {
+        return null
+      }
+      
+      return {
+        ...route,
+        children: systemChildren
+      }
+    }
+    
+    // 其他菜单项的权限控制可以在这里添加
+    return route
+  }).filter(Boolean) // 过滤掉null值
+  
+  return filteredRoutes
 })
 
 // 格式化日期

@@ -13,8 +13,8 @@ public class MatchingDbContext : DbContext
     }
 
     public DbSet<Matching> Matchings { get; set; }
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<Property> Properties { get; set; }
+    //public DbSet<Client> Clients { get; set; }
+    //public DbSet<Property> Properties { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

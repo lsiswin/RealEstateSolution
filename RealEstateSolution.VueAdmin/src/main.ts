@@ -30,27 +30,4 @@ app.use(ElementPlus, {
 const userStore = useUserStore()
 userStore.initUserInfo()
 
-// 路由守卫
-router.beforeEach((to, _from, next) => {
-  const userStore = useUserStore()
-  
-  // 如果是登录或注册页面，直接放行
-  if (to.path === '/login' || to.path === '/register') {
-    // 如果已经登录，重定向到首页
-    if (userStore.isLoggedIn) {
-      next('/')
-    } else {
-      next()
-    }
-    return
-  }
-  
-  // 其他页面需要登录
-  if (!userStore.isLoggedIn) {
-    next('/login')
-  } else {
-    next()
-  }
-})
-
 app.mount('#app') 

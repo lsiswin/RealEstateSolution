@@ -22,8 +22,8 @@
       <el-col :span="6">
         <el-card class="stat-card">
           <div class="stat-content">
-            <div class="stat-number">{{ stats.totalUsers }}</div>
-            <div class="stat-title">总用户数</div>
+            <div class="stat-number">{{ stats.totalClients }}</div>
+            <div class="stat-title">总客户数</div>
             <div class="stat-icon">
               <el-icon><User /></el-icon>
             </div>
@@ -44,8 +44,8 @@
       <el-col :span="6">
         <el-card class="stat-card">
           <div class="stat-content">
-            <div class="stat-number">{{ stats.averagePrice }}</div>
-            <div class="stat-title">平均价格(万)</div>
+            <div class="stat-number">{{ stats.SoldCount }}</div>
+            <div class="stat-title">已售房源</div>
             <div class="stat-icon">
               <el-icon><Money /></el-icon>
             </div>
@@ -67,7 +67,7 @@
       <el-col :span="12">
         <el-card class="chart-card">
           <template #header>
-            <span>房源状态分布</span>
+            <span>客户类型分布</span>
           </template>
           <div ref="lineChartRef" class="chart-container"></div>
         </el-card>
@@ -111,33 +111,33 @@
       </el-table>
     </el-card>
 
-    <!-- 最新用户列表 -->
-    <el-card class="user-list-card">
+    <!-- 最新客户列表 -->
+    <el-card class="client-list-card">
       <template #header>
         <div class="card-header">
-          <span>最新用户</span>
-          <el-button type="primary" size="small" @click="viewAllUsers">
+          <span>最新客户</span>
+          <el-button type="primary" size="small" @click="viewAllClients">
             查看全部
           </el-button>
         </div>
       </template>
       
-      <el-table :data="recentUsers" style="width: 100%" v-loading="userLoading">
-        <el-table-column prop="id" label="用户ID" width="120" />
-        <el-table-column prop="userName" label="用户名" />
-        <el-table-column prop="realName" label="真实姓名" />
+      <el-table :data="recentClients" style="width: 100%" v-loading="clientLoading">
+        <el-table-column prop="id" label="客户ID" width="120" />
+        <el-table-column prop="name" label="客户姓名" />
+        <el-table-column prop="phone" label="联系电话" />
         <el-table-column prop="email" label="邮箱" />
-        <el-table-column prop="phone" label="电话" />
-        <el-table-column prop="isActive" label="状态" width="100">
+        <el-table-column prop="type" label="客户类型" width="100">
           <template #default="scope">
-            <el-tag :type="scope.row.isActive ? 'success' : 'danger'">
-              {{ scope.row.isActive ? '活跃' : '禁用' }}
+            <el-tag :type="getClientTypeColor(scope.row.type)">
+              {{ getClientTypeText(scope.row.type) }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="createTime" label="注册时间" width="150">
+        <el-table-column prop="agentName" label="经纪人" width="120" />
+        <el-table-column prop="createdAt" label="创建时间" width="150">
           <template #default="scope">
-            {{ formatDate(scope.row.createTime) }}
+            {{ formatDate(scope.row.createdAt) }}
           </template>
         </el-table-column>
       </el-table>
@@ -151,6 +151,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import * as echarts from 'echarts'
 import {Document, Money, OfficeBuilding, User} from "@element-plus/icons-vue"
+import { useUserStore } from '@/stores/user'
 
 // API imports
 import { 
@@ -162,30 +163,35 @@ import {
   type Property
 } from '@/api/property'
 import { 
-  getUserList, 
-  getUserStats,
-  type User as UserType
-} from '@/api/user'
+  getClients, 
+  getClientStats,
+  ClientType,
+  type Client
+} from '@/api/client'
 
 const router = useRouter()
+const userStore = useUserStore()
+
+// 初始化用户信息
+userStore.initUserInfo()
 
 // 加载状态
 const loading = ref(false)
-const userLoading = ref(false)
+const clientLoading = ref(false)
 
 // 统计数据
 const stats = ref({
   totalProperties: 0,
-  totalUsers: 0,
+  totalClients: 0,
   forSaleCount: 0,
-  averagePrice: 0
+  SoldCount: 0
 })
 
 // 最新房源数据
 const recentProperties = ref<Property[]>([])
 
-// 最新用户数据
-const recentUsers = ref<UserType[]>([])
+// 最新客户数据
+const recentClients = ref<Client[]>([])
 
 // 图表引用
 const pieChartRef = ref<HTMLDivElement>()
@@ -194,12 +200,34 @@ const lineChartRef = ref<HTMLDivElement>()
 // 房源类型统计数据
 const propertyTypeStats = ref<{[key: string]: number}>({})
 
-// 房源状态统计数据
-const propertyStatusStats = ref<{[key: string]: number}>({})
+// 客户类型统计数据
+const clientTypeStats = ref<{[key: string]: number}>({})
 
 // 格式化日期
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('zh-CN')
+}
+
+// 获取客户类型文本
+const getClientTypeText = (type: ClientType) => {
+  const typeMap = {
+    [ClientType.Buyer]: '买家',
+    [ClientType.Seller]: '卖家',
+    [ClientType.Tenant]: '租客',
+    [ClientType.Landlord]: '房东'
+  }
+  return typeMap[type] || '未知'
+}
+
+// 获取客户类型颜色
+const getClientTypeColor = (type: ClientType) => {
+  const colorMap = {
+    [ClientType.Buyer]: 'success',
+    [ClientType.Seller]: 'warning',
+    [ClientType.Tenant]: 'info',
+    [ClientType.Landlord]: 'danger'
+  }
+  return colorMap[type] || ''
 }
 
 // 跳转到房源列表
@@ -207,33 +235,63 @@ const viewAllProperties = () => {
   router.push('/property/list')
 }
 
-// 跳转到用户列表
-const viewAllUsers = () => {
-  router.push('/system/users')
+// 跳转到客户列表
+const viewAllClients = () => {
+  router.push('/client/list')
 }
 
 // 获取房源统计数据
 const fetchPropertyStats = async () => {
   try {
+    console.log('开始获取房源统计数据...')
     const response = await getPropertyStats()
-    if (response.success && response.data) {
+    console.log('房源统计数据响应:', response)
+    
+    // 响应拦截器已经返回了response.data，所以response就是ApiResponse<PropertyStats>
+    if (response && response.success && response.data) {
       const propertyStats = response.data
-      stats.value.totalProperties = propertyStats.totalCount
-      stats.value.forSaleCount = propertyStats.forSaleCount
-      stats.value.averagePrice = Math.round(propertyStats.averagePrice / 10000) // 转换为万元
+      console.log('房源统计数据更新完成:', propertyStats,stats.value)
+      stats.value.totalProperties = propertyStats.totalProperties
+      stats.value.forSaleCount = propertyStats.forSaleProperties
+      stats.value.SoldCount = propertyStats.soldProperties
+      console.log('房源统计数据更新完成:', stats.value)
+    } else {
+      console.warn('房源统计数据格式异常:', response)
+      // 设置默认值
+      stats.value.totalProperties = 0
+      stats.value.forSaleCount = 0
+      stats.value.SoldCount = 0
     }
   } catch (error) {
     console.error('获取房源统计失败:', error)
+    // 设置默认值
+    stats.value.totalProperties = 0
+    stats.value.forSaleCount = 0
+    stats.value.SoldCount = 0
+    ElMessage.warning('房源数据加载失败')
   }
 }
 
-// 获取用户统计数据
-const fetchUserStats = async () => {
+// 获取客户统计数据
+const fetchClientStats = async () => {
   try {
-    const userStats = await getUserStats()
-    stats.value.totalUsers = userStats.totalUsers
+    console.log('开始获取客户统计数据...')
+    const response = await getClientStats()
+    console.log('客户统计数据响应:', response)
+    
+    // 响应拦截器已经返回了response.data，所以response就是ApiResponse<ClientStats>
+    if (response && response.success && response.data) {
+      stats.value.totalClients = response.data.totalClients||0
+      console.log('客户统计数据更新完成:', response.data)
+    } else {
+      console.warn('客户统计数据格式异常:', response)
+      stats.value.totalClients = 0
+    }
   } catch (error) {
-    console.error('获取用户统计失败:', error)
+    console.error('获取客户统计失败:', error)
+    // 设置默认值
+    stats.value.totalClients = 0
+    ElMessage.warning('客户数据加载失败')
   }
 }
 
@@ -241,50 +299,80 @@ const fetchUserStats = async () => {
 const fetchRecentProperties = async () => {
   loading.value = true
   try {
+    console.log('开始获取最新房源列表...')
     const response = await queryProperties({
       pageIndex: 1,
       pageSize: 5
     })
-    if (response.success && response.data) {
-      recentProperties.value = response.data.items
+    console.log('房源列表响应:', response)
+    
+    if (response && response.success && response.data) {
+      recentProperties.value = response.data.items || []
       
       // 统计房源类型分布
       const typeStats: {[key: string]: number} = {}
-      const statusStats: {[key: string]: number} = {}
       
-      response.data.items.forEach(property => {
+      recentProperties.value.forEach(property => {
         const typeText = getPropertyTypeText(property.type)
-        const statusText = getPropertyStatusText(property.status)
-        
         typeStats[typeText] = (typeStats[typeText] || 0) + 1
-        statusStats[statusText] = (statusStats[statusText] || 0) + 1
       })
       
       propertyTypeStats.value = typeStats
-      propertyStatusStats.value = statusStats
+      console.log('房源列表更新完成，共', recentProperties.value.length, '条记录')
+    } else {
+      console.warn('房源列表数据格式异常:', response)
+      recentProperties.value = []
+      propertyTypeStats.value = {}
     }
   } catch (error) {
     console.error('获取房源列表失败:', error)
-    ElMessage.error('获取房源列表失败')
+    recentProperties.value = []
+    propertyTypeStats.value = {}
+    ElMessage.warning('房源列表加载失败')
   } finally {
     loading.value = false
   }
 }
 
-// 获取最新用户列表
-const fetchRecentUsers = async () => {
-  userLoading.value = true
+// 获取最新客户列表
+const fetchRecentClients = async () => {
+  clientLoading.value = true
   try {
-    const response = await getUserList({
+    console.log('开始获取最新客户列表...')
+    const response = await getClients({
+      name: '',
+      phone: '',
+      type: undefined,
       pageIndex: 1,
       pageSize: 5
     })
-    recentUsers.value = response.items
+    console.log('客户列表响应:', response)
+    
+    if (response && response.success && response.data) {
+      recentClients.value = response.data.items || []
+      
+      // 统计客户类型分布
+      const typeStats: {[key: string]: number} = {}
+      
+      recentClients.value.forEach(client => {
+        const typeText = getClientTypeText(client.type)
+        typeStats[typeText] = (typeStats[typeText] || 0) + 1
+      })
+      
+      clientTypeStats.value = typeStats
+      console.log('客户列表更新完成，共', recentClients.value.length, '条记录')
+    } else {
+      console.warn('客户列表数据格式异常:', response)
+      recentClients.value = []
+      clientTypeStats.value = {}
+    }
   } catch (error) {
-    console.error('获取用户列表失败:', error)
-    ElMessage.error('获取用户列表失败')
+    console.error('获取客户列表失败:', error)
+    recentClients.value = []
+    clientTypeStats.value = {}
+    ElMessage.warning('客户列表加载失败')
   } finally {
-    userLoading.value = false
+    clientLoading.value = false
   }
 }
 
@@ -330,7 +418,7 @@ const initLineChart = () => {
   if (!lineChartRef.value) return
   
   const chart = echarts.init(lineChartRef.value)
-  const data = Object.entries(propertyStatusStats.value).map(([name, value]) => ({
+  const data = Object.entries(clientTypeStats.value).map(([name, value]) => ({
     name,
     value
   }))
@@ -349,7 +437,7 @@ const initLineChart = () => {
     },
     series: [
       {
-        name: '房源状态',
+        name: '客户类型',
         type: 'bar',
         data: data.map(item => item.value),
         itemStyle: {
@@ -365,9 +453,9 @@ const initLineChart = () => {
 const initData = async () => {
   await Promise.all([
     fetchPropertyStats(),
-    fetchUserStats(),
+    fetchClientStats(),
     fetchRecentProperties(),
-    fetchRecentUsers()
+    fetchRecentClients()
   ])
   
   // 等待DOM更新后初始化图表
@@ -454,6 +542,10 @@ onMounted(() => {
 }
 
 .property-list-card {
+  margin-bottom: 24px;
+}
+
+.client-list-card {
   margin-bottom: 24px;
 }
 

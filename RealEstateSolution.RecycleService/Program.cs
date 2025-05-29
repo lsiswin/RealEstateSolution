@@ -45,7 +45,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // 配置数据库
 builder.Services.AddDbContext<RecycleDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateRecycle")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateClient")));
 
 // 配置JWT认证
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

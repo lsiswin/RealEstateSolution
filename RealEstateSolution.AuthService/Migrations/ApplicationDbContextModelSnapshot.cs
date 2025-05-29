@@ -162,6 +162,35 @@ namespace RealEstateSolution.AuthService.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b3a87c45-6456-4729-9e2d-d89bcf998322",
+                            ConcurrencyStamp = "da32ff13-cef1-4dcf-aa2e-ee5b0b7dabeb",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "admin",
+                            NormalizedName = "ADMIN",
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = "a311a857-78ec-44a6-836e-f1265ed18133",
+                            ConcurrencyStamp = "81eac8c8-5b31-4067-a269-bb22d86a02e9",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "user",
+                            NormalizedName = "USER",
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = "7924435e-c36a-4fdc-8532-90c73575e265",
+                            ConcurrencyStamp = "76014c9a-7607-4bc3-8a21-c3d46d4dffa1",
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "broker",
+                            NormalizedName = "BROKER",
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("RealEstateSolution.AuthService.Models.IdentityModels.ApplicationUser", b =>

@@ -9,11 +9,7 @@ using RealEstateSolution.MatchingService.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -44,7 +40,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // 配置数据库
 builder.Services.AddDbContext<MatchingDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateMatching")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateClient")));
 
 // 配置JWT认证
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -54,6 +54,7 @@ namespace RealEstateSolution.AuthService.Extension
                 new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // 生成唯一jti                
                 new Claim("SecurityStamp", user.SecurityStamp ?? string.Empty)
+                
             };
 
             // 添加角色信息

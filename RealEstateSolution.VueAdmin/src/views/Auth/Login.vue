@@ -61,7 +61,7 @@
 import { ref, reactive, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
-import { login, LoginRequest } from '@/api/auth'
+import { login, LoginRequest } from '@/api/user'
 import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
@@ -123,12 +123,24 @@ const handleLogin = async () => {
       await router.push('/dashboard')
       console.log('跳转完成')
     } else {
-      console.error('登录失败:', response.message)
-      ElMessage.error(response.message || '登录失败')
+      ElMessage.error('登录失败')
     }
   } catch (error: any) {
-    console.error('登录异常:', error)
-    ElMessage.error(error.message || '登录失败')
+    console.error('完整错误信息:', {
+      message: error.message,
+      code: error.code,
+      response: error.response,
+      request: error.request,
+      config: error.config
+    });
+
+    if (error.code === 'ECONNABORTED') {
+      ElMessage.error('请求超时，请检查网络连接');
+    } else if (error.code === 'ERR_NETWORK') {
+      ElMessage.error('无法连接到服务器，请检查服务是否启动');
+    } else {
+      ElMessage.error(error.message || '登录失败');
+    }
   } finally {
     loading.value = false
   }

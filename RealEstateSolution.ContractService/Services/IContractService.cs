@@ -1,4 +1,7 @@
+using RealEstateSolution.Common.Utils;
+using RealEstateSolution.ContractService.Models;
 using RealEstateSolution.Database.Models;
+
 namespace RealEstateSolution.ContractService.Services;
 
 /// <summary>
@@ -7,47 +10,52 @@ namespace RealEstateSolution.ContractService.Services;
 public interface IContractService
 {
     /// <summary>
+    /// 获取合同列表
+    /// </summary>
+    Task<ApiResponse<PagedList<ContractDto>>> GetContractsAsync(ContractQueryDto query);
+
+    /// <summary>
+    /// 根据ID获取合同详情
+    /// </summary>
+    Task<ApiResponse<ContractDto>> GetContractByIdAsync(int id);
+
+    /// <summary>
     /// 创建合同
     /// </summary>
-    Task<Contract> CreateContractAsync(Contract contract);
+    Task<ApiResponse<ContractDto>> CreateContractAsync(ContractDto contractDto, string userId);
 
     /// <summary>
     /// 更新合同
     /// </summary>
-    Task<Contract> UpdateContractAsync(Contract contract);
-
-    /// <summary>
-    /// 获取合同详情
-    /// </summary>
-    Task<Contract?> GetContractByIdAsync(int id);
-
-    /// <summary>
-    /// 搜索合同
-    /// </summary>
-    Task<IEnumerable<Contract>> SearchContractsAsync(
-        string? keyword,
-        ContractType? type,
-        ContractStatus? status,
-        DateTime? startDate,
-        DateTime? endDate);
-
-    /// <summary>
-    /// 更新合同状态
-    /// </summary>
-    Task UpdateContractStatusAsync(int contractId, ContractStatus status);
-
-    /// <summary>
-    /// 获取客户合同列表
-    /// </summary>
-    Task<IEnumerable<Contract>> GetClientContractsAsync(int clientId);
-
-    /// <summary>
-    /// 获取房产合同列表
-    /// </summary>
-    Task<IEnumerable<Contract>> GetPropertyContractsAsync(int propertyId);
+    Task<ApiResponse<ContractDto>> UpdateContractAsync(int id, ContractDto contractDto, string userId);
 
     /// <summary>
     /// 删除合同
     /// </summary>
-    Task DeleteContractAsync(int id);
+    Task<ApiResponse> DeleteContractAsync(int id, string userId);
+
+    /// <summary>
+    /// 更新合同状态
+    /// </summary>
+    Task<ApiResponse<ContractDto>> UpdateContractStatusAsync(int id, ContractStatus status, string userId);
+
+    /// <summary>
+    /// 获取合同模板列表
+    /// </summary>
+    Task<ApiResponse<List<ContractTemplateDto>>> GetContractTemplatesAsync(ContractType? type = null);
+
+    /// <summary>
+    /// 根据模板创建合同
+    /// </summary>
+    Task<ApiResponse<ContractDto>> CreateContractFromTemplateAsync(int templateId, ContractDto contractDto, string userId);
+
+    /// <summary>
+    /// 生成合同编号
+    /// </summary>
+    Task<string> GenerateContractNumberAsync(ContractType type);
+
+    /// <summary>
+    /// 获取合同统计
+    /// </summary>
+    Task<ApiResponse<ContractStatsDto>> GetContractStatsAsync();
 } 

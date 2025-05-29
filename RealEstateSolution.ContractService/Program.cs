@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 添加数据库上下文
 builder.Services.AddDbContext<ContractDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateClient")));
 
 // 添加仓储和服务
 builder.Services.AddScoped<IContractRepository, ContractRepository>();

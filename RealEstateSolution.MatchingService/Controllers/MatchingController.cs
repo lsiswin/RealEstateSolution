@@ -10,7 +10,7 @@ namespace RealEstateSolution.MatchingService.Controllers;
 /// 匹配服务控制器
 /// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [Authorize]
 public class MatchingController : ControllerBase
 {
