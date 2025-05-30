@@ -58,7 +58,7 @@ export interface Property {
   yearBuilt?: number
   orientation?: string
   decoration?: string
-  facilities?: string
+  facilities?: string[]
   images?: string[]
   ownerId: string
   agentId?: string

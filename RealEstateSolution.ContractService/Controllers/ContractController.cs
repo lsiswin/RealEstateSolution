@@ -13,7 +13,7 @@ namespace RealEstateSolution.ContractService.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]/[action]")]
-[Authorize]
+[Authorize(Roles ="admin,broker")]
 public class ContractController : ControllerBase
 {
     private readonly IContractService _contractService;

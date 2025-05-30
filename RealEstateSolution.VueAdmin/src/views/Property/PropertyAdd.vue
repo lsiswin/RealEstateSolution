@@ -274,6 +274,7 @@ const handleSubmit = async () => {
     
     const propertyData: Partial<Property> = {
       ...form,
+      facilities: form.facilities ? form.facilities.split(',').map(f => f.trim()).filter(f => f) : [],
       status: PropertyStatus.Available, // 默认状态为可售
       ownerId: '', // 后端会自动设置当前用户ID
       createTime: new Date().toISOString(),
@@ -303,7 +304,7 @@ const handleReset = () => {
 
 // 取消操作
 const handleCancel = () => {
-  router.back()
+  router.push('/property/list')
 }
 </script>
 

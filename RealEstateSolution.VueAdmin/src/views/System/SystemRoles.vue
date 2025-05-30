@@ -397,7 +397,7 @@ const handleSubmit = async () => {
 }
 
 // 权限选择变化
-const handlePermissionCheck = (data: any, checked: any) => {
+const handlePermissionCheck = (_data: any, _checked: any) => {
   // 处理权限选择逻辑
 }
 

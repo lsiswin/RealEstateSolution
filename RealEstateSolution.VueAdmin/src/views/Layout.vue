@@ -175,7 +175,7 @@ import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from 'elem
 import router from '@/router'
 import { useUserStore } from '@/stores/user'
 import { logout } from '@/api/user'
-import { getCurrentUser, changePassword as changeUserPassword, updateProfile as updateUserProfile, type ChangePasswordParams, type UpdateProfileParams } from '@/api/user'
+import { getCurrentUser, changePassword as changeUserPassword, updateProfile as updateUserProfile, type ChangePasswordRequest, type UpdateProfileRequest } from '@/api/user'
 import {ArrowDown, OfficeBuilding, User} from "@element-plus/icons-vue"
 
 const routerInstance = useRouter()
@@ -258,11 +258,25 @@ const menuRoutes = computed(() => {
   
   // 基于角色过滤菜单
   const userRoles = userStore.userInfo?.roles || []
+  console.log('角色列表',userRoles)
   const isAdmin = userRoles.includes('管理员') || userRoles.includes('admin')
   const isAgent = userRoles.includes('经纪人') || userRoles.includes('broker')
   
   // 过滤菜单项
   filteredRoutes = filteredRoutes.map(route => {
+    //不显示隐藏的子菜单
+    if (route.children) {
+      route.children = route.children.filter(child => !child.meta?.hideInMenu)
+    }
+    
+    // 如果是合同管理菜单
+    if (route.path === '/contract') {
+      // 只有管理员和经纪人可以访问合同管理
+      if (!isAdmin && !isAgent) {
+        return null
+      }
+    }
+    
     // 如果是系统管理菜单
     if (route.path === '/system') {
       const systemChildren = route.children?.filter(child => {
@@ -290,7 +304,7 @@ const menuRoutes = computed(() => {
     
     // 其他菜单项的权限控制可以在这里添加
     return route
-  }).filter(Boolean) // 过滤掉null值
+  }).filter(Boolean) as any[] // 过滤掉null值
   
   return filteredRoutes
 })
@@ -358,18 +372,16 @@ const handleProfileSave = async () => {
     
     profileLoading.value = true
     
-    const updateData: UpdateProfileParams = {
-      realName: profileForm.realName,
-      email: profileForm.email,
-      phone: profileForm.phone
+    const updateData: UpdateProfileRequest = {
+      userName: profileForm.userName,
+      email: profileForm.email
     }
     
-    const updatedUser = await updateUserProfile(updateData)
+    await updateUserProfile(updateData)
     
     // 更新store中的用户信息
     if (userStore.userInfo) {
-      userStore.userInfo.realName = updatedUser.realName
-      userStore.userInfo.email = updatedUser.email
+      userStore.userInfo.email = profileForm.email
       // 更新localStorage
       localStorage.setItem('userInfo', JSON.stringify(userStore.userInfo))
     }
@@ -393,10 +405,9 @@ const handlePasswordSave = async () => {
     
     passwordLoading.value = true
     
-    const changePasswordData: ChangePasswordParams = {
-      oldPassword: passwordForm.oldPassword,
-      newPassword: passwordForm.newPassword,
-      confirmPassword: passwordForm.confirmPassword
+    const changePasswordData: ChangePasswordRequest = {
+      currentPassword: passwordForm.oldPassword,
+      newPassword: passwordForm.newPassword
     }
     
     await changeUserPassword(changePasswordData)

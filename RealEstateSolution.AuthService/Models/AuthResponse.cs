@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RealEstateSolution.AuthService.Models
 {
@@ -57,6 +58,21 @@ namespace RealEstateSolution.AuthService.Models
         /// 邮箱
         /// </summary>
         public string? Email { get; set; }
+
+        /// <summary>
+        /// 用户角色列表
+        /// </summary>
+        public List<string> Roles { get; set; } = new List<string>();
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 最后登录时间
+        /// </summary>
+        public DateTime? LastLoginTime { get; set; }
     }
 
     /// <summary>

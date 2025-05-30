@@ -109,13 +109,9 @@ export const deleteContract = (id: number) => {
 
 // 更新合同状态
 export const updateContractStatus = (id: number, status: ContractStatus) => {
-  return request.post(`/api/Contract/UpdateContractStatus/${id}`, status)
+  return request.post(`/api/Contract/UpdateContractStatus/${id}/status`, status)
 }
 
-// 获取合同模板列表
-export const getContractTemplates = (type?: ContractType) => {
-  return request.get('/api/Contract/GetContractTemplates', { params: { type } })
-}
 
 // 根据模板创建合同
 export const createContractFromTemplate = (templateId: number, data: Contract) => {

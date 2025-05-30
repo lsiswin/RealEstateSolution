@@ -176,7 +176,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import {
@@ -193,10 +193,10 @@ const route = useRoute()
 const router = useRouter()
 
 // 响应式数据
-const loading = ref(false)
-const submitLoading = ref(false)
+const clientId = computed(() => Number(route.params.id))
 const clientInfo = ref<Client | null>(null)
 const requirements = ref<ClientRequirement | null>(null)
+const submitLoading = ref(false)
 
 // 对话框相关
 const dialogVisible = ref(false)
@@ -217,7 +217,7 @@ const requirementsForm = reactive<ClientRequirementDto>({
 const requirementsRules: FormRules = {
   minPrice: [
     {
-      validator: (rule, value, callback) => {
+      validator: (_rule, value, callback) => {
         if (value !== undefined && requirementsForm.maxPrice !== undefined && value > requirementsForm.maxPrice) {
           callback(new Error('最低价格不能大于最高价格'))
         } else {
@@ -229,7 +229,7 @@ const requirementsRules: FormRules = {
   ],
   maxPrice: [
     {
-      validator: (rule, value, callback) => {
+      validator: (_rule, value, callback) => {
         if (value !== undefined && requirementsForm.minPrice !== undefined && value < requirementsForm.minPrice) {
           callback(new Error('最高价格不能小于最低价格'))
         } else {
@@ -241,7 +241,7 @@ const requirementsRules: FormRules = {
   ],
   minArea: [
     {
-      validator: (rule, value, callback) => {
+      validator: (_rule, value, callback) => {
         if (value !== undefined && requirementsForm.maxArea !== undefined && value > requirementsForm.maxArea) {
           callback(new Error('最小面积不能大于最大面积'))
         } else {
@@ -253,7 +253,7 @@ const requirementsRules: FormRules = {
   ],
   maxArea: [
     {
-      validator: (rule, value, callback) => {
+      validator: (_rule, value, callback) => {
         if (value !== undefined && requirementsForm.minArea !== undefined && value < requirementsForm.minArea) {
           callback(new Error('最大面积不能小于最小面积'))
         } else {
@@ -315,8 +315,12 @@ const formatAreaRange = (minArea?: number, maxArea?: number) => {
 // 获取客户信息
 const fetchClientInfo = async (clientId: number) => {
   try {
-    const client = await getClient(clientId)
-    clientInfo.value = client
+    const response = await getClient(clientId)
+    if (response.success) {
+      clientInfo.value = response.data
+    } else {
+      ElMessage.error(response.message || '获取客户信息失败')
+    }
   } catch (error) {
     console.error('获取客户信息失败:', error)
     ElMessage.error('获取客户信息失败')
@@ -326,9 +330,16 @@ const fetchClientInfo = async (clientId: number) => {
 // 获取客户需求
 const fetchClientRequirements = async (clientId: number) => {
   try {
-    const clientRequirements = await getClientRequirements(clientId)
-    requirements.value = clientRequirements
-  } catch (error) {
+    const response = await getClientRequirements(clientId)
+    if (response.success) {
+      requirements.value = response.data
+    } else if (response.message?.includes('404') || response.message?.includes('不存在')) {
+      // 如果是404错误，说明还没有需求信息，这是正常的
+      requirements.value = null
+    } else {
+      ElMessage.error(response.message || '获取客户需求失败')
+    }
+  } catch (error: any) {
     console.error('获取客户需求失败:', error)
     // 如果是404错误，说明还没有需求信息，这是正常的
     if (error?.response?.status !== 404) {
@@ -399,16 +410,15 @@ const resetRequirementsForm = () => {
 
 // 初始化
 onMounted(async () => {
-  const clientId = Number(route.params.id)
-  if (!clientId) {
+  if (!clientId.value) {
     ElMessage.error('客户ID无效')
     router.push('/client/list')
     return
   }
   
   await Promise.all([
-    fetchClientInfo(clientId),
-    fetchClientRequirements(clientId)
+    fetchClientInfo(clientId.value),
+    fetchClientRequirements(clientId.value)
   ])
 })
 </script>

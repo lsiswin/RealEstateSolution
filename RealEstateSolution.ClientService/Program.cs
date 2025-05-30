@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using RealEstateSolution.PropertyService.Extension.HealthChecks;
 using Serilog;
 using RealEstateSolution.ClientService.Mappings;
+using RealEstateSolution.Common.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +69,9 @@ builder.Host.UseSerilog((context, configuration) => configuration
 // 添加数据库上下文
 builder.Services.AddDbContext<ClientDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateClient")));
+
+// 注册工作单元
+builder.Services.AddScoped<IUnitOfWork<ClientDbContext>, UnitOfWork<ClientDbContext>>();
 
 // 添加仓储和服务
 builder.Services.AddScoped<IClientRepository, ClientRepository>();

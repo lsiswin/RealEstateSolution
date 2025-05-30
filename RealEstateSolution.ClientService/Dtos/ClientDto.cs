@@ -133,6 +133,11 @@ public class ClientQueryDto
     public string? Phone { get; set; }
 
     /// <summary>
+    /// 客户邮箱（模糊查询）
+    /// </summary>
+    public string? Email { get; set; }
+
+    /// <summary>
     /// 客户类型
     /// </summary>
     public ClientType? Type { get; set; }

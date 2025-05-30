@@ -41,15 +41,8 @@ public class Contract
     /// 合同编号
     /// </summary>
     [Required]
-    [StringLength(50)]
+    [StringLength(20)]
     public string ContractNumber { get; set; } = string.Empty;
-
-    /// <summary>
-    /// 合同标题
-    /// </summary>
-    [Required]
-    [StringLength(200)]
-    public string Title { get; set; } = string.Empty;
 
     /// <summary>
     /// 合同类型
@@ -73,26 +66,26 @@ public class Contract
     public virtual Property? Property { get; set; }
 
     /// <summary>
-    /// 甲方客户ID
+    /// 主要客户ID（甲方）
     /// </summary>
-    public int PartyAId { get; set; }
+    public int ClientId { get; set; }
 
     /// <summary>
-    /// 甲方客户信息
+    /// 主要客户信息（甲方）
     /// </summary>
-    [ForeignKey("PartyAId")]
-    public virtual Client? PartyA { get; set; }
+    [ForeignKey("ClientId")]
+    public virtual Client? Client { get; set; }
 
     /// <summary>
-    /// 乙方客户ID
+    /// 次要客户ID（乙方，可选）
     /// </summary>
-    public int PartyBId { get; set; }
+    public int? ClientId1 { get; set; }
 
     /// <summary>
-    /// 乙方客户信息
+    /// 次要客户信息（乙方，可选）
     /// </summary>
-    [ForeignKey("PartyBId")]
-    public virtual Client? PartyB { get; set; }
+    [ForeignKey("ClientId1")]
+    public virtual Client? Client1 { get; set; }
 
     /// <summary>
     /// 合同金额
@@ -101,51 +94,188 @@ public class Contract
     public decimal Amount { get; set; }
 
     /// <summary>
-    /// 签署日期
+    /// 合同开始日期
     /// </summary>
-    public DateTime? SignDate { get; set; }
+    public DateTime StartDate { get; set; }
 
     /// <summary>
-    /// 生效日期
+    /// 合同结束日期
     /// </summary>
-    public DateTime? EffectiveDate { get; set; }
+    public DateTime? EndDate { get; set; }
 
     /// <summary>
-    /// 到期日期
+    /// 付款方式
     /// </summary>
-    public DateTime? ExpiryDate { get; set; }
+    [StringLength(50)]
+    public string PaymentMethod { get; set; } = string.Empty;
 
     /// <summary>
-    /// 合同内容（Word文档内容）
+    /// 合同条款
     /// </summary>
-    [Column(TypeName = "ntext")]
-    public string Content { get; set; } = string.Empty;
+    [StringLength(2000)]
+    public string Terms { get; set; } = string.Empty;
 
     /// <summary>
     /// 备注
     /// </summary>
-    [StringLength(1000)]
-    public string? Notes { get; set; }
-
-    /// <summary>
-    /// 创建人ID
-    /// </summary>
-    [Required]
-    [StringLength(450)]
-    public string CreatedBy { get; set; } = string.Empty;
+    [StringLength(500)]
+    public string? Remark { get; set; }
 
     /// <summary>
     /// 创建时间
     /// </summary>
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreateTime { get; set; }
 
     /// <summary>
     /// 更新时间
     /// </summary>
-    public DateTime UpdatedAt { get; set; }
+    public DateTime UpdateTime { get; set; }
 
     /// <summary>
-    /// 是否删除
+    /// 签署时间
     /// </summary>
+    public DateTime? SignTime { get; set; }
+
+    /// <summary>
+    /// 完成时间
+    /// </summary>
+    public DateTime? CompleteTime { get; set; }
+
+    /// <summary>
+    /// 取消时间
+    /// </summary>
+    public DateTime? CancelTime { get; set; }
+
+    // 为了兼容性，添加属性映射
+    /// <summary>
+    /// 甲方客户ID（映射到ClientId）
+    /// </summary>
+    [NotMapped]
+    public int PartyAId 
+    { 
+        get => ClientId; 
+        set => ClientId = value; 
+    }
+
+    /// <summary>
+    /// 乙方客户ID（映射到ClientId1）
+    /// </summary>
+    [NotMapped]
+    public int PartyBId 
+    { 
+        get => ClientId1 ?? 0; 
+        set => ClientId1 = value; 
+    }
+
+    /// <summary>
+    /// 甲方客户信息（映射到Client）
+    /// </summary>
+    [NotMapped]
+    public virtual Client? PartyA 
+    { 
+        get => Client; 
+        set => Client = value; 
+    }
+
+    /// <summary>
+    /// 乙方客户信息（映射到Client1）
+    /// </summary>
+    [NotMapped]
+    public virtual Client? PartyB 
+    { 
+        get => Client1; 
+        set => Client1 = value; 
+    }
+
+    /// <summary>
+    /// 合同标题（映射到Terms的前100个字符）
+    /// </summary>
+    [NotMapped]
+    public string Title 
+    { 
+        get => Terms.Length > 100 ? Terms.Substring(0, 100) : Terms; 
+        set => Terms = value; 
+    }
+
+    /// <summary>
+    /// 签署日期（映射到SignTime）
+    /// </summary>
+    [NotMapped]
+    public DateTime? SignDate 
+    { 
+        get => SignTime; 
+        set => SignTime = value; 
+    }
+
+    /// <summary>
+    /// 生效日期（映射到StartDate）
+    /// </summary>
+    [NotMapped]
+    public DateTime? EffectiveDate 
+    { 
+        get => StartDate; 
+        set => StartDate = value ?? DateTime.Now; 
+    }
+
+    /// <summary>
+    /// 到期日期（映射到EndDate）
+    /// </summary>
+    [NotMapped]
+    public DateTime? ExpiryDate 
+    { 
+        get => EndDate; 
+        set => EndDate = value; 
+    }
+
+    /// <summary>
+    /// 合同内容（映射到Terms）
+    /// </summary>
+    [NotMapped]
+    public string Content 
+    { 
+        get => Terms; 
+        set => Terms = value; 
+    }
+
+    /// <summary>
+    /// 备注（映射到Remark）
+    /// </summary>
+    [NotMapped]
+    public string? Notes 
+    { 
+        get => Remark; 
+        set => Remark = value; 
+    }
+
+    /// <summary>
+    /// 创建时间（映射到CreateTime）
+    /// </summary>
+    [NotMapped]
+    public DateTime CreatedAt 
+    { 
+        get => CreateTime; 
+        set => CreateTime = value; 
+    }
+
+    /// <summary>
+    /// 更新时间（映射到UpdateTime）
+    /// </summary>
+    [NotMapped]
+    public DateTime UpdatedAt 
+    { 
+        get => UpdateTime; 
+        set => UpdateTime = value; 
+    }
+
+    /// <summary>
+    /// 创建人ID（暂时不存储在数据库中）
+    /// </summary>
+    [NotMapped]
+    public string CreatedBy { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 是否删除（暂时不存储在数据库中）
+    /// </summary>
+    [NotMapped]
     public bool IsDeleted { get; set; }
 } 

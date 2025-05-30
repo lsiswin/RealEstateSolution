@@ -73,7 +73,10 @@ namespace RealEstateSolution.AuthService.Services
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Email = user.Email
+                    Email = user.Email,
+                    Roles = roles.ToList(),
+                    CreateTime = user.CreateTime,
+                    LastLoginTime = user.LastLoginTime
                 }
             };
         }
@@ -119,10 +122,12 @@ namespace RealEstateSolution.AuthService.Services
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Email = user.Email
+                    Email = user.Email,
+                    Roles = roles.ToList(),
+                    CreateTime = user.CreateTime,
+                    LastLoginTime = user.LastLoginTime
                 }
             };
-
         }
 
         /// <summary>
@@ -175,7 +180,10 @@ namespace RealEstateSolution.AuthService.Services
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    Email = user.Email
+                    Email = user.Email,
+                    Roles = roles.ToList(),
+                    CreateTime = user.CreateTime,
+                    LastLoginTime = user.LastLoginTime
                 }
             };
         }

@@ -51,6 +51,15 @@ public interface IClientService
     Task<ApiResponse> DeleteClientAsync(int id, string userId);
 
     /// <summary>
+    /// 更新客户状态
+    /// </summary>
+    /// <param name="id">客户ID</param>
+    /// <param name="status">新状态</param>
+    /// <param name="userId">操作人ID</param>
+    /// <returns>操作结果</returns>
+    Task<ApiResponse> UpdateClientStatusAsync(int id, ClientStatus status, string userId);
+
+    /// <summary>
     /// 获取客户需求信息
     /// </summary>
     /// <param name="clientId">客户ID</param>

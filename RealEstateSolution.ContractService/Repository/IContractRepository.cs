@@ -37,4 +37,9 @@ public interface IContractRepository : IGenericRepository<Contract>
     /// 生成合同编号
     /// </summary>
     Task<string> GenerateContractNumberAsync();
+
+    /// <summary>
+    /// 删除合同
+    /// </summary>
+    Task DeleteContractAsync(int contractId);
 } 

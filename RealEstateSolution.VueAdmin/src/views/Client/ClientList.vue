@@ -101,7 +101,7 @@
             <el-button
               type="info"
               size="small"
-              @click="handleRequirements(scope.row)"
+              @click="handleRequirements"
             >
               需求
             </el-button>
@@ -192,7 +192,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, computed } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from 'element-plus'
 import { Search, Refresh, Plus } from '@element-plus/icons-vue'
@@ -355,8 +355,8 @@ const handleEdit = (client: Client) => {
 }
 
 // 客户需求
-const handleRequirements = (client: Client) => {
-  router.push(`/client/requirements/${client.id}`)
+const handleRequirements = () => {
+  router.push('/client/requirements')
 }
 
 // 删除客户

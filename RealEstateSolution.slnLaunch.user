@@ -83,6 +83,10 @@
       {
         "Path": "RealEstateSolution.ClientService\\RealEstateSolution.ClientService.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "RealEstateSolution.ContractService\\RealEstateSolution.ContractService.csproj",
+        "Action": "Start"
       }
     ]
   }

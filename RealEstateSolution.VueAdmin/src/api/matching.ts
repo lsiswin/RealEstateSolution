@@ -45,50 +45,50 @@ export interface ManualMatchParams {
 }
 
 // 创建匹配
-export const createMatching = (matching: Matching): Promise<Matching> => {
-  return request.post('/api/matching/CreateMatching', matching)
+export const createMatching = (matching: Matching) => {
+  return request.post('/api/Matching/CreateMatching', matching)
 }
 
 // 更新匹配状态
-export const updateMatchingStatus = (id: number, status: MatchingStatus): Promise<void> => {
-  return request.put(`/api/matching/UpdateMatchingStatus/${id}/status`, null, {
+export const updateMatchingStatus = (id: number, status: MatchingStatus) => {
+  return request.put(`/api/Matching/UpdateMatchingStatus/${id}/status`, null, {
     params: { status }
   })
 }
 
 // 获取匹配详情
-export const getMatching = (id: number): Promise<Matching> => {
-  return request.get(`/api/matching/GetMatching/${id}`)
+export const getMatching = (id: number) => {
+  return request.get(`/api/Matching/GetMatching/${id}`)
 }
 
 // 搜索匹配记录
-export const searchMatchings = (params: SearchMatchingParams): Promise<Matching[]> => {
-  return request.get('/api/matching/SearchMatchings', { params })
+export const searchMatchings = (params: SearchMatchingParams) => {
+  return request.get('/api/Matching/SearchMatchings/search', { params })
 }
 
 // 获取客户的匹配记录
-export const getClientMatchings = (clientId: number): Promise<Matching[]> => {
-  return request.get(`/api/matching/GetClientMatchings/client/${clientId}`)
+export const getClientMatchings = (clientId: number) => {
+  return request.get(`/api/Matching/GetClientMatchings/client/${clientId}`)
 }
 
 // 获取房源的匹配记录
-export const getPropertyMatchings = (propertyId: number): Promise<Matching[]> => {
-  return request.get(`/api/matching/GetPropertyMatchings/property/${propertyId}`)
+export const getPropertyMatchings = (propertyId: number) => {
+  return request.get(`/api/Matching/GetPropertyMatchings/property/${propertyId}`)
 }
 
 // 删除匹配记录
-export const deleteMatching = (id: number): Promise<void> => {
-  return request.delete(`/api/matching/DeleteMatching/${id}`)
+export const deleteMatching = (id: number) => {
+  return request.delete(`/api/Matching/DeleteMatching/${id}`)
 }
 
 // 自动匹配
-export const autoMatch = (clientId: number): Promise<Matching[]> => {
-  return request.post(`/api/matching/AutoMatch/auto/${clientId}`)
+export const autoMatch = (clientId: number) => {
+  return request.post(`/api/Matching/AutoMatch/auto/${clientId}`)
 }
 
 // 手动匹配
-export const manualMatch = (params: ManualMatchParams): Promise<Matching> => {
-  return request.post('/api/matching/ManualMatch/manual', null, {
+export const manualMatch = (params: ManualMatchParams) => {
+  return request.post('/api/Matching/ManualMatch/manual', null, {
     params
   })
 } 

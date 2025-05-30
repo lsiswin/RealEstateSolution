@@ -69,7 +69,6 @@
         <el-table-column prop="userName" label="用户名" width="120" />
         <el-table-column prop="realName" label="真实姓名" width="120" />
         <el-table-column prop="email" label="邮箱" width="180" />
-        <el-table-column prop="phone" label="电话" width="130" />
         <el-table-column prop="roles" label="角色" width="150">
           <template #default="scope">
             <el-tag
@@ -182,9 +181,6 @@
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="userForm.email" placeholder="请输入邮箱" />
         </el-form-item>
-        <el-form-item label="电话">
-          <el-input v-model="userForm.phone" placeholder="请输入电话号码" />
-        </el-form-item>
         <el-form-item label="角色" prop="roleIds">
           <el-select 
             v-model="userForm.roleIds" 
@@ -285,7 +281,6 @@ const userForm = reactive<Partial<CreateUserRequest & UpdateUserRequest & { id?:
   password: '',
   email: '',
   realName: '',
-  phone: '',
   roleIds: [],
   isActive: true
 })
@@ -521,7 +516,6 @@ const resetUserForm = () => {
     password: '',
     email: '',
     realName: '',
-    phone: '',
     roleIds: [],
     isActive: true
   })

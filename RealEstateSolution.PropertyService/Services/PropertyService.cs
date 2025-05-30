@@ -33,6 +33,7 @@ public class PropertyService : IPropertyService
     private const string PropertyCacheKeyPrefix = "property:";
     private const int CacheExpirationMinutes = 30;
     private readonly ILogger<PropertyService> _logger;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     /// <summary>
     /// 构造函数
@@ -41,11 +42,13 @@ public class PropertyService : IPropertyService
     /// <param name="redisService">Redis缓存服务</param>
     /// <param name="mapper">对象映射器，用于DTO和实体之间的转换</param>
     /// <param name="logger">日志记录器</param>
+    /// <param name="httpContextAccessor">HTTP上下文访问器</param>
     public PropertyService(
         IUnitOfWork<PropertyDbContext> unitOfWork,
         IRedisService redisService,
         IMapper mapper,
-        ILogger<PropertyService> logger)
+        ILogger<PropertyService> logger,
+        IHttpContextAccessor httpContextAccessor)
     {
         _unitOfWork = unitOfWork;
         _propertyRepository = unitOfWork.Repository<Property>();
@@ -53,6 +56,7 @@ public class PropertyService : IPropertyService
         _redisService = redisService;
         _mapper = mapper;
         _logger = logger;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     /// <summary>
@@ -237,6 +241,8 @@ public class PropertyService : IPropertyService
             if (propertyDto == null)
                 return ApiResponse<PropertyDto>.Error("房源信息不能为空");
 
+            await _unitOfWork.BeginTransactionAsync();
+
             // 转换为实体
             var property = _mapper.Map<Property>(propertyDto);
             
@@ -247,7 +253,7 @@ public class PropertyService : IPropertyService
             property.Status = PropertyStatus.Available; // 默认状态
             
             await _propertyRepository.AddAsync(property);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             // 缓存新房源
             await _redisService.SetAsync(
@@ -260,6 +266,7 @@ public class PropertyService : IPropertyService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return ApiResponse<PropertyDto>.Error($"创建房源失败：{ex.Message}");
         }
     }
@@ -282,14 +289,19 @@ public class PropertyService : IPropertyService
             if (propertyDto == null)
                 return ApiResponse<PropertyDto>.Error("房源信息不能为空");
 
+            await _unitOfWork.BeginTransactionAsync();
+
             var existingProperty = await _propertyRepository.GetByIdAsync(id);
             if (existingProperty == null)
             {
                 return ApiResponse<PropertyDto>.Error($"未找到ID为{id}的房源");
             }
 
-            // 权限验证：只有房源所有者可以修改
-            if (existingProperty.OwnerId != userId)
+            // 权限验证：房源所有者或管理员可以修改
+            var httpContext = _httpContextAccessor.HttpContext;
+            var isAdmin = httpContext?.User?.IsInRole("admin") ?? false;
+            
+            if (existingProperty.OwnerId != userId && !isAdmin)
             {
                 return ApiResponse<PropertyDto>.Error("您没有权限修改此房源");
             }
@@ -299,7 +311,7 @@ public class PropertyService : IPropertyService
             existingProperty.UpdateTime = DateTime.Now;
 
             _propertyRepository.Update(existingProperty);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             // 更新缓存
             await _redisService.SetAsync(
@@ -312,6 +324,7 @@ public class PropertyService : IPropertyService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return ApiResponse<PropertyDto>.Error($"更新房源信息失败：{ex.Message}");
         }
     }
@@ -330,14 +343,20 @@ public class PropertyService : IPropertyService
             if (id <= 0)
                 return ApiResponse.Error("房源ID必须大于0");
 
+            await _unitOfWork.BeginTransactionAsync();
+
             var property = await _propertyRepository.GetByIdAsync(id);
             if (property == null)
             {
                 return ApiResponse.Error($"未找到ID为{id}的房源");
             }
 
-            // 权限验证：只有房源所有者可以删除
-            if (property.OwnerId != userId)
+            // 权限验证：房源所有者或管理员可以删除
+            // 注意：这里需要从HttpContext获取用户角色信息
+            var httpContext = _httpContextAccessor.HttpContext;
+            var isAdmin = httpContext?.User?.IsInRole("admin") ?? false;
+            
+            if (property.OwnerId != userId && !isAdmin)
             {
                 return ApiResponse.Error("您没有权限删除此房源");
             }
@@ -351,7 +370,7 @@ public class PropertyService : IPropertyService
             
             // 删除房源
             _propertyRepository.Delete(property);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             // 清除缓存
             await _redisService.DeleteAsync($"{PropertyCacheKeyPrefix}{id}");
@@ -360,6 +379,7 @@ public class PropertyService : IPropertyService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return ApiResponse.Error($"删除房源失败：{ex.Message}");
         }
     }
@@ -382,6 +402,8 @@ public class PropertyService : IPropertyService
             if (statusDto == null)
                 return ApiResponse<PropertyDto>.Error("状态信息不能为空");
 
+            await _unitOfWork.BeginTransactionAsync();
+
             var property = await _propertyRepository.GetByIdAsync(id);
             if (property == null)
             {
@@ -398,7 +420,7 @@ public class PropertyService : IPropertyService
             property.UpdateTime = DateTime.Now;
 
             _propertyRepository.Update(property);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             // 更新缓存
             await _redisService.SetAsync(
@@ -411,6 +433,7 @@ public class PropertyService : IPropertyService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return ApiResponse<PropertyDto>.Error($"更新房源状态失败：{ex.Message}");
         }
     }
@@ -475,8 +498,11 @@ public class PropertyService : IPropertyService
                 return ApiResponse<PropertyImageDto>.Error($"未找到ID为{propertyId}的房源");
             }
 
-            // 权限验证：只有房源所有者可以上传图片
-            if (property.OwnerId != userId)
+            // 权限验证：房源所有者或管理员可以上传图片
+            var httpContext = _httpContextAccessor.HttpContext;
+            var isAdmin = httpContext?.User?.IsInRole("admin") ?? false;
+            
+            if (property.OwnerId != userId && !isAdmin)
             {
                 return ApiResponse<PropertyImageDto>.Error("您没有权限为此房源上传图片");
             }
@@ -494,6 +520,8 @@ public class PropertyService : IPropertyService
             {
                 return ApiResponse<PropertyImageDto>.Error("图片文件大小不能超过5MB");
             }
+
+            await _unitOfWork.BeginTransactionAsync();
 
             // 生成文件名和路径
             var fileName = $"{Guid.NewGuid()}{fileExtension}";
@@ -530,13 +558,14 @@ public class PropertyService : IPropertyService
             };
 
             await _propertyImageRepository.AddAsync(propertyImage);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             var imageDto = _mapper.Map<PropertyImageDto>(propertyImage);
             return ApiResponse<PropertyImageDto>.Ok(imageDto, "图片上传成功");
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return ApiResponse<PropertyImageDto>.Error($"上传图片失败：{ex.Message}");
         }
     }
@@ -566,11 +595,16 @@ public class PropertyService : IPropertyService
                 return ApiResponse.Error($"未找到ID为{propertyId}的房源");
             }
 
-            // 权限验证：只有房源所有者可以删除图片
-            if (property.OwnerId != userId)
+            // 权限验证：房源所有者或管理员可以删除图片
+            var httpContext = _httpContextAccessor.HttpContext;
+            var isAdmin = httpContext?.User?.IsInRole("admin") ?? false;
+            
+            if (property.OwnerId != userId && !isAdmin)
             {
                 return ApiResponse.Error("您没有权限删除此房源的图片");
             }
+
+            await _unitOfWork.BeginTransactionAsync();
 
             // 查找图片
             var image = await _propertyImageRepository.GetByIdAsync(imageId);
@@ -588,12 +622,13 @@ public class PropertyService : IPropertyService
 
             // 删除数据库记录
             _propertyImageRepository.Delete(image);
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.CommitAsync();
 
             return ApiResponse.Ok("图片删除成功");
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return ApiResponse.Error($"删除图片失败：{ex.Message}");
         }
     }

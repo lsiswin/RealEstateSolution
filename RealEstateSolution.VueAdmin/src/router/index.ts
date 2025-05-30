@@ -56,7 +56,19 @@ const router = createRouter({
               path: 'add',
               name: 'PropertyAdd',
               component: () => import('@/views/Property/PropertyAdd.vue'),
-              meta: { title: '添加房源', icon: 'Plus', requiresAuth: true }
+              meta: { title: '新增房源', icon: 'Files', requiresAuth: true }
+            },
+            {
+              path: 'detail/:id',
+              name: 'PropertyDetail',
+              component: () => import('@/views/Property/PropertyDetail.vue'),
+              meta: { title: '房源详情', icon: 'View', requiresAuth: true, hideInMenu: true }
+            },
+            {
+              path: 'edit/:id',
+              name: 'PropertyEdit',
+              component: () => import('@/views/Property/PropertyEdit.vue'),
+              meta: { title: '编辑房源', icon: 'Edit', requiresAuth: true, hideInMenu: true }
             }
           ]
         },
@@ -76,8 +88,8 @@ const router = createRouter({
             },
             {
               path: 'requirements',
-              name: 'ClientRequirements',
-              component: () => import('@/views/Client/ClientRequirements.vue'),
+              name: 'ClientRequirementsList',
+              component: () => import('@/views/Client/ClientRequirementsList.vue'),
               meta: { title: '客户需求', icon: 'Document', requiresAuth: true }
             }
           ]
@@ -101,6 +113,24 @@ const router = createRouter({
               name: 'ContractTemplates',
               component: () => import('@/views/Contract/ContractTemplates.vue'),
               meta: { title: '合同模板', icon: 'Files', requiresAuth: true }
+            },
+            {
+              path: 'templates/view/:id',
+              name: 'TemplateView',
+              component: () => import('@/views/Contract/TemplateView.vue'),
+              meta: { title: '查看模板', requiresAuth: true, hideInMenu: true }
+            },
+            {
+              path: 'templates/add',
+              name: 'TemplateAdd',
+              component: () => import('@/views/Contract/TemplateEdit.vue'),
+              meta: { title: '新增模板', requiresAuth: true, hideInMenu: true }
+            },
+            {
+              path: 'templates/edit/:id',
+              name: 'TemplateEdit',
+              component: () => import('@/views/Contract/TemplateEdit.vue'),
+              meta: { title: '编辑模板', requiresAuth: true, hideInMenu: true }
             }
           ]
         },
@@ -192,6 +222,7 @@ router.beforeEach((to, from, next) => {
     isLoggedIn: userStore.isLoggedIn,
     token: !!userStore.token,
     userInfo: !!userStore.userInfo,
+    userRoles: userStore.userInfo?.roles,
     requiresAuth: to.meta.requiresAuth
   })
   
@@ -202,6 +233,17 @@ router.beforeEach((to, from, next) => {
       ElMessage.warning('请先登录')
       next('/login')
       return
+    }
+    
+    // 检查合同管理页面的角色权限
+    if (to.path.startsWith('/contract')) {
+      const hasRequiredRole = userStore.hasAnyRole(['admin', 'broker'])
+      if (!hasRequiredRole) {
+        console.log('用户没有访问合同管理的权限，需要admin或broker角色')
+        ElMessage.error('您没有访问合同管理的权限，需要管理员或经纪人角色')
+        next('/dashboard')
+        return
+      }
     }
   }
   

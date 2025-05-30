@@ -113,4 +113,5 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     {
         return await _dbSet.CountAsync(predicate);
     }
+
 } 

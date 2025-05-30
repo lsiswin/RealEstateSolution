@@ -301,12 +301,12 @@ const handleAdd = () => {
 
 // 查看房源
 const handleView = (property: Property) => {
-  router.push(`/property/detail/${property.id}`)
+  router.replace(`/property/detail/${property.id}`)
 }
 
 // 编辑房源
 const handleEdit = (property: Property) => {
-  router.push(`/property/edit/${property.id}`)
+  router.replace(`/property/edit/${property.id}`)
 }
 
 // 删除房源

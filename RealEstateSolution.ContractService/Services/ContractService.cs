@@ -3,6 +3,8 @@ using RealEstateSolution.Common.Utils;
 using RealEstateSolution.ContractService.Models;
 using RealEstateSolution.ContractService.Repository;
 using RealEstateSolution.Database.Models;
+using RealEstateSolution.Common.Repository;
+using RealEstateSolution.ContractService.Data;
 
 namespace RealEstateSolution.ContractService.Services;
 
@@ -12,12 +14,20 @@ namespace RealEstateSolution.ContractService.Services;
 public class ContractService : IContractService
 {
     private readonly IContractRepository _contractRepository;
+    private readonly IContractTemplateService _templateService;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork<ContractDbContext> _unitOfWork;
 
-    public ContractService(IContractRepository contractRepository, IMapper mapper)
+    public ContractService(
+        IContractRepository contractRepository, 
+        IContractTemplateService templateService, 
+        IMapper mapper,
+        IUnitOfWork<ContractDbContext> unitOfWork)
     {
         _contractRepository = contractRepository;
+        _templateService = templateService;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ApiResponse<PagedList<ContractDto>>> GetContractsAsync(ContractQueryDto query)
@@ -99,14 +109,16 @@ public class ContractService : IContractService
     {
         try
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             var contract = _mapper.Map<Contract>(contractDto);
             contract.ContractNumber = await GenerateContractNumberAsync(contract.Type);
-            contract.CreatedBy = userId;
-            contract.CreatedAt = DateTime.Now;
-            contract.UpdatedAt = DateTime.Now;
+            contract.CreateTime = DateTime.Now;
+            contract.UpdateTime = DateTime.Now;
             contract.Status = ContractStatus.Draft;
 
             await _contractRepository.AddAsync(contract);
+            await _unitOfWork.CommitAsync();
             
             var resultDto = _mapper.Map<ContractDto>(contract);
             return new ApiResponse<ContractDto>
@@ -118,6 +130,7 @@ public class ContractService : IContractService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return new ApiResponse<ContractDto>
             {
                 Success = false,
@@ -130,6 +143,8 @@ public class ContractService : IContractService
     {
         try
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             var existingContract = await _contractRepository.GetByIdAsync(id);
             if (existingContract == null)
             {
@@ -141,15 +156,15 @@ public class ContractService : IContractService
             }
 
             // 更新允许修改的字段
-            existingContract.Title = contractDto.Title;
             existingContract.Amount = contractDto.Amount;
-            existingContract.EffectiveDate = contractDto.StartDate;
-            existingContract.ExpiryDate = contractDto.EndDate;
-            existingContract.Content = contractDto.Terms;
-            existingContract.Notes = contractDto.Notes;
-            existingContract.UpdatedAt = DateTime.Now;
+            existingContract.StartDate = contractDto.StartDate ?? DateTime.Now;
+            existingContract.EndDate = contractDto.EndDate;
+            existingContract.Terms = contractDto.Terms ?? string.Empty;
+            existingContract.Remark = contractDto.Notes;
+            existingContract.UpdateTime = DateTime.Now;
 
             _contractRepository.Update(existingContract);
+            await _unitOfWork.CommitAsync();
             
             var resultDto = _mapper.Map<ContractDto>(existingContract);
             return new ApiResponse<ContractDto>
@@ -161,6 +176,7 @@ public class ContractService : IContractService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return new ApiResponse<ContractDto>
             {
                 Success = false,
@@ -173,6 +189,8 @@ public class ContractService : IContractService
     {
         try
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             var contract = await _contractRepository.GetByIdAsync(id);
             if (contract == null)
             {
@@ -183,9 +201,9 @@ public class ContractService : IContractService
                 };
             }
 
-            contract.IsDeleted = true;
-            contract.UpdatedAt = DateTime.Now;
-            _contractRepository.Update(contract);
+            // 使用仓储的删除方法
+            _contractRepository.Delete(contract);
+            await _unitOfWork.CommitAsync();
 
             return new ApiResponse
             {
@@ -195,6 +213,7 @@ public class ContractService : IContractService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return new ApiResponse
             {
                 Success = false,
@@ -207,6 +226,8 @@ public class ContractService : IContractService
     {
         try
         {
+            await _unitOfWork.BeginTransactionAsync();
+
             var contract = await _contractRepository.GetByIdAsync(id);
             if (contract == null)
             {
@@ -218,15 +239,16 @@ public class ContractService : IContractService
             }
 
             contract.Status = status;
-            contract.UpdatedAt = DateTime.Now;
+            contract.UpdateTime = DateTime.Now;
             
             // 如果状态变为已签署，设置签署日期
-            if (status == ContractStatus.Signed && !contract.SignDate.HasValue)
+            if (status == ContractStatus.Signed && !contract.SignTime.HasValue)
             {
-                contract.SignDate = DateTime.Now;
+                contract.SignTime = DateTime.Now;
             }
 
             _contractRepository.Update(contract);
+            await _unitOfWork.CommitAsync();
             
             var resultDto = _mapper.Map<ContractDto>(contract);
             return new ApiResponse<ContractDto>
@@ -238,6 +260,7 @@ public class ContractService : IContractService
         }
         catch (Exception ex)
         {
+            await _unitOfWork.RollbackAsync();
             return new ApiResponse<ContractDto>
             {
                 Success = false,
@@ -250,15 +273,8 @@ public class ContractService : IContractService
     {
         try
         {
-            // 这里需要实现模板仓储，暂时返回空列表
-            var templates = new List<ContractTemplateDto>();
-            
-            return new ApiResponse<List<ContractTemplateDto>>
-            {
-                Success = true,
-                Data = templates,
-                Message = "获取合同模板成功"
-            };
+            var result = await _templateService.GetActiveTemplatesByTypeAsync(type);
+            return result;
         }
         catch (Exception ex)
         {
@@ -274,8 +290,24 @@ public class ContractService : IContractService
     {
         try
         {
-            // 这里需要实现从模板创建合同的逻辑
-            // 暂时直接创建合同
+            // 获取模板详情
+            var templateResult = await _templateService.GetTemplateByIdAsync(templateId);
+            if (!templateResult.Success || templateResult.Data == null)
+            {
+                return new ApiResponse<ContractDto>
+                {
+                    Success = false,
+                    Message = "模板不存在或已被禁用"
+                };
+            }
+
+            var template = templateResult.Data;
+            
+            // 使用模板内容填充合同
+            contractDto.Terms = template.Content;
+            contractDto.Type = template.Type;
+            
+            // 创建合同
             return await CreateContractAsync(contractDto, userId);
         }
         catch (Exception ex)
@@ -320,7 +352,7 @@ public class ContractService : IContractService
                 CancelledContracts = allContracts.Count(c => c.Status == ContractStatus.Cancelled),
                 TotalAmount = allContracts.Sum(c => c.Amount),
                 MonthlyAmount = allContracts
-                    .Where(c => c.CreatedAt >= DateTime.Now.AddMonths(-1))
+                    .Where(c => c.CreateTime >= DateTime.Now.AddMonths(-1))
                     .Sum(c => c.Amount)
             };
 

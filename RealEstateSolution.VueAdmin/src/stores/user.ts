@@ -90,7 +90,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // 检查是否是管理员
-  const isAdmin = computed(() => hasRole('Admin'))
+  const isAdmin = computed(() => hasRole('admin'))
 
   return {
     // 状态

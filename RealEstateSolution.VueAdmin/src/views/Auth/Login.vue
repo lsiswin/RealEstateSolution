@@ -108,7 +108,7 @@ const handleLogin = async () => {
         response.refreshToken || '',
         {
           ...response.user,
-          roles: response.user.roles || ['User']
+          roles: response.user.roles || ['broker']
         }
       )
       

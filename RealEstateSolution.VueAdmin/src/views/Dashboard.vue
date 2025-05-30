@@ -54,6 +54,31 @@
       </el-col>
     </el-row>
 
+    <!-- 用户信息调试卡片 -->
+    <el-row :gutter="20" class="debug-row" style="margin-top: 20px;">
+      <el-col :span="24">
+        <el-card class="debug-card">
+          <template #header>
+            <span>当前用户信息（调试用）</span>
+          </template>
+          <div class="debug-content">
+            <p><strong>用户名:</strong> {{ userStore.userInfo?.userName || '未登录' }}</p>
+            <p><strong>真实姓名:</strong> {{ userStore.userInfo?.realName || '未设置' }}</p>
+            <p><strong>用户角色:</strong> 
+              <el-tag v-for="role in userStore.userInfo?.roles" :key="role" style="margin-right: 8px;">
+                {{ role }}
+              </el-tag>
+              <span v-if="!userStore.userInfo?.roles || userStore.userInfo.roles.length === 0">无角色</span>
+            </p>
+            <p><strong>是否管理员:</strong> {{ userStore.hasRole('admin') ? '是' : '否' }}</p>
+            <p><strong>是否经纪人:</strong> {{ userStore.hasRole('broker') ? '是' : '否' }}</p>
+            <p><strong>可访问合同管理:</strong> {{ userStore.hasAnyRole(['admin', 'broker']) ? '是' : '否' }}</p>
+            <p><strong>Token状态:</strong> {{ userStore.token ? '已设置' : '未设置' }}</p>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+
     <!-- 图表区域 -->
     <el-row :gutter="20" class="charts-row">
       <el-col :span="12">
@@ -553,5 +578,17 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.debug-row {
+  margin-top: 20px;
+}
+
+.debug-card {
+  height: 200px;
+}
+
+.debug-content {
+  padding: 16px;
 }
 </style> 

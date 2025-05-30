@@ -5,6 +5,9 @@ using RealEstateSolution.ClientService.Dtos;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using RealEstateSolution.Common.Extensions;
+using RealEstateSolution.ClientService.Models;
+using RealEstateSolution.Common.Repository;
+using RealEstateSolution.ClientService.Data;
 
 namespace RealEstateSolution.ClientService.Services;
 
@@ -14,16 +17,22 @@ namespace RealEstateSolution.ClientService.Services;
 /// </summary>
 public class ClientService : IClientService
 {
+    private readonly IUnitOfWork<ClientDbContext> _unitOfWork;
     private readonly IClientRepository _clientRepository;
     private readonly IMapper _mapper;
 
     /// <summary>
     /// 构造函数
     /// </summary>
+    /// <param name="unitOfWork">工作单元</param>
     /// <param name="clientRepository">客户数据仓储接口</param>
     /// <param name="mapper">对象映射器，用于DTO和实体之间的转换</param>
-    public ClientService(IClientRepository clientRepository, IMapper mapper)
+    public ClientService(
+        IUnitOfWork<ClientDbContext> unitOfWork,
+        IClientRepository clientRepository, 
+        IMapper mapper)
     {
+        _unitOfWork = unitOfWork;
         _clientRepository = clientRepository;
         _mapper = mapper;
     }
@@ -37,61 +46,42 @@ public class ClientService : IClientService
     {
         try
         {
-            // 参数验证
-            if (query.PageIndex < 1)
-                return ApiResponse<PagedList<ClientDto>>.Error("页码必须大于0");
-            
-            if (query.PageSize < 1 || query.PageSize > 100)
-                return ApiResponse<PagedList<ClientDto>>.Error("每页记录数必须在1-100之间");
+            var clients = await _clientRepository.SearchClientsAsync(
+                query.Name,
+                query.Phone,
+                query.Email,
+                query.Type,
+                query.Status);
 
-            // 构建查询条件 - 使用IQueryable提升性能
-            var queryable = _clientRepository.Query();
+            // 应用分页
+            var totalCount = clients.Count();
+            var pagedClients = clients
+                .Skip((query.PageIndex - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .ToList();
 
-            // 按关键词搜索
-            if (!string.IsNullOrWhiteSpace(query.Keyword))
-            {
-                var keyword = query.Keyword.Trim();
-                queryable = queryable.Where(c => 
-                    c.Name.Contains(keyword) || 
-                    c.Phone.Contains(keyword) || 
-                    (c.Email != null && c.Email.Contains(keyword)));
-            }
+            var clientDtos = _mapper.Map<List<ClientDto>>(pagedClients);
 
-            // 按姓名模糊查询
-            if (!string.IsNullOrWhiteSpace(query.Name))
-            {
-                queryable = queryable.Where(c => c.Name.Contains(query.Name.Trim()));
-            }
-            
-            // 按电话模糊查询
-            if (!string.IsNullOrWhiteSpace(query.Phone))
-            {
-                queryable = queryable.Where(c => c.Phone.Contains(query.Phone.Trim()));
-            }
-            
-            // 按类型精确查询
-            if (query.Type.HasValue)
-            {
-                queryable = queryable.Where(c => c.Type == query.Type.Value);
-            }
-            
-            // 按状态精确查询
-            if (query.Status.HasValue)
-            {
-                queryable = queryable.Where(c => c.Status == query.Status.Value);
-            }
-            
-            // 排序
-            queryable = queryable.OrderByDescending(c => c.CreateTime);
+            var pagedResult = new PagedList<ClientDto>(
+                clientDtos,
+                totalCount,
+                query.PageIndex,
+                query.PageSize);
 
-            // 使用AutoMapper扩展方法进行分页查询
-            var pagedResult = await queryable.ToPagedListAsync<Client, ClientDto>(_mapper, query.PageIndex, query.PageSize);
-            
-            return ApiResponse<PagedList<ClientDto>>.Ok(pagedResult, $"成功获取第{query.PageIndex}页客户列表，共{pagedResult.TotalCount}条记录");
+            return new ApiResponse<PagedList<ClientDto>>
+            {
+                Success = true,
+                Data = pagedResult,
+                Message = "获取客户列表成功"
+            };
         }
         catch (Exception ex)
         {
-            return ApiResponse<PagedList<ClientDto>>.Error($"获取客户列表失败：{ex.Message}");
+            return new ApiResponse<PagedList<ClientDto>>
+            {
+                Success = false,
+                Message = $"获取客户列表失败: {ex.Message}"
+            };
         }
     }
 
@@ -104,31 +94,31 @@ public class ClientService : IClientService
     {
         try
         {
-            // 参数验证
-            if (id <= 0)
-                return ApiResponse<ClientDto>.Error("客户ID必须大于0");
-
-            // 使用投影查询优化性能
-            var queryable = _clientRepository.Query().Where(c => c.Id == id);
-            var clientDto = await queryable.ProjectToFirstOrDefaultAsync<Client, ClientDto>(_mapper);
-            
-            if (clientDto == null)
+            var client = await _clientRepository.GetByIdAsync(id);
+            if (client == null)
             {
-                return ApiResponse<ClientDto>.Error($"未找到ID为{id}的客户");
+                return new ApiResponse<ClientDto>
+                {
+                    Success = false,
+                    Message = "客户不存在"
+                };
             }
 
-            // 获取客户需求信息
-            var requirements = await _clientRepository.GetClientRequirementsAsync(id);
-            if (requirements != null)
+            var clientDto = _mapper.Map<ClientDto>(client);
+            return new ApiResponse<ClientDto>
             {
-                clientDto.Requirements = _mapper.SafeMap<ClientRequirements, ClientRequirementDto>(requirements);
-            }
-
-            return ApiResponse<ClientDto>.Ok(clientDto, "成功获取客户详细信息");
+                Success = true,
+                Data = clientDto,
+                Message = "获取客户详情成功"
+            };
         }
         catch (Exception ex)
         {
-            return ApiResponse<ClientDto>.Error($"获取客户详细信息失败：{ex.Message}");
+            return new ApiResponse<ClientDto>
+            {
+                Success = false,
+                Message = $"获取客户详情失败: {ex.Message}"
+            };
         }
     }
 
@@ -142,44 +132,51 @@ public class ClientService : IClientService
     {
         try
         {
-            // 参数验证
-            if (clientDto == null)
-                return ApiResponse<ClientDto>.Error("客户信息不能为空");
+            await _unitOfWork.BeginTransactionAsync();
 
-            // 检查电话号码是否已存在
-            var phoneExists = await _clientRepository.AnyAsync(c => c.Phone == clientDto.Phone.Trim());
-            if (phoneExists)
+            // 检查手机号是否已存在
+            if (await _clientRepository.IsPhoneExistsAsync(clientDto.Phone))
             {
-                return ApiResponse<ClientDto>.Error($"电话号码{clientDto.Phone}已被其他客户使用");
+                return new ApiResponse<ClientDto>
+                {
+                    Success = false,
+                    Message = "手机号已存在"
+                };
             }
 
-            // 转换为实体并验证
-            var client = _mapper.MapWithValidation<ClientDto, Client>(clientDto, entity => 
+            // 检查邮箱是否已存在（如果提供了邮箱）
+            if (!string.IsNullOrEmpty(clientDto.Email) && await _clientRepository.IsEmailExistsAsync(clientDto.Email))
             {
-                if (string.IsNullOrWhiteSpace(entity.Name))
-                    return "客户姓名不能为空";
-                if (string.IsNullOrWhiteSpace(entity.Phone))
-                    return "客户电话不能为空";
-                return null;
-            });
-            
-            // 设置系统字段
+                return new ApiResponse<ClientDto>
+                {
+                    Success = false,
+                    Message = "邮箱已存在"
+                };
+            }
+
+            var client = _mapper.Map<Client>(clientDto);
             client.CreateTime = DateTime.Now;
             client.UpdateTime = DateTime.Now;
-            client.Source = ClientSource.Website; // 默认来源
-            
+
             await _clientRepository.AddAsync(client);
-            
+            await _unitOfWork.CommitAsync();
+
             var resultDto = _mapper.Map<ClientDto>(client);
-            return ApiResponse<ClientDto>.Ok(resultDto, $"客户{client.Name}创建成功");
-        }
-        catch (ArgumentException ex)
-        {
-            return ApiResponse<ClientDto>.Error($"数据验证失败：{ex.Message}");
+            return new ApiResponse<ClientDto>
+            {
+                Success = true,
+                Data = resultDto,
+                Message = "创建客户成功"
+            };
         }
         catch (Exception ex)
         {
-            return ApiResponse<ClientDto>.Error($"创建客户失败：{ex.Message}");
+            await _unitOfWork.RollbackAsync();
+            return new ApiResponse<ClientDto>
+            {
+                Success = false,
+                Message = $"创建客户失败: {ex.Message}"
+            };
         }
     }
 
@@ -194,38 +191,66 @@ public class ClientService : IClientService
     {
         try
         {
-            // 参数验证
-            if (id <= 0)
-                return ApiResponse<ClientDto>.Error("客户ID必须大于0");
-            
-            if (clientDto == null)
-                return ApiResponse<ClientDto>.Error("客户信息不能为空");
+            await _unitOfWork.BeginTransactionAsync();
 
             var existingClient = await _clientRepository.GetByIdAsync(id);
             if (existingClient == null)
             {
-                return ApiResponse<ClientDto>.Error($"未找到ID为{id}的客户");
+                return new ApiResponse<ClientDto>
+                {
+                    Success = false,
+                    Message = "客户不存在"
+                };
             }
 
-            // 检查电话号码是否与其他客户冲突
-            var phoneConflict = await _clientRepository.AnyAsync(c => c.Id != id && c.Phone == clientDto.Phone.Trim());
-            if (phoneConflict)
+            // 检查手机号是否已存在（排除当前客户）
+            if (await _clientRepository.IsPhoneExistsAsync(clientDto.Phone, id))
             {
-                return ApiResponse<ClientDto>.Error($"电话号码{clientDto.Phone}已被其他客户使用");
+                return new ApiResponse<ClientDto>
+                {
+                    Success = false,
+                    Message = "手机号已存在"
+                };
             }
 
-            // 使用AutoMapper的条件映射，只更新非空值
-            _mapper.MapNonNullValues(clientDto, existingClient);
+            // 检查邮箱是否已存在（排除当前客户）
+            if (!string.IsNullOrEmpty(clientDto.Email) && await _clientRepository.IsEmailExistsAsync(clientDto.Email, id))
+            {
+                return new ApiResponse<ClientDto>
+                {
+                    Success = false,
+                    Message = "邮箱已存在"
+                };
+            }
+
+            // 更新客户信息
+            existingClient.Name = clientDto.Name;
+            existingClient.Phone = clientDto.Phone;
+            existingClient.Email = clientDto.Email;
+            existingClient.Type = clientDto.Type;
+            existingClient.Status = clientDto.Status;
+            existingClient.Address = clientDto.Address;
             existingClient.UpdateTime = DateTime.Now;
 
             _clientRepository.Update(existingClient);
-            
+            await _unitOfWork.CommitAsync();
+
             var resultDto = _mapper.Map<ClientDto>(existingClient);
-            return ApiResponse<ClientDto>.Ok(resultDto, $"客户{existingClient.Name}信息更新成功");
+            return new ApiResponse<ClientDto>
+            {
+                Success = true,
+                Data = resultDto,
+                Message = "更新客户成功"
+            };
         }
         catch (Exception ex)
         {
-            return ApiResponse<ClientDto>.Error($"更新客户信息失败：{ex.Message}");
+            await _unitOfWork.RollbackAsync();
+            return new ApiResponse<ClientDto>
+            {
+                Success = false,
+                Message = $"更新客户失败: {ex.Message}"
+            };
         }
     }
 
@@ -239,27 +264,35 @@ public class ClientService : IClientService
     {
         try
         {
-            // 参数验证
-            if (id <= 0)
-                return ApiResponse.Error("客户ID必须大于0");
+            await _unitOfWork.BeginTransactionAsync();
 
             var client = await _clientRepository.GetByIdAsync(id);
             if (client == null)
             {
-                return ApiResponse.Error($"未找到ID为{id}的客户");
+                return new ApiResponse
+                {
+                    Success = false,
+                    Message = "客户不存在"
+                };
             }
 
-            // 先删除客户需求信息（如果存在）
-            await _clientRepository.DeleteClientRequirementsAsync(id);
-            
-            // 删除客户
-            _clientRepository.Delete(client);
-            
-            return ApiResponse.Ok($"客户{client.Name}删除成功");
+            await _clientRepository.DeleteClientAsync(id);
+            await _unitOfWork.CommitAsync();
+
+            return new ApiResponse
+            {
+                Success = true,
+                Message = "删除客户成功"
+            };
         }
         catch (Exception ex)
         {
-            return ApiResponse.Error($"删除客户失败：{ex.Message}");
+            await _unitOfWork.RollbackAsync();
+            return new ApiResponse
+            {
+                Success = false,
+                Message = $"删除客户失败: {ex.Message}"
+            };
         }
     }
 
@@ -375,30 +408,66 @@ public class ClientService : IClientService
     {
         try
         {
-            var allClients = await _clientRepository.GetAllAsync();
-            var now = DateTime.Now;
-            var thirtyDaysAgo = now.AddDays(-30);
+            var (total, active, inactive, potential) = await _clientRepository.GetClientStatsAsync();
 
             var stats = new ClientStatsDto
             {
-                TotalClients = allClients.Count(),
-                ActiveClients = allClients.Count(c => c.Status == ClientStatus.Active),
-                PotentialClients = allClients.Count(c => c.Status == ClientStatus.Potential),
-                ClosedClients = allClients.Count(c => c.Status == ClientStatus.Closed),
-                InvalidClients = allClients.Count(c => c.Status == ClientStatus.Invalid),
-                BuyerClients = allClients.Count(c => c.Type == ClientType.Buyer),
-                SellerClients = allClients.Count(c => c.Type == ClientType.Seller),
-                TenantClients = allClients.Count(c => c.Type == ClientType.Tenant),
-                LandlordClients = allClients.Count(c => c.Type == ClientType.Landlord),
-                NewClientsLast30Days = allClients.Count(c => c.CreateTime >= thirtyDaysAgo),
-                ClosedClientsLast30Days = allClients.Count(c => c.Status == ClientStatus.Closed && c.UpdateTime >= thirtyDaysAgo)
+                TotalClients = total,
+                ActiveClients = active,
+                InvalidClients = inactive,
+                PotentialClients = potential
             };
 
-            return ApiResponse<ClientStatsDto>.Ok(stats, "成功获取客户统计数据");
+            return new ApiResponse<ClientStatsDto>
+            {
+                Success = true,
+                Data = stats,
+                Message = "获取统计信息成功"
+            };
         }
         catch (Exception ex)
         {
-            return ApiResponse<ClientStatsDto>.Error($"获取客户统计数据失败：{ex.Message}");
+            return new ApiResponse<ClientStatsDto>
+            {
+                Success = false,
+                Message = $"获取统计信息失败: {ex.Message}"
+            };
+        }
+    }
+
+    public async Task<ApiResponse> UpdateClientStatusAsync(int id, ClientStatus status, string userId)
+    {
+        try
+        {
+            await _unitOfWork.BeginTransactionAsync();
+
+            var client = await _clientRepository.GetByIdAsync(id);
+            if (client == null)
+            {
+                return new ApiResponse
+                {
+                    Success = false,
+                    Message = "客户不存在"
+                };
+            }
+
+            await _clientRepository.UpdateStatusAsync(id, status);
+            await _unitOfWork.CommitAsync();
+
+            return new ApiResponse
+            {
+                Success = true,
+                Message = $"客户状态已更新为{status}"
+            };
+        }
+        catch (Exception ex)
+        {
+            await _unitOfWork.RollbackAsync();
+            return new ApiResponse
+            {
+                Success = false,
+                Message = $"更新客户状态失败: {ex.Message}"
+            };
         }
     }
 } 

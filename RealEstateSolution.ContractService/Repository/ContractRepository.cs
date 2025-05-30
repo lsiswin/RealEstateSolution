@@ -21,14 +21,13 @@ public class ContractRepository : GenericRepository<Contract>, IContractReposito
         DateTime? startDate,
         DateTime? endDate)
     {
-        var query = _dbSet.AsQueryable().Where(c => !c.IsDeleted);
+        var query = _dbSet.AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(keyword))
         {
             query = query.Where(c => c.ContractNumber.Contains(keyword) ||
-                                   c.Title.Contains(keyword) ||
-                                   c.Content.Contains(keyword) ||
-                                   (c.Notes != null && c.Notes.Contains(keyword)));
+                                   c.Terms.Contains(keyword) ||
+                                   (c.Remark != null && c.Remark.Contains(keyword)));
         }
 
         if (type.HasValue)
@@ -43,17 +42,17 @@ public class ContractRepository : GenericRepository<Contract>, IContractReposito
 
         if (startDate.HasValue)
         {
-            query = query.Where(c => c.EffectiveDate >= startDate.Value);
+            query = query.Where(c => c.StartDate >= startDate.Value);
         }
 
         if (endDate.HasValue)
         {
-            query = query.Where(c => c.ExpiryDate <= endDate.Value);
+            query = query.Where(c => c.EndDate <= endDate.Value);
         }
 
         return await query.Include(c => c.Property)
-                         .Include(c => c.PartyA)
-                         .Include(c => c.PartyB)
+                         .Include(c => c.Client)
+                         .Include(c => c.Client1)
                          .ToListAsync();
     }
 
@@ -63,12 +62,12 @@ public class ContractRepository : GenericRepository<Contract>, IContractReposito
         if (contract != null)
         {
             contract.Status = status;
-            contract.UpdatedAt = DateTime.Now;
+            contract.UpdateTime = DateTime.Now;
 
             // 如果状态变为已签署，设置签署日期
-            if (status == ContractStatus.Signed && !contract.SignDate.HasValue)
+            if (status == ContractStatus.Signed && !contract.SignTime.HasValue)
             {
-                contract.SignDate = DateTime.Now;
+                contract.SignTime = DateTime.Now;
             }
 
             await _context.SaveChangesAsync();
@@ -78,17 +77,17 @@ public class ContractRepository : GenericRepository<Contract>, IContractReposito
     public async Task<IEnumerable<Contract>> GetClientContractsAsync(int clientId)
     {
         return await _dbSet.Include(c => c.Property)
-                          .Include(c => c.PartyA)
-                          .Include(c => c.PartyB)
-                          .Where(c => !c.IsDeleted && (c.PartyAId == clientId || c.PartyBId == clientId))
+                          .Include(c => c.Client)
+                          .Include(c => c.Client1)
+                          .Where(c => c.ClientId == clientId || c.ClientId1 == clientId)
                           .ToListAsync();
     }
 
     public async Task<IEnumerable<Contract>> GetPropertyContractsAsync(int propertyId)
     {
-        return await _dbSet.Include(c => c.PartyA)
-                          .Include(c => c.PartyB)
-                          .Where(c => !c.IsDeleted && c.PropertyId == propertyId)
+        return await _dbSet.Include(c => c.Client)
+                          .Include(c => c.Client1)
+                          .Where(c => c.PropertyId == propertyId)
                           .ToListAsync();
     }
 
@@ -97,5 +96,15 @@ public class ContractRepository : GenericRepository<Contract>, IContractReposito
         var date = DateTime.Now.ToString("yyyyMMdd");
         var count = await _dbSet.CountAsync(c => c.ContractNumber.StartsWith(date)) + 1;
         return $"{date}{count:D4}";
+    }
+
+    public async Task DeleteContractAsync(int contractId)
+    {
+        var contract = await _dbSet.FindAsync(contractId);
+        if (contract != null)
+        {
+            _dbSet.Remove(contract);
+            await _context.SaveChangesAsync();
+        }
     }
 } 

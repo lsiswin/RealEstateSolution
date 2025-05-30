@@ -101,12 +101,12 @@ export const deleteClient = (id: number): Promise<void> => {
 }
 
 // 获取客户需求
-export const getClientRequirements = (id: number): Promise<ApiResponse<Client>> => {
+export const getClientRequirements = (id: number): Promise<ApiResponse<ClientRequirement>> => {
   return request.get(`/api/client/GetClientRequirements/${id}/requirements`)
 }
 
 // 更新客户需求
-export const updateClientRequirements = (id: number, requirement: ClientRequirementDto): Promise<ApiResponse<Client>> => {
+export const updateClientRequirements = (id: number, requirement: ClientRequirementDto): Promise<ApiResponse<ClientRequirement>> => {
   return request.put(`/api/client/UpdateClientRequirements/${id}/requirements`, requirement)
 }
 

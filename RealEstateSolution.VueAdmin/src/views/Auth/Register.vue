@@ -176,10 +176,9 @@ const handleRegister = async () => {
     
     // 构建注册请求数据
     const registerData: RegisterRequest = {
-      userName: registerForm.userName,
+      username: registerForm.userName,
       password: registerForm.password,
       email: registerForm.email,
-      phoneNumber: registerForm.phoneNumber || undefined,
       realName: registerForm.realName || undefined
     }
     
